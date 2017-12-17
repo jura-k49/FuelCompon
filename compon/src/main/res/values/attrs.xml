@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <attr name="itemLayoutId" format="reference"/>
+    <declare-styleable name="StaticList">
+        <attr name="gapBetweenTagsVert" format="reference|dimension"/>
+        <attr name="gapBetweenTagsHoris" format="reference|dimension"/>
+        <attr name="heightTags" format="reference|dimension"/>
+        <attr name="widthTagsMax" format="reference|dimension"/>
+        <attr name="itemLayoutId"/>
+    </declare-styleable>
+    <declare-styleable name="PagerSimple">
+        <attr name="itemLayoutId"/>
+        <attr name="indicator" format="reference"/>
+    </declare-styleable>
+    <declare-styleable name="PagerIndicator">
+        <attr name="itemId" format="reference"/>
+        <attr name="itemSelectId" format="reference"/>
+        <attr name="selectOne" format="boolean"/>
+        <attr name="diametrItem" format="dimension"/>
+    </declare-styleable>
+    <declare-styleable name="ChartRing">
+        <attr name="widthLine" format="reference|dimension"/>
+    </declare-styleable>
+    <declare-styleable name="Simple">
+        <attr name="numberFormat" format="string"/>
+        <attr name="dateFormat" format="string"/>
+        <attr name="placeholder" format="reference"/>
+    </declare-styleable>
+</resources>
