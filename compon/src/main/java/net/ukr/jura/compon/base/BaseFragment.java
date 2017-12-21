@@ -1,5 +1,6 @@
 package net.ukr.jura.compon.base;
 
+import android.app.DialogFragment;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -9,7 +10,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import net.ukr.jura.compon.ComponGlob;
-import net.ukr.jura.compon.dialogs.ProgressDialog;
+//import net.ukr.jura.compon.dialogs.ProgressDialog;
 import net.ukr.jura.compon.interfaces_classes.EventComponent;
 import net.ukr.jura.compon.interfaces_classes.IBase;
 import net.ukr.jura.compon.interfaces_classes.ParentModel;
@@ -25,7 +26,7 @@ public abstract class BaseFragment extends Fragment implements IBase {
     protected View parentLayout;
     private Object mObject;
     private int countProgressStart;
-    private ProgressDialog progressDialog;
+    private DialogFragment progressDialog;
 //    public List<Request> listRequests;
     public List<BaseInternetProvider> listInternetProvider;
     public MultiComponents mComponent;
@@ -95,6 +96,12 @@ public abstract class BaseFragment extends Fragment implements IBase {
         }
         mObject = null;
         super.onStop();
+    }
+
+
+    @Override
+    public void setFragmentsContainerId(int id) {
+
     }
 
     @Override
@@ -181,27 +188,56 @@ public abstract class BaseFragment extends Fragment implements IBase {
         getBaseActivity().startFragment(nameMVP, startFlag);
     }
 
+//    @Override
+//    public void progressStart(int progressId ) {
+////        getBaseActivity().progressStart(progressId);
+//        if (progressDialog == null) {
+//            progressDialog = new ProgressDialog();
+//        }
+//        if (countProgressStart == 0) {
+//            progressDialog.show(getActivity().getFragmentManager(), "MyProgressDialog");
+//        }
+//        countProgressStart++;
+//    }
+
     @Override
-    public void progressStart(int progressId ) {
-//        getBaseActivity().progressStart(progressId);
-        if (progressDialog == null) {
-            progressDialog = new ProgressDialog();
+    public void progressStart() {
+        if (ComponGlob.getInstance().networkParams.classProgress != null) {
+            if (progressDialog == null) {
+//            progressDialog = new ProgressDialog();
+                try {
+                    progressDialog = (DialogFragment) ComponGlob.getInstance().networkParams.classProgress.newInstance();
+                } catch (java.lang.InstantiationException e) {
+                    e.printStackTrace();
+                } catch (IllegalAccessException e) {
+                    e.printStackTrace();
+                }
+            }
+            if (countProgressStart == 0) {
+                progressDialog.show(getActivity().getFragmentManager(), "MyProgressDialog");
+            }
+            countProgressStart++;
         }
-        if (countProgressStart == 0) {
-            progressDialog.show(getActivity().getFragmentManager(), "MyProgressDialog");
-        }
-        countProgressStart++;
     }
 
     @Override
-    public void progressStop(int progressId) {
-//        getBaseActivity().progressStop(progressId);
+    public void progressStop() {
         countProgressStart--;
-        if (countProgressStart == 0) {
+        if (countProgressStart == 0 && progressDialog != null) {
             progressDialog.dismiss();
             progressDialog = null;
         }
     }
+
+//    @Override
+//    public void progressStop(int progressId) {
+////        getBaseActivity().progressStop(progressId);
+//        countProgressStart--;
+//        if (countProgressStart == 0) {
+//            progressDialog.dismiss();
+//            progressDialog = null;
+//        }
+//    }
 
     @Override
     public void showDialog(String title, String message, View.OnClickListener click) {

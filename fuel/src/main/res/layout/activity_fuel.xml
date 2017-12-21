@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white">
+    <FrameLayout
+        android:id="@+id/content_frame"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/nav" />
+    <RadioGroup
+        android:id="@+id/nav"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:layout_alignParentBottom="true"
+        android:background="@color/_primary_30"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:id="@+id/radio1"
+            android:layout_width="100dp"
+            android:layout_height="match_parent"
+            android:paddingTop="5dp"
+            android:button="@null"
+            android:gravity="center"
+            android:drawableTop="@drawable/selector1"
+            android:background="@drawable/selector2"
+            android:textColor="#000"
+            android:checked="true"
+            android:layout_weight="1"
+            android:text="Талоны" />
+        <RadioButton
+            android:id="@+id/radio2"
+            android:layout_width="100dp"
+            android:layout_height="match_parent"
+            android:paddingTop="5dp"
+            android:button="@null"
+            android:gravity="center"
+            android:drawableTop="@drawable/selector1"
+            android:background="@drawable/selector2"
+            android:layout_weight="1"
+            android:textColor="#000"
+            android:text="Карта" />
+
+        <RadioButton
+            android:id="@+id/radio3"
+            android:layout_width="100dp"
+            android:layout_height="match_parent"
+            android:paddingTop="5dp"
+            android:button="@null"
+            android:gravity="center"
+            android:drawableTop="@drawable/selector1"
+            android:background="@drawable/selector2"
+            android:layout_weight="1"
+            android:textColor="#000"
+            android:text="Расход" />
+        <RadioButton
+            android:id="@+id/radio4"
+            android:layout_width="100dp"
+            android:layout_height="match_parent"
+            android:paddingTop="5dp"
+            android:button="@null"
+            android:gravity="center"
+            android:drawableTop="@drawable/selector3"
+            android:background="@drawable/selector2"
+            android:layout_weight="1"
+            android:textColor="#000"
+            android:text="Бонусы" />
+        <RadioButton
+            android:id="@+id/radio5"
+            android:layout_width="100dp"
+            android:layout_height="match_parent"
+            android:paddingTop="5dp"
+            android:button="@null"
+            android:gravity="center"
+            android:drawableTop="@drawable/selector1"
+            android:background="@drawable/selector2"
+            android:layout_weight="1"
+            android:textColor="#000"
+            android:text="Аккаунт" />
+    </RadioGroup>
+</RelativeLayout>

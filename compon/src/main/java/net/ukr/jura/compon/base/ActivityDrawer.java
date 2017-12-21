@@ -38,10 +38,10 @@ public abstract class ActivityDrawer extends BaseActivity{
         initMenu();
     }
 
-    @Override
-    public int getLayoutId() {
-        return 0;
-    }
+//    @Override
+//    public int getLayoutId() {
+//        return 0;
+//    }
 
     public void addMenuItem(String icon, String iconSelect, String title, String nameFragment) {
         addMenuItem(icon, iconSelect, title, nameFragment, false);

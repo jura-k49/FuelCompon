@@ -1,4 +1,4 @@
-package net.ukr.jura.compon.dialogs;
+package net.ukr.jura.fuelcompon.dialogs;
 
 import android.app.DialogFragment;
 import android.graphics.drawable.ColorDrawable;
@@ -8,7 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import net.ukr.jura.compon.ComponGlob;
+import net.ukr.jura.fuelcompon.R;
 
 public class ProgressDialog extends DialogFragment {
     @Override
@@ -21,7 +21,8 @@ public class ProgressDialog extends DialogFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         getDialog().getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
-        View view = inflater.inflate(ComponGlob.getInstance().progressId, container, false);
+//        View view = inflater.inflate(ComponGlob.getInstance().progressId, container, false);
+        View view = inflater.inflate(R.layout.dialog_progress, container, false);
         return view;
     }
 }

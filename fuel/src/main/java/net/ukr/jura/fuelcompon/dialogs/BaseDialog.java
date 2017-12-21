@@ -1,4 +1,4 @@
-package net.ukr.jura.compon.dialogs;
+package net.ukr.jura.fuelcompon.dialogs;
 
 import android.app.DialogFragment;
 import android.os.Bundle;
@@ -9,8 +9,8 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import net.ukr.jura.compon.ComponGlob;
 import net.ukr.jura.compon.tools.StaticVM;
+import net.ukr.jura.fuelcompon.R;
 
 public class BaseDialog extends DialogFragment {
 
@@ -36,7 +36,7 @@ public class BaseDialog extends DialogFragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        parentLayout = inflater.inflate(ComponGlob.getInstance().dialogId, container, false);
+        parentLayout = inflater.inflate(R.layout.base_dialog, container, false);
         title = (TextView) StaticVM.findViewByName(parentLayout, "title");
         message = (TextView) StaticVM.findViewByName(parentLayout, "message");
         close = (LinearLayout) StaticVM.findViewByName(parentLayout, "close");

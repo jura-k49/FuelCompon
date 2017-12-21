@@ -19,11 +19,12 @@ public interface IBase<T> {
     public void startActivitySimple(T clazz);
     public void startFragment(String nameMVP, boolean startFlag);
     public void backPressed();
-    public void progressStart(int progressId);
-    public void progressStop(int progressId);
+    public void progressStart();
+    public void progressStop();
     public void showDialog(String title, String message, View.OnClickListener click);
     public void showDialog(int statusCode, String message, View.OnClickListener click);
     public boolean isViewActive();
+    public void setFragmentsContainerId(int id);
 //    public void addRequest(Request request);
     public void addInternetProvider(BaseInternetProvider internetProvider);
 }

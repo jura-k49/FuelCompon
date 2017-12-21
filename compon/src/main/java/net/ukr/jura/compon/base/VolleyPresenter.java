@@ -163,7 +163,7 @@ public class VolleyPresenter<T> implements Response.Listener<T>, Response.ErrorL
         SimpleRequest request = new SimpleRequest(method, url, this, params, headers, object);
 //        iBase.addRequest(request);
         if (progress) {
-            iBase.progressStart(0);
+            iBase.progressStart();
         }
         VolleyProvider.getInstance().addToRequestQueue(request);
     }
@@ -212,7 +212,7 @@ public class VolleyPresenter<T> implements Response.Listener<T>, Response.ErrorL
     public void onErrorResponse(VolleyError error) {
         Log.d("SMPL","VolleyPresenter onErrorResponse error="+error);
         if (progress) {
-            iBase.progressStop(0);
+            iBase.progressStop();
         }
         dialogError(error);
     }
@@ -220,7 +220,7 @@ public class VolleyPresenter<T> implements Response.Listener<T>, Response.ErrorL
     @Override
     public void onResponse(T response) {
         if (progress) {
-            iBase.progressStop(0);
+            iBase.progressStop();
         }
         if (response == null) {
             iBase.showDialog("", "no response", null);

@@ -1,15 +1,22 @@
 package net.ukr.jura.fuelcompon.activity;
 
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
-
+import net.ukr.jura.compon.base.BaseActivity;
+import net.ukr.jura.compon.models.MultiComponents;
 import net.ukr.jura.fuelcompon.R;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends BaseActivity {
+//    @Override
+//    public int getProgressLayout() {
+//        return R.layout.dialog_progress;
+//    }
+//
+//    @Override
+//    public int getDialogLayout() {
+//        return R.layout.base_dialog;
+//    }
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+    public MultiComponents getScreen() {
+        return getComponent(getString(R.string.main));
     }
 }

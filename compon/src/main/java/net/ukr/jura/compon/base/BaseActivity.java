@@ -1,5 +1,6 @@
 package net.ukr.jura.compon.base;
 
+import android.app.DialogFragment;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
@@ -10,10 +11,11 @@ import android.view.View;
 import net.ukr.jura.compon.ComponGlob;
 import net.ukr.jura.compon.R;
 import net.ukr.jura.compon.dialogs.DialogTools;
-import net.ukr.jura.compon.dialogs.ProgressDialog;
 import net.ukr.jura.compon.functions_fragment.ComponentsFragment;
 import net.ukr.jura.compon.interfaces_classes.EventComponent;
 import net.ukr.jura.compon.interfaces_classes.IBase;
+import net.ukr.jura.compon.interfaces_classes.ParentModel;
+import net.ukr.jura.compon.interfaces_classes.ViewHandler;
 import net.ukr.jura.compon.json_simple.Field;
 import net.ukr.jura.compon.models.MultiComponents;
 import net.ukr.jura.compon.tools.Constants;
@@ -27,37 +29,32 @@ import static android.view.View.inflate;
 
 public abstract class BaseActivity extends FragmentActivity implements IBase {
 
-    public abstract int getProgressLayout();
-    public abstract int getDialogLayout();
-    public abstract int getLayoutId();
-    public abstract String getBaseUrl();
-    protected abstract void initFragments();
-    public abstract void initView();
-//    public abstract void closeDrawer();
-//    public Map<String, MultiComponents> mapFragment = new HashMap<String, MultiComponents>();
+//    public abstract int getProgressLayout();
+//    public abstract int getDialogLayout();
+    public abstract MultiComponents getScreen();
+
     public Map<String, MultiComponents> mapFragment;
-    private ProgressDialog progressDialog;
+    private DialogFragment progressDialog;
     private int countProgressStart;
-//    public List<Request> listRequests;
     public List<BaseInternetProvider> listInternetProvider;
     public List<EventComponent> listEvent;
     private View parentLayout;
+    public MultiComponents mComponent;
     public int containerFragmentId;
     protected String nameDrawer;
     private boolean isActive;
+    public List<ParentModel> parentModelList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        ComponGlob.getInstance().progressId = getProgressLayout();
-        ComponGlob.getInstance().dialogId = getDialogLayout();
+//        ComponGlob.getInstance().progressId = getProgressLayout();
+//        ComponGlob.getInstance().dialogId = getDialogLayout();
+        parentModelList = new ArrayList<>();
         mapFragment = ComponGlob.getInstance().MapScreen;
-//        ComponGlob.getInstance().baseURL = getBaseUrl();
         countProgressStart = 0;
         listInternetProvider = new ArrayList<>();
-//        listRequests = new ArrayList<>();
         PreferenceTool.setUserKey("3d496f249f157fdea7681704abf2b4d74b20c619a3e979dc790c43dc27c26aa6");
-        initFragments();
         for (MultiComponents value : mapFragment.values()) {
             String par = value.getParamModel();
             if (par != null && par.length() > 0) {
@@ -68,16 +65,51 @@ public abstract class BaseActivity extends FragmentActivity implements IBase {
                 }
             }
         }
-        View v = getContentView(savedInstanceState);
-        containerFragmentId = R.id.content_frame;
-        setContentView(v);
-        parentLayout = findViewById(android.R.id.content).getRootView();
-        initView();
-        String start = startFragment();
-        Log.d("QWERT","BaseActivity onCreate start="+start);
-        if (start != null) {
-            startFragment(start, false);
+        mComponent = getScreen();
+        parentLayout = inflate(this, mComponent.fragmentLayoutId, null);
+        setContentView(parentLayout);
+        if (mComponent.navigator != null) {
+            for (ViewHandler vh : mComponent.navigator.viewHandlers) {
+                View v = findViewById(vh.viewId);
+                if (v != null) {
+                    v.setOnClickListener(navigatorClick);
+                }
+            }
         }
+        mComponent.initComponents(this);
+//        parentLayout = findViewById(android.R.id.content).getRootView();
+        initView();
+    }
+
+    public void initView() {
+
+    }
+
+    View.OnClickListener navigatorClick = new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            int id = view.getId();
+            for (ViewHandler vh : mComponent.navigator.viewHandlers) {
+                if (vh.viewId == id) {
+                    switch (vh.type) {
+                        case NAME_FRAGMENT:
+//                            ComponGlob.getInstance().setParam(record);
+                            startFragment(vh.nameFragment, false);
+                            break;
+                    }
+                    break;
+                }
+            }
+        }
+    };
+
+    public MultiComponents getComponent(String name) {
+        return ComponGlob.getInstance().MapScreen.get(name);
+    }
+
+    @Override
+    public void setFragmentsContainerId(int id) {
+        containerFragmentId = id;
     }
 
     protected View getContentView(Bundle savedInstanceState) {
@@ -150,6 +182,19 @@ public abstract class BaseActivity extends FragmentActivity implements IBase {
 
     }
 
+    public ParentModel getParentModel(String name) {
+        if (parentModelList.size() > 0) {
+            for (ParentModel pm : parentModelList) {
+                if (pm.nameParentModel.equals(name)) {
+                    return pm;
+                }
+            }
+        }
+        ParentModel pm = new ParentModel(name);
+        parentModelList.add(pm);
+        return pm;
+    }
+
     public void showDialog(String title, String message, View.OnClickListener click) {
         DialogTools.showDialog(this, title, message, click);
     }
@@ -160,20 +205,29 @@ public abstract class BaseActivity extends FragmentActivity implements IBase {
     }
 
     @Override
-    public void progressStart(int progressId) {
-        if (progressDialog == null) {
-            progressDialog = new ProgressDialog();
+    public void progressStart() {
+        if (ComponGlob.getInstance().networkParams.classProgress != null) {
+            if (progressDialog == null) {
+//            progressDialog = new ProgressDialog();
+                try {
+                    progressDialog = (DialogFragment) ComponGlob.getInstance().networkParams.classProgress.newInstance();
+                } catch (InstantiationException e) {
+                    e.printStackTrace();
+                } catch (IllegalAccessException e) {
+                    e.printStackTrace();
+                }
+            }
+            if (countProgressStart == 0) {
+                progressDialog.show(getFragmentManager(), "MyProgressDialog");
+            }
+            countProgressStart++;
         }
-        if (countProgressStart == 0) {
-            progressDialog.show(getFragmentManager(), "MyProgressDialog");
-        }
-        countProgressStart++;
     }
 
     @Override
-    public void progressStop(int progressId) {
+    public void progressStop() {
         countProgressStart--;
-        if (countProgressStart == 0) {
+        if (countProgressStart == 0 && progressDialog != null) {
             progressDialog.dismiss();
             progressDialog = null;
         }

@@ -31,4 +31,16 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.1'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
+
+    implementation 'com.android.support:appcompat-v7:26.1.0'
+    implementation 'com.android.support:appcompat-v7:26.1.0'
+    implementation 'com.android.support:recyclerview-v7:26.1.0'
+    implementation 'com.android.support:design:26.1.0'
+    implementation 'com.github.bumptech.glide:okhttp-integration:1.2.2'
+    implementation 'com.github.bumptech.glide:volley-integration:1.2.2'
+    implementation 'com.mcxiaoke.volley:library:1.0.6'
+    implementation 'com.squareup.okhttp:okhttp:2.3.0'
+    implementation 'org.apache.httpcomponents:httpcore:4.4.3'
+    implementation 'org.apache.httpcomponents:httpmime:4.3.5'
+    implementation 'com.makeramen:roundedimageview:2.3.0'
 }

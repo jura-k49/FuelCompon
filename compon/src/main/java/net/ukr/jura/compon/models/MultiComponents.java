@@ -14,6 +14,7 @@ public class MultiComponents <T>{
     public int fragmentLayoutId;
     public enum TYPE_VIEW {Activity, Fragment};
     public TYPE_VIEW typeView;
+    public Navigator navigator;
 
     public MultiComponents(String name, int layoutId, String title, String... args) {
         this.title = title;
@@ -103,6 +104,24 @@ public class MultiComponents <T>{
         return addModel(ParamModel.PARENT_MODEL, paramModel);
     }
 
+    public MultiComponents addFragmentsContainer(int fragmentsContainerId) {
+        return addFragmentsContainer(fragmentsContainerId, "");
+    }
+
+    public MultiComponents addFragmentsContainer(int fragmentsContainerId, String nameStartFragment) {
+        ParamComponent paramComponent = new ParamComponent();
+        paramComponent.type = ParamComponent.TC.CONTAINER;
+        paramComponent.fragmentsContainerId = fragmentsContainerId;
+        paramComponent.nameStartFragment = nameStartFragment;
+        listComponents.add(paramComponent);
+        return this;
+    }
+
+    public MultiComponents addNavigator(Navigator navigator) {
+        this.navigator = navigator;
+        return this;
+    }
+
     public void initComponents(IBase iBase) {
 //        Log.d("QWERT","__initComponents COUNT="+listComponents.size());
         for (ParamComponent cMV : listComponents) {
@@ -141,6 +160,9 @@ public class MultiComponents <T>{
                     break;
                 case MODEL:
                     new ComponentModel(iBase, cMV);
+                    break;
+                case CONTAINER:
+                    new ComponentContainer(iBase, cMV);
                     break;
             }
             cMV.baseComponent.init();

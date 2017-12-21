@@ -1,4 +1,4 @@
-package net.ukr.jura.compon.components;
+package net.ukr.jura.fuelcompon.tools;
 
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -13,6 +13,7 @@ import android.view.MotionEvent;
 import android.view.View;
 
 import net.ukr.jura.compon.R;
+import net.ukr.jura.compon.components.PointValue;
 import net.ukr.jura.compon.interfaces_classes.IComponent;
 
 import java.util.ArrayList;

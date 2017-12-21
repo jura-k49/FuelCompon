@@ -7,5 +7,4 @@ public class ComponentsFragment extends BaseFragment {
     public void initView() {
         mComponent.initComponents(this);
     }
-
 }

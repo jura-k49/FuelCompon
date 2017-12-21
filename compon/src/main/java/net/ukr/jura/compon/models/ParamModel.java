@@ -19,7 +19,7 @@ public class ParamModel {
     public String nameTakeField;
     public Field field;
     public BaseInternetProvider internetProvider;
-    public int progressId;
+//    public int progressId;
 
     public static void setDefaultMethod(int method) {
         defaultMethod = method;

@@ -27,8 +27,8 @@ public class ComponGlob {
     public FieldBroadcaster profile;
 //    public BaseURLs baseURLs;
 //    public String baseURL;
-    public int progressId;
-    public int dialogId;
+//    public int progressId;
+//    public int dialogId;
     public Context context;
     public CacheWork cacheWork;
     public Map<String, MultiComponents> MapScreen;

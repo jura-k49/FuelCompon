@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">FuelCompon</string>
+
+    <string name="main">main</string>
+    <string name="goals">goals</string>
+    <string name="group">group</string>
 </resources>

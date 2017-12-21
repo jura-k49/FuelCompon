@@ -7,7 +7,7 @@ import net.ukr.jura.compon.interfaces_classes.Navigator;
 public class ParamComponent <T>{
     public static enum TC {PANEL, PANEL_ENTER, PANEL_MULTI, SPINNER,
         RECYCLER, RECYCLER_HORIZONTAL, RECYCLER_GRID, RECYCLER_LEVEL, RECYCLER_STICKY,
-        MENU,
+        MENU, CONTAINER,
         STATIC_LIST, MODEL, PAGER_V, PAGER_F};
     public ParamComponent () {
         additionalWork = null;
@@ -15,6 +15,8 @@ public class ParamComponent <T>{
     public String nameParentComponent;
     public String name;
     public TC type;
+    public int fragmentsContainerId;
+    public String nameStartFragment;
 //    public BaseComponent component;
     public int eventComponent;
     public MoreWork moreWork;

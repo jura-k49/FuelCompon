@@ -62,7 +62,7 @@ public class BasePresenter implements BaseInternetProvider.InternetProviderListe
                     url, headers, jsonSimple.ModelToJson(data), this);
         }
         iBase.addInternetProvider(internetProvider);
-        iBase.progressStart(paramModel.progressId);
+        iBase.progressStart();
     }
 
     public void cancel() {
@@ -74,7 +74,7 @@ public class BasePresenter implements BaseInternetProvider.InternetProviderListe
 
     @Override
     public void response(String response) {
-        iBase.progressStop(paramModel.progressId);
+        iBase.progressStop();
         if (response == null) {
             iBase.showDialog("", "no response", null);
         }
@@ -89,7 +89,7 @@ public class BasePresenter implements BaseInternetProvider.InternetProviderListe
 
     @Override
     public void error(int statusCode, String message) {
-        iBase.progressStop(paramModel.progressId);
+        iBase.progressStop();
         iBase.showDialog(statusCode, message, null);
     }
 

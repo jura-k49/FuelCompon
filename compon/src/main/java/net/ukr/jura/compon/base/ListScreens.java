@@ -42,9 +42,6 @@ public class ListScreens {
     }
 
     protected MultiComponents addActivity(String name, int layoutId) {
-        MultiComponents mc = new MultiComponents(name, layoutId);
-        mc.typeView = MultiComponents.TYPE_VIEW.Activity;
-        MapScreen.put(name, mc);
-        return mc;
+        return addActivity(name, layoutId, null, null);
     }
 }

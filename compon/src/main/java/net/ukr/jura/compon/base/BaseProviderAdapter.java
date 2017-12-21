@@ -2,6 +2,7 @@ package net.ukr.jura.compon.base;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,6 +27,7 @@ public class BaseProviderAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
     private MoreWork moreWork;
     private BaseComponent baseComponent;
     private boolean isClickItem;
+    private LayoutInflater inflater;
 
 //    public void setStartFlag(boolean b) {
 //        startFlag = b;
@@ -33,6 +35,7 @@ public class BaseProviderAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
 
     public BaseProviderAdapter(BaseComponent baseComponent) {
         context = baseComponent.activity;
+        inflater = LayoutInflater.from(context);
         this.baseComponent = baseComponent;
         this.provider = baseComponent.provider;
         navigator = baseComponent.navigator;
@@ -92,10 +95,13 @@ public class BaseProviderAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = null;
         if (layoutItemId == null) {
-            view = LayoutInflater.from(context).inflate(context.getResources().
-                    getIdentifier(layout, "layout", context.getPackageName()), parent, false);
+            int resurceId = context.getResources().getIdentifier(layout, "layout", context.getPackageName());
+            if (resurceId == 0) {
+                Log.i("SMPL", "Не найден " + layout);
+            }
+            view = inflater.inflate(resurceId, parent, false);
         } else {
-            view = LayoutInflater.from(context).inflate(layoutItemId[viewType], parent, false);
+            view = inflater.inflate(layoutItemId[viewType], parent, false);
         }
         return new ItemHolder(view);
     }
