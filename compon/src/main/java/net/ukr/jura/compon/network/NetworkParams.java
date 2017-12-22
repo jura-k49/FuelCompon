@@ -7,7 +7,7 @@ public abstract class NetworkParams<T> {
     public int LOG_LEVEL = 3;    // 0 - not, 1 - ERROR, 2 - URL, 3 - URL + jsonResponse
     public String NAME_LOG = "SMPL";
     public Class<T>  classProgress;
-    public Class<T>  classDialog;
+    public Class<T>  classErrorDialog;
     public NetworkParams() {
         setParams();
     }

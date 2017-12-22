@@ -18,7 +18,6 @@ import net.ukr.jura.compon.interfaces_classes.ParentModel;
 import net.ukr.jura.compon.interfaces_classes.ViewHandler;
 import net.ukr.jura.compon.json_simple.Field;
 import net.ukr.jura.compon.models.MultiComponents;
-import net.ukr.jura.compon.tools.Constants;
 import net.ukr.jura.compon.tools.PreferenceTool;
 
 import java.util.ArrayList;
@@ -29,8 +28,6 @@ import static android.view.View.inflate;
 
 public abstract class BaseActivity extends FragmentActivity implements IBase {
 
-//    public abstract int getProgressLayout();
-//    public abstract int getDialogLayout();
     public abstract MultiComponents getScreen();
 
     public Map<String, MultiComponents> mapFragment;
@@ -48,23 +45,11 @@ public abstract class BaseActivity extends FragmentActivity implements IBase {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-//        ComponGlob.getInstance().progressId = getProgressLayout();
-//        ComponGlob.getInstance().dialogId = getDialogLayout();
         parentModelList = new ArrayList<>();
         mapFragment = ComponGlob.getInstance().MapScreen;
         countProgressStart = 0;
         listInternetProvider = new ArrayList<>();
         PreferenceTool.setUserKey("3d496f249f157fdea7681704abf2b4d74b20c619a3e979dc790c43dc27c26aa6");
-        for (MultiComponents value : mapFragment.values()) {
-            String par = value.getParamModel();
-            if (par != null && par.length() > 0) {
-                String[] param = par.split(Constants.SEPARATOR_LIST);
-                int ik = param.length;
-                for (int i = 0; i < ik; i++) {
-                    ComponGlob.getInstance().addParam(param[i]);
-                }
-            }
-        }
         mComponent = getScreen();
         parentLayout = inflate(this, mComponent.fragmentLayoutId, null);
         setContentView(parentLayout);
@@ -77,7 +62,6 @@ public abstract class BaseActivity extends FragmentActivity implements IBase {
             }
         }
         mComponent.initComponents(this);
-//        parentLayout = findViewById(android.R.id.content).getRootView();
         initView();
     }
 
@@ -129,11 +113,6 @@ public abstract class BaseActivity extends FragmentActivity implements IBase {
 
     @Override
     protected void onStop() {
-//        if (listRequests != null) {
-//            for (Request request : listRequests) {
-//                request.cancel();
-//            }
-//        }
         if (listInternetProvider != null) {
             for (BaseInternetProvider provider : listInternetProvider) {
                 provider.cancel();
@@ -208,7 +187,6 @@ public abstract class BaseActivity extends FragmentActivity implements IBase {
     public void progressStart() {
         if (ComponGlob.getInstance().networkParams.classProgress != null) {
             if (progressDialog == null) {
-//            progressDialog = new ProgressDialog();
                 try {
                     progressDialog = (DialogFragment) ComponGlob.getInstance().networkParams.classProgress.newInstance();
                 } catch (InstantiationException e) {
@@ -232,18 +210,6 @@ public abstract class BaseActivity extends FragmentActivity implements IBase {
             progressDialog = null;
         }
     }
-
-//    public MultiComponents addFragment(String name, int layoutId, String title, String... args) {
-//        MultiComponents mc = new MultiComponents(name, layoutId, title, args);
-//        mapFragment.put(name, mc);
-//        return mc;
-//    }
-//
-//    public MultiComponents addFragment(String name, int layoutId) {
-//        MultiComponents mc = new MultiComponents(name, layoutId);
-//        mapFragment.put(name, mc);
-//        return mc;
-//    }
 
     public void startDrawerFragment(String nameMVP, int containerFragmentId) {
         MultiComponents model = mapFragment.get(nameMVP);
@@ -295,11 +261,6 @@ public abstract class BaseActivity extends FragmentActivity implements IBase {
     public void addInternetProvider(BaseInternetProvider internetProvider) {
         listInternetProvider.add(internetProvider);
     }
-
-//    @Override
-//    public void addRequest(Request request) {
-//        listRequests.add(request);
-//    }
 
     @Override
     public View getParentLayout() {

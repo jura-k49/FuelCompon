@@ -30,5 +30,6 @@ public class MyListScreens extends ListScreens {
                 .addComponent(ParamComponent.TC.RECYCLER, new ParamModel(Api.GROUP_SCHEDULE),
                         new ParamView(R.id.recycler, "isSelected", new int[]{R.layout.group_lessons_item,
                                 R.layout.group_lessons_sel_item, R.layout.group_lessons_sel_item}));
+        super.initScreen();
     }
 }

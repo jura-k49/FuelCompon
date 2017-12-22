@@ -22,7 +22,7 @@ public class ProgressDialog extends DialogFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         getDialog().getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
 //        View view = inflater.inflate(ComponGlob.getInstance().progressId, container, false);
-        View view = inflater.inflate(R.layout.dialog_progress, container, false);
+        View view = inflater.inflate(R.layout.progress_dialog, container, false);
         return view;
     }
 }

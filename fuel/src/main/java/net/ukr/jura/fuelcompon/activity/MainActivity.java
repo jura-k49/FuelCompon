@@ -7,12 +7,12 @@ import net.ukr.jura.fuelcompon.R;
 public class MainActivity extends BaseActivity {
 //    @Override
 //    public int getProgressLayout() {
-//        return R.layout.dialog_progress;
+//        return R.layout.progress_dialog;
 //    }
 //
 //    @Override
 //    public int getDialogLayout() {
-//        return R.layout.base_dialog;
+//        return R.layout.error_dialog;
 //    }
 
     @Override

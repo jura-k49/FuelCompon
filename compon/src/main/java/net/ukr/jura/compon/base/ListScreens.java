@@ -2,14 +2,27 @@ package net.ukr.jura.compon.base;
 
 import android.content.Context;
 
+import net.ukr.jura.compon.ComponGlob;
 import net.ukr.jura.compon.models.MultiComponents;
+import net.ukr.jura.compon.tools.Constants;
 
 import java.util.Map;
 
 public class ListScreens {
     private Map<String, MultiComponents> MapScreen;
     protected Context context;
+
     public void initScreen() {
+        for (MultiComponents value : MapScreen.values()) {
+            String par = value.getParamModel();
+            if (par != null && par.length() > 0) {
+                String[] param = par.split(Constants.SEPARATOR_LIST);
+                int ik = param.length;
+                for (int i = 0; i < ik; i++) {
+                    ComponGlob.getInstance().addParam(param[i]);
+                }
+            }
+        }
     }
 
     public ListScreens(Context context) {
