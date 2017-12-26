@@ -8,6 +8,7 @@ public class ParamView {
     public int furtherViewId;
     public int tabId;
     public int arrayLabelId;
+    public int splashScreenViewId;
     public ParamModel paramModel;
     public String[] nameFragment;
 
@@ -72,6 +73,11 @@ public class ParamView {
 
     public ParamView setFurtherView(int furtherViewId) {
         this.furtherViewId = furtherViewId;
+        return this;
+    }
+
+    public ParamView setSplashScreen(int splashScreenViewId) {
+        this.splashScreenViewId = splashScreenViewId;
         return this;
     }
 }

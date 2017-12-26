@@ -29,6 +29,10 @@ public class ListScreens {
         this.context = context;
     }
 
+    public String getString(int id) {
+        return context.getString(id);
+    }
+
     public void setMapScreen(Map<String, MultiComponents> MapScreen) {
         this.MapScreen = MapScreen;
     }

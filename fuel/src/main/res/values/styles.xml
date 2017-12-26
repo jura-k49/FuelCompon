@@ -3,9 +3,25 @@
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.NoActionBar">
         <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
+        <item name="colorPrimary">@color/primary</item>
+        <item name="colorPrimaryDark">@color/primary_dark</item>
+        <item name="colorAccent">@color/accent</item>
+    </style>
+
+    <style name="st_title">
+        <item name="android:textSize">18sp</item>
+        <item name="android:textColor">@color/title</item>
+    </style>
+
+    <style name="st_sub_title">
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">@color/sub_title</item>
+    </style>
+
+    <style name="st_button">
+        <item name="android:textSize">16sp</item>
+        <item name="android:textAllCaps">true</item>
+        <item name="android:textColor">@color/sub_title</item>
     </style>
 
     <style name="st_12_black_35">

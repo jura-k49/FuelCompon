@@ -1,11 +1,11 @@
 package net.ukr.jura.compon.base;
 
 import android.app.DialogFragment;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
-import android.util.Log;
 import android.view.View;
 
 import net.ukr.jura.compon.ComponGlob;
@@ -18,6 +18,7 @@ import net.ukr.jura.compon.interfaces_classes.ParentModel;
 import net.ukr.jura.compon.interfaces_classes.ViewHandler;
 import net.ukr.jura.compon.json_simple.Field;
 import net.ukr.jura.compon.models.MultiComponents;
+import net.ukr.jura.compon.tools.Constants;
 import net.ukr.jura.compon.tools.PreferenceTool;
 
 import java.util.ArrayList;
@@ -51,18 +52,31 @@ public abstract class BaseActivity extends FragmentActivity implements IBase {
         listInternetProvider = new ArrayList<>();
         PreferenceTool.setUserKey("3d496f249f157fdea7681704abf2b4d74b20c619a3e979dc790c43dc27c26aa6");
         mComponent = getScreen();
-        parentLayout = inflate(this, mComponent.fragmentLayoutId, null);
-        setContentView(parentLayout);
-        if (mComponent.navigator != null) {
-            for (ViewHandler vh : mComponent.navigator.viewHandlers) {
-                View v = findViewById(vh.viewId);
-                if (v != null) {
-                    v.setOnClickListener(navigatorClick);
+        if (mComponent == null) {
+            Intent intent = getIntent();
+            String nameMVP = intent.getStringExtra(Constants.NAME_MVP);
+            mComponent = getComponent(nameMVP);
+        }
+        if (mComponent != null) {
+            parentLayout = inflate(this, mComponent.fragmentLayoutId, null);
+            setContentView(parentLayout);
+            if (mComponent.navigator != null) {
+                for (ViewHandler vh : mComponent.navigator.viewHandlers) {
+                    View v = findViewById(vh.viewId);
+                    if (v != null) {
+                        v.setOnClickListener(navigatorClick);
+                    }
                 }
             }
+            mComponent.initComponents(this);
+        } else {
+            parentLayout = inflate(this, getLayoutId(), null);
         }
-        mComponent.initComponents(this);
         initView();
+    }
+
+    public int getLayoutId() {
+        return 0;
     }
 
     public void initView() {
@@ -78,7 +92,11 @@ public abstract class BaseActivity extends FragmentActivity implements IBase {
                     switch (vh.type) {
                         case NAME_FRAGMENT:
 //                            ComponGlob.getInstance().setParam(record);
-                            startFragment(vh.nameFragment, false);
+                            startScreen(vh.nameFragment, false);
+//                            startFragment(vh.nameFragment, false);
+                            break;
+                        case BACK:
+                            onBackPressed();
                             break;
                     }
                     break;
@@ -153,8 +171,10 @@ public abstract class BaseActivity extends FragmentActivity implements IBase {
     }
 
     @Override
-    public void startActivitySimple(Object clazz) {
-
+    public void startActivitySimple(String nameMVP) {
+        Intent intent = new Intent(this, ComponBaseStartActivity.class);
+        intent.putExtra(Constants.NAME_MVP, nameMVP);
+        startActivity(intent);
     }
 
     public void closeDrawer() {
@@ -220,6 +240,15 @@ public abstract class BaseActivity extends FragmentActivity implements IBase {
         transaction.commit();
     }
 
+    public void startScreen(String nameMVP, boolean startFlag) {
+        MultiComponents mComponent = mapFragment.get(nameMVP);
+        if (mComponent.typeView == MultiComponents.TYPE_VIEW.Activity) {
+            startActivitySimple(nameMVP);
+        } else {
+            startFragment(nameMVP, startFlag);
+        }
+    }
+
     public void startFragment(String nameMVP, boolean startFlag) {
         BaseFragment fr = (BaseFragment) getSupportFragmentManager().findFragmentByTag(nameMVP);
         int count = (fr == null) ? 0 : 1;
@@ -227,7 +256,6 @@ public abstract class BaseActivity extends FragmentActivity implements IBase {
             clearBackStack(count);
         }
         BaseFragment fragment = (fr != null) ? fr : new ComponentsFragment();
-        Log.d("QWERT","mapFragment size="+mapFragment.size());
         for (String key : mapFragment.keySet()) {
             System.out.println("Key: " + key);
         }

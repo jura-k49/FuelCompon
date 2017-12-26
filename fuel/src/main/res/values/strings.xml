@@ -1,7 +1,33 @@
 <resources>
     <string name="app_name">FuelCompon</string>
 
+// name Screens
     <string name="main">main</string>
+    <string name="tickets">tickets</string>
+    <string name="help">help</string>
+    <string name="choice_fuel">choice_fuel</string>
+
+// Tickets
+    <string name="my_tickets">Мои талоны</string>
+    <string name="active_tickets">active_tickets</string>
+    <string name="archive_tickets">archive_tickets</string>
+    <string name="contact_us">Связь с нами</string>
+    <string name="help_1">Возникли проблемы и вопросы?\nМы поможем.</string>
+    <string name="call_operator">Позвонить оператору</string>
+    <string name="choice_fuel_title">Выбор топлива</string>
+    <string name="choice_fuel_txt">Выберите тип топлива на\u0020</string>
+
+
+
+
+    <string-array name="tab_tickets">
+        <item>АКТИВНЫЕ</item>
+        <item>АРХИВ</item>
+    </string-array>
+
+
+
+
     <string name="goals">goals</string>
     <string name="group">group</string>
 </resources>

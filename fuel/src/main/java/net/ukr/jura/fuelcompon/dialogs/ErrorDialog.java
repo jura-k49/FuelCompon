@@ -27,7 +27,7 @@ public class ErrorDialog extends DialogFragment implements IErrorDialog {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        parentLayout = inflater.inflate(R.layout.error_dialog, container, false);
+        parentLayout = inflater.inflate(R.layout.dialog_error, container, false);
         title = (TextView) parentLayout.findViewById(R.id.title);
         message = (TextView) parentLayout.findViewById(R.id.message);
         title.setText(titl);

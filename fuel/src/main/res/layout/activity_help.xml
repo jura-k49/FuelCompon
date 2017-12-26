@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white">
+    <RelativeLayout
+        android:id="@+id/header"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/h_header"
+        android:background="@color/color_header">
+        <LinearLayout
+            android:id="@+id/back"
+            android:layout_width="@dimen/h_header"
+            android:layout_height="@dimen/pad_56"
+            android:gravity="center">
+            <ImageView
+                android:layout_width="@dimen/d_icon"
+                android:layout_height="@dimen/d_icon"
+                android:src="@drawable/close"/>
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            style="@style/st_title"
+            android:text="@string/contact_us" />
+    </RelativeLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/header"
+        android:layout_marginLeft="@dimen/pad_24"
+        android:layout_marginRight="@dimen/pad_24"
+        android:layout_marginTop="@dimen/pad_24"
+        android:gravity="center"
+        style="@style/st_sub_title"
+        android:text="@string/help_1"/>
+
+    <TextView
+        android:id="@+id/call_operator"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/h_button"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="@dimen/pad_24"
+        android:layout_marginLeft="@dimen/pad_24"
+        android:layout_marginRight="@dimen/pad_24"
+        android:gravity="center"
+        style="@style/st_button"
+        android:background="@drawable/shape_r_8_accent"
+        android:text="@string/call_operator" />
+
+</RelativeLayout>

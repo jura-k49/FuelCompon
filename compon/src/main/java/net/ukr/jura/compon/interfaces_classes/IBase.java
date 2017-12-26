@@ -8,7 +8,7 @@ import net.ukr.jura.compon.base.BaseFragment;
 import net.ukr.jura.compon.base.BaseInternetProvider;
 import net.ukr.jura.compon.json_simple.Field;
 
-public interface IBase<T> {
+public interface IBase {
     public BaseActivity getBaseActivity();
     public BaseFragment getBaseFragment();
     public View getParentLayout();
@@ -16,7 +16,7 @@ public interface IBase<T> {
     public void sendEvent(int sender);
     public ParentModel getParentModel(String name);
     public Field getProfile();
-    public void startActivitySimple(T clazz);
+    public void startActivitySimple(String nameMVP);
     public void startFragment(String nameMVP, boolean startFlag);
     public void backPressed();
     public void progressStart();

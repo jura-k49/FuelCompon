@@ -64,7 +64,6 @@ public class VolleyRequest <T> extends Request<T> {
 
     @Override
     public Map<String, String> getHeaders() throws AuthFailureError {
-        Log.d("QWERT","VolleyRequest getHeaders"+headers.toString());
         return headers;
     }
 
@@ -76,7 +75,6 @@ public class VolleyRequest <T> extends Request<T> {
 
     @Override
     public byte[] getBody() throws AuthFailureError {
-        Log.d("QWERT","VolleyRequest getBody="+data.toString());
         return data;
     }
 }

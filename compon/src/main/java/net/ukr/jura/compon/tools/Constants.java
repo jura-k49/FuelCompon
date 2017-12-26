@@ -14,6 +14,7 @@ public class Constants {
     public final static String ITEM = "_item";
     public static String SEPARATOR_LIST = ",";
     public static String SIMPLE_ViewId = "SIMPLE_ViewId";
+    public static String NAME_MVP = "NAME_MVP";
 
 
 //    public static String SEPARATOR_NAV = ":";

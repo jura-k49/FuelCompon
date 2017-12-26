@@ -3,23 +3,24 @@ package net.ukr.jura.compon.base;
 import android.app.DialogFragment;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
 import net.ukr.jura.compon.ComponGlob;
-//import net.ukr.jura.compon.dialogs.ProgressDialog;
 import net.ukr.jura.compon.interfaces_classes.EventComponent;
 import net.ukr.jura.compon.interfaces_classes.IBase;
 import net.ukr.jura.compon.interfaces_classes.ParentModel;
+import net.ukr.jura.compon.interfaces_classes.ViewHandler;
 import net.ukr.jura.compon.json_simple.Field;
 import net.ukr.jura.compon.models.MultiComponents;
 import net.ukr.jura.compon.tools.StaticVM;
 
 import java.util.ArrayList;
 import java.util.List;
+
+//import net.ukr.jura.compon.dialogs.ProgressDialog;
 
 public abstract class BaseFragment extends Fragment implements IBase {
     public abstract void initView();
@@ -43,10 +44,6 @@ public abstract class BaseFragment extends Fragment implements IBase {
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        Log.d("QWERT","onCreateView mComponent="+mComponent);
-        if (mComponent != null) {
-            Log.d("QWERT", "onCreateView ID=" + mComponent.fragmentLayoutId);
-        }
         parentLayout = inflater.inflate(mComponent.fragmentLayoutId, null, false);
         TextView title = (TextView) StaticVM.findViewByName(parentLayout, "title");
         if (title != null) {
@@ -56,9 +53,36 @@ public abstract class BaseFragment extends Fragment implements IBase {
                 title.setText(mComponent.title);
             }
         }
+        if (mComponent.navigator != null) {
+            for (ViewHandler vh : mComponent.navigator.viewHandlers) {
+                View v = parentLayout.findViewById(vh.viewId);
+                if (v != null) {
+                    v.setOnClickListener(navigatorClick);
+                }
+            }
+        }
         initView();
         return parentLayout;
     }
+
+    View.OnClickListener navigatorClick = new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            int id = view.getId();
+            for (ViewHandler vh : mComponent.navigator.viewHandlers) {
+                if (vh.viewId == id) {
+                    switch (vh.type) {
+                        case NAME_FRAGMENT:
+//                            ComponGlob.getInstance().setParam(record);
+                            getBaseActivity().startScreen(vh.nameFragment, false);
+//                            startFragment(vh.nameFragment, false);
+                            break;
+                    }
+                    break;
+                }
+            }
+        }
+    };
 
     public void setModel(MultiComponents mComponent) {
         this.mComponent = mComponent;
@@ -179,8 +203,8 @@ public abstract class BaseFragment extends Fragment implements IBase {
     }
 
     @Override
-    public void startActivitySimple(Object clazz) {
-
+    public void startActivitySimple(String nameMVP) {
+        getBaseActivity().startActivitySimple(nameMVP);
     }
 
     @Override

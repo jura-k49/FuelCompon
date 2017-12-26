@@ -4,6 +4,7 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.View;
 
 import net.ukr.jura.compon.base.BaseComponent;
 import net.ukr.jura.compon.base.BaseProvider;
@@ -57,5 +58,18 @@ public class ComponentRecycler extends BaseComponent {
         listData.addAll((ListRecords) field.value);
         provider.setData(listData);
         adapter.notifyDataSetChanged();
+        int splash = paramMV.paramView.splashScreenViewId;
+        if (splash != 0) {
+            View v_splash = parentLayout.findViewById(splash);
+            if (v_splash != null) {
+                if (listData.size() > 0) {
+                    v_splash.setVisibility(View.GONE);
+                } else {
+                    v_splash.setVisibility(View.VISIBLE);
+                }
+            } else {
+                Log.i("SMPL", "Не найден SplashView в " + paramMV.nameParentComponent);
+            }
+        }
     }
 }

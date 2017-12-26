@@ -1,7 +1,6 @@
 package net.ukr.jura.compon;
 
 import android.content.Context;
-import android.os.Environment;
 
 import net.ukr.jura.compon.json_simple.Field;
 import net.ukr.jura.compon.json_simple.FieldBroadcaster;
@@ -11,12 +10,6 @@ import net.ukr.jura.compon.network.CacheWork;
 import net.ukr.jura.compon.network.NetworkParams;
 import net.ukr.jura.compon.tools.Constants;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -43,48 +36,12 @@ public class ComponGlob {
         instance = this;
         MapScreen = new HashMap<String, MultiComponents>();
         profile = new FieldBroadcaster("profile", Field.TYPE_RECORD, null);
-//        baseURLs = new BaseURLs();
     }
 
     public void setContext(Context context) {
         this.context = context;
         cacheWork = new CacheWork(context);
-
-// Delete  *********************************
-        String st = readFile("clouds.txt");
-        cacheWork.addCasche("clouds", 60000*60*24*365, st);
-        st = readFile("profile.txt");
-        cacheWork.addCasche("profile", 60000*60*24*365, st);
-        st = readFile("friendcast-byprofile.txt");
-        cacheWork.addCasche("friendcast/byprofile", 60000*60*24*365, st);
-        st = readFile("connections.txt");
-        cacheWork.addCasche("connections", 60000*60*24*365, st);
-// Delete  *********************************
     }
-
-
-// Delete  *********************************
-    private String readFile(String fileName) {
-        File sdPath = Environment.getExternalStorageDirectory();
-        File file = new File(sdPath.getAbsolutePath()+"/Download" + "/" + fileName);
-        StringBuilder stringBuilder = new StringBuilder();
-        try {
-            FileInputStream inputStream = new FileInputStream(file);
-            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
-            String line;
-            try {
-                while ((line = bufferedReader.readLine()) != null){
-                    stringBuilder.append(line);
-                }
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
-        return stringBuilder.toString();
-    }
-// Delete  *********************************
 
     public void setParam(Record fields) {
         int ik = namesParams.size();

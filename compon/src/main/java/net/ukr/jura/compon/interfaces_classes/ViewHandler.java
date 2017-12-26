@@ -5,6 +5,7 @@ import net.ukr.jura.compon.models.ParamModel;
 public class ViewHandler {
     public int viewId;
     public enum TYPE {NAME_FRAGMENT, CLOSE_DRAWER, MODEL_PARAM,
+        BACK,
         FIELD_WITH_NAME_FRAGMENT, SELECT,
         SEND_UPDATE, SEND_CHANGE_BACK}
     public TYPE type;
