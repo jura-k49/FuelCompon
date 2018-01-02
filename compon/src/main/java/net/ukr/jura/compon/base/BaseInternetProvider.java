@@ -14,8 +14,8 @@ public class BaseInternetProvider {
     public static final int SERVERERROR = 703;
     public static final int AUTHFAILURE = 704;
 
-    public BaseInternetProvider(int method, String url, Map<String, String> headers,
-                                String data, InternetProviderListener listener) {
+    public void setParam(int method, String url, Map<String, String> headers,
+                         String data, InternetProviderListener listener) {
         this.method = method;
         this.url = url;
         this.data = data;
@@ -27,10 +27,8 @@ public class BaseInternetProvider {
         isCanceled = true;
     }
 
-    public static BaseInternetProvider newInternetProvider(int method,String url,
-                        Map<String, String> headers,
-                        String data, InternetProviderListener listener) {
-        return new BaseInternetProvider(method, url, headers, data, listener);
+    public BaseInternetProvider getThis() {
+        return this;
     }
 
     public interface InternetProviderListener {

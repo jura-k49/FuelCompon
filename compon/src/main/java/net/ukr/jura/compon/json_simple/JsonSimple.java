@@ -96,7 +96,7 @@ public class JsonSimple {
 //        Log.d("JSON_S","getValue");
         Field item = new Field();
         item.name = getName(quote);
-        Log.d("JSON_L","NAME="+item.name);
+//        Log.d("JSON_L","NAME="+item.name);
         if (firstSymbol()) {
             if (currentSymbol.equals(":")) {
                 if (firstSymbol()) {

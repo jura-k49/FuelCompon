@@ -6,12 +6,11 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.View;
 
 import net.ukr.jura.compon.ComponGlob;
-import net.ukr.jura.compon.interfaces_classes.IBase;
 import net.ukr.jura.compon.interfaces_classes.IPresenterListener;
+import net.ukr.jura.compon.interfaces_classes.IBase;
 import net.ukr.jura.compon.interfaces_classes.Navigator;
 import net.ukr.jura.compon.interfaces_classes.OnClickItemRecycler;
 import net.ukr.jura.compon.interfaces_classes.ParentModel;
@@ -84,14 +83,14 @@ public abstract class BaseComponent {
                     }
                     break;
                 case ParamModel.FIELD:
-                    changeData(paramMV.paramModel.field);
+                    changeDataBase(paramMV.paramModel.field);
                     break;
                 default:
                     new BasePresenter(iBase, paramMV.paramModel, null, null, listener);
 //                    new VolleyPresenter<String>(this, vl);
             }
         } else {
-            changeData(null);
+            changeDataBase(null);
         }
     }
 
@@ -100,10 +99,10 @@ public abstract class BaseComponent {
             if (paramMV.paramModel.param.length() > 0) {
                 Field f = ((Record) field.value).getField(paramMV.paramModel.param);
                 if (f != null) {
-                    changeData(f);
+                    changeDataBase(f);
                 }
             } else {
-                changeData(field);
+                changeDataBase(field);
             }
         }
     }
@@ -130,14 +129,21 @@ public abstract class BaseComponent {
                 }
             }
             if (paramMV.paramModel.nameTakeField == null) {
-                changeData((Field) response);
+                changeDataBase((Field) response);
             } else {
                 Field f = (Field) response;
                 Record r = (Record) f.value;
-                changeData(r.getField(paramMV.paramModel.nameTakeField));
+                changeDataBase(r.getField(paramMV.paramModel.nameTakeField));
             }
         }
     };
+
+    private void changeDataBase(Field field) {
+        if (paramMV.paramModel != null && paramMV.paramModel.addRecordBegining != null) {
+            ((ListRecords) field.value).addAll(0, paramMV.paramModel.addRecordBegining);
+        }
+        changeData(field);
+    }
 
 //    VolleyListener vl = new VolleyListener() {
 //        @Override
@@ -160,11 +166,11 @@ public abstract class BaseComponent {
 //                }
 //            }
 //            if (paramMV.paramModel.nameTakeField == null) {
-//                changeData((Field) response);
+//                changeDataBase((Field) response);
 //            } else {
 //                Field f = (Field) response;
 //                Record r = (Record) f.value;
-//                changeData(r.getField(paramMV.paramModel.nameTakeField));
+//                changeDataBase(r.getField(paramMV.paramModel.nameTakeField));
 //            }
 //        }
 //    };
@@ -172,7 +178,7 @@ public abstract class BaseComponent {
     private BroadcastReceiver changeFieldValue = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
-            changeData(paramMV.paramModel.field);
+            changeDataBase(paramMV.paramModel.field);
         }
     };
 
@@ -196,12 +202,10 @@ public abstract class BaseComponent {
     };
 
     public void clickAdapter(RecyclerView.ViewHolder holder, View view, int position) {
-        Log.d("QWERT","YY navigator="+navigator);
         Record record = provider.get(position);
         if (navigator != null) {
             int id = view == null ? 0 : view.getId();
             for (ViewHandler vh : navigator.viewHandlers) {
-                Log.d("QWERT","YY vh.viewId="+vh.viewId+" ID="+id+" vh.type="+vh.type+" listPresenter="+listPresenter);
                 if (vh.viewId == id) {
                     switch (vh.type) {
                         case FIELD_WITH_NAME_FRAGMENT:

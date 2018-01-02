@@ -12,9 +12,10 @@ public class MultiComponents <T>{
     public String title;
     public String[] args;
     public int fragmentLayoutId;
-    public enum TYPE_VIEW {Activity, Fragment};
+    public enum TYPE_VIEW {ACTIVITY, FRAGMENT, CUSTOM_FRAGMENT};
     public TYPE_VIEW typeView;
     public Navigator navigator;
+    public Class<T> customFragment;
 
     public MultiComponents(String name, int layoutId, String title, String... args) {
         this.title = title;
@@ -30,6 +31,32 @@ public class MultiComponents <T>{
         this.nameComponent = name;
         this.fragmentLayoutId = layoutId;
         listComponents = new ArrayList<>();
+    }
+
+    public MultiComponents(String name) {
+        this.title = "";
+        this.args = null;
+        this.nameComponent = name;
+        typeView = TYPE_VIEW.CUSTOM_FRAGMENT;
+        listComponents = new ArrayList<>();
+    }
+
+    public MultiComponents(String name, Class<T> customFragment) {
+        this.nameComponent = name;
+        this.customFragment = customFragment;
+        listComponents = new ArrayList<>();
+    }
+
+    public T getCustomFragment() {
+        try {
+            return (T) customFragment.newInstance();
+        } catch (InstantiationException e) {
+            e.printStackTrace();
+            return null;
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 
     public void setName(String nameComponent) {

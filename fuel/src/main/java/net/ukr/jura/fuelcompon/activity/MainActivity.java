@@ -9,4 +9,9 @@ public class MainActivity extends BaseActivity {
     public MultiComponents getScreen() {
         return getComponent(getString(R.string.main));
     }
+
+    @Override
+    public int getLayoutId() {
+        return 0;
+    }
 }

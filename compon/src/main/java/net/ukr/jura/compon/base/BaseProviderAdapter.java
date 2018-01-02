@@ -79,6 +79,9 @@ public class BaseProviderAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
             return 0;
         } else {
             Field f = provider.get(position).getField(fieldType);
+            if (f == null) {
+                return 0;
+            }
             if (f.type == Field.TYPE_STRING) {
                 return Integer.valueOf((String) f.value);
             } else {

@@ -1,10 +1,13 @@
 package net.ukr.jura.compon.models;
 
 import net.ukr.jura.compon.ComponGlob;
-import net.ukr.jura.compon.base.BaseInternetProvider;
 import net.ukr.jura.compon.json_simple.Field;
+import net.ukr.jura.compon.json_simple.Record;
 
-public class ParamModel {
+import java.util.ArrayList;
+import java.util.List;
+
+public class ParamModel <T> {
     public int method;
     public String url;
     public String param;
@@ -17,8 +20,9 @@ public class ParamModel {
     public static int defaultMethod = GET;
     public String nameField, nameFieldTo;
     public String nameTakeField;
+    public List<Record> addRecordBegining;
     public Field field;
-    public BaseInternetProvider internetProvider;
+    public Class<T>  internetProvider;
 //    public int progressId;
 
     public static void setDefaultMethod(int method) {
@@ -56,15 +60,20 @@ public class ParamModel {
                     this.url = PARENT_MODEL;
                 }
         } else {
-            if (method == POST) {
+            if (url.startsWith("http")) {
                 this.url = url;
             } else {
-                if (url.startsWith("http")) {
-                    this.url = url;
-                } else {
-                    this.url = ComponGlob.getInstance().networkParams.baseUrl + url;
-                }
+                this.url = ComponGlob.getInstance().networkParams.baseUrl + url;
             }
+//            if (method == POST) {
+//                this.url = url;
+//            } else {
+//                if (url.startsWith("http")) {
+//                    this.url = url;
+//                } else {
+//                    this.url = ComponGlob.getInstance().networkParams.baseUrl + url;
+//                }
+//            }
         }
         this.param = param;
         this.duration = duration;
@@ -73,8 +82,8 @@ public class ParamModel {
         internetProvider = null;
     }
 
-    public ParamModel internetProvider(BaseInternetProvider bip) {
-        internetProvider = bip;
+    public ParamModel internetProvider(Class<T> internetProvider) {
+        this.internetProvider = internetProvider;
         return this;
     }
 
@@ -82,6 +91,21 @@ public class ParamModel {
         this.nameField = nameField;
         this.nameFieldTo = nameFieldTo;
         return this;
+    }
+
+    public ParamModel addToBeginning(Record record) {
+        if (addRecordBegining == null) {
+            addRecordBegining = new ArrayList<>();
+        }
+        addRecordBegining.add(record);
+        return this;
+    }
+
+    public ParamModel addToBeginning(String name, int value) {
+        Record record = new Record();
+        Field field = new Field(name, Field.TYPE_INTEGER, value);
+        record.add(field);
+        return addToBeginning(record);
     }
 
     public ParamModel takeField(String name) {

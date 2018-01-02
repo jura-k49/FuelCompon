@@ -9,7 +9,9 @@ import net.ukr.jura.compon.models.ParamComponent;
 import net.ukr.jura.compon.models.ParamModel;
 import net.ukr.jura.compon.models.ParamView;
 import net.ukr.jura.fuelcompon.R;
+import net.ukr.jura.fuelcompon.fragments.MapFragment;
 import net.ukr.jura.fuelcompon.network.Api;
+import net.ukr.jura.fuelcompon.network.TestInternetProvider;
 
 public class MyListScreens extends ListScreens {
 
@@ -22,7 +24,8 @@ public class MyListScreens extends ListScreens {
         addActivity(context.getString(R.string.main), R.layout.activity_fuel)
                 .addFragmentsContainer(R.id.content_frame, context.getString(R.string.tickets))
                 .addNavigator(new Navigator().add(R.id.radio1, context.getString(R.string.tickets))
-                        .add(R.id.radio2, context.getString(R.string.group)));
+                        .add(R.id.radio2, context.getString(R.string.map))
+                        .add(R.id.radio3, context.getString(R.string.group)));
 
         addFragment(context.getString(R.string.tickets), R.layout.fragment_tickets)
                 .addNavigator(new Navigator().add(R.id.question, context.getString(R.string.help)))
@@ -31,8 +34,13 @@ public class MyListScreens extends ListScreens {
                         .setTab(R.id.tabs, R.array.tab_tickets));
 
         addFragment(context.getString(R.string.active_tickets), R.layout.fragment_recycler_splash)
-                .addComponent(ParamComponent.TC.RECYCLER, new ParamModel(Api.MY_GOALS),
-                        new ParamView(R.id.recycler).setSplashScreen(R.id.splash));
+                .addComponent(ParamComponent.TC.RECYCLER, new ParamModel(Api.TICKETS_ACTIVE)
+                                .internetProvider(TestInternetProvider.class)
+                                .addToBeginning("type",1),
+                        new ParamView(R.id.recycler, "type",
+                                new int[] {R.layout.item_active_tickets, R.layout.item_active_tickets_begining})
+                                .setSplashScreen(R.id.splash));
+        addFragment(context.getString(R.string.map), MapFragment.class);
         addFragment(context.getString(R.string.archive_tickets), R.layout.fragment_recycler)
                 .addComponent(ParamComponent.TC.RECYCLER, new ParamModel(Api.GROUP_SCHEDULE),
                         new ParamView(R.id.recycler, "isSelected", new int[]{R.layout.item_group_lessons,

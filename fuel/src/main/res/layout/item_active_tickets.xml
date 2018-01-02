@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/pad_140"
+    android:background="@color/white">
+
+    <ImageView
+        android:id="@+id/fuelingImg"
+        android:layout_width="@dimen/d_icon_g"
+        android:layout_height="@dimen/d_icon_g"
+        android:layout_marginLeft="@dimen/pad_24"
+        android:layout_marginTop="@dimen/pad_12" />
+
+    <TextView
+        android:id="@+id/amount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@style/st_amount"
+        android:layout_marginLeft="@dimen/pad_72"
+        android:layout_marginTop="@dimen/pad_12"
+        android:text="200" />
+
+    <TextView
+        android:id="@+id/unit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@style/st_amount"
+        android:layout_marginLeft="@dimen/pad_6"
+        android:layout_marginTop="@dimen/pad_12"
+        android:layout_toRightOf="@+id/amount"
+        android:text="@string/unit_l" />
+    <ImageView
+        android:id="@+id/fuelTypeImg"
+        android:layout_width="@dimen/pad_56"
+        android:layout_height="@dimen/pad_24"
+        android:layout_marginTop="@dimen/pad_12"
+        android:layout_marginLeft="@dimen/pad_6"
+        android:layout_toRightOf="@+id/unit"/>
+
+    <TextView
+        android:id="@+id/txt1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@style/st_comment"
+        android:layout_below="@+id/amount"
+        android:layout_marginLeft="@dimen/pad_72"
+        android:layout_marginTop="@dimen/pad_12"
+        android:text="@string/shelf_life" />
+    <TextView
+        android:id="@+id/shelfLife"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@style/st_sub_title"
+        android:layout_marginLeft="@dimen/pad_72"
+        android:layout_marginTop="@dimen/pad_6"
+        android:layout_below="@+id/txt1"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/pad_1"
+        android:layout_alignParentBottom="true"
+        android:background="@color/black_30" />
+</RelativeLayout>

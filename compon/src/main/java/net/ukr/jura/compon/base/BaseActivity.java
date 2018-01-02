@@ -242,10 +242,40 @@ public abstract class BaseActivity extends FragmentActivity implements IBase {
 
     public void startScreen(String nameMVP, boolean startFlag) {
         MultiComponents mComponent = mapFragment.get(nameMVP);
-        if (mComponent.typeView == MultiComponents.TYPE_VIEW.Activity) {
-            startActivitySimple(nameMVP);
-        } else {
-            startFragment(nameMVP, startFlag);
+//        if (mComponent.typeView == MultiComponents.TYPE_VIEW.Activity) {
+//            startActivitySimple(nameMVP);
+//        } else {
+//            startFragment(nameMVP, startFlag);
+//        }
+        switch (mComponent.typeView) {
+            case ACTIVITY:
+                startActivitySimple(nameMVP);
+                break;
+            case FRAGMENT:
+                startFragment(nameMVP, startFlag);
+                break;
+            case CUSTOM_FRAGMENT:
+                startCustomFragment(nameMVP);
+                break;
+        }
+    }
+
+    public void startCustomFragment(String nameMVP) {
+        MultiComponents multiComponents = mapFragment.get(nameMVP);
+        BaseFragment bf = null;
+        try {
+            bf = (BaseFragment)multiComponents.customFragment.newInstance();
+        } catch (InstantiationException e) {
+            e.printStackTrace();
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        }
+        if (bf != null) {
+            bf.setModel(multiComponents);
+            FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+            transaction.replace(containerFragmentId, bf.getThis(), nameMVP)
+//                .addToBackStack(nameMVP)
+                    .commit();
         }
     }
 

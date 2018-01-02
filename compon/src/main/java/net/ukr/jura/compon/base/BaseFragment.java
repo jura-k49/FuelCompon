@@ -23,7 +23,8 @@ import java.util.List;
 //import net.ukr.jura.compon.dialogs.ProgressDialog;
 
 public abstract class BaseFragment extends Fragment implements IBase {
-    public abstract void initView();
+    public abstract void initView(Bundle savedInstanceState);
+//    public abstract int getLayoutId();
     protected View parentLayout;
     private Object mObject;
     private int countProgressStart;
@@ -42,27 +43,39 @@ public abstract class BaseFragment extends Fragment implements IBase {
         parentModelList = new ArrayList<>();
     }
 
+    public BaseFragment getThis() {
+        return this;
+    }
+
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        parentLayout = inflater.inflate(mComponent.fragmentLayoutId, null, false);
-        TextView title = (TextView) StaticVM.findViewByName(parentLayout, "title");
-        if (title != null) {
-            if (mComponent.args != null && mComponent.args.length > 0) {
-                title.setText(String.format(mComponent.title, setFormatParam(mComponent.args)));
-            } else {
-                title.setText(mComponent.title);
+        if (mComponent == null || mComponent.typeView == MultiComponents.TYPE_VIEW.CUSTOM_FRAGMENT) {
+            parentLayout = inflater.inflate(getLayoutId(), null, false);
+        } else {
+            parentLayout = inflater.inflate(mComponent.fragmentLayoutId, null, false);
+            TextView title = (TextView) StaticVM.findViewByName(parentLayout, "title");
+            if (title != null) {
+                if (mComponent.args != null && mComponent.args.length > 0) {
+                    title.setText(String.format(mComponent.title, setFormatParam(mComponent.args)));
+                } else {
+                    title.setText(mComponent.title);
+                }
             }
-        }
-        if (mComponent.navigator != null) {
-            for (ViewHandler vh : mComponent.navigator.viewHandlers) {
-                View v = parentLayout.findViewById(vh.viewId);
-                if (v != null) {
-                    v.setOnClickListener(navigatorClick);
+            if (mComponent.navigator != null) {
+                for (ViewHandler vh : mComponent.navigator.viewHandlers) {
+                    View v = parentLayout.findViewById(vh.viewId);
+                    if (v != null) {
+                        v.setOnClickListener(navigatorClick);
+                    }
                 }
             }
         }
-        initView();
+        initView(savedInstanceState);
         return parentLayout;
+    }
+
+    public int getLayoutId() {
+        return 0;
     }
 
     View.OnClickListener navigatorClick = new View.OnClickListener() {

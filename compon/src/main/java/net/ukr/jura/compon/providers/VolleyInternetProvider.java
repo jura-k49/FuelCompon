@@ -16,9 +16,10 @@ import java.util.Map;
 public class VolleyInternetProvider extends BaseInternetProvider {
     VolleyRequest request;
 
-    public VolleyInternetProvider(int method, String url, Map<String, String> headers,
-                                  String data, InternetProviderListener listener) {
-        super(method, url, headers, data, listener);
+    @Override
+    public void setParam(int method, String url, Map<String, String> headers,
+                         String data, InternetProviderListener listener) {
+        super.setParam(method, url, headers, data, listener);
         byte [] dataBytes = null;
         if (data != null) {
             dataBytes = data.getBytes();
@@ -33,13 +34,6 @@ public class VolleyInternetProvider extends BaseInternetProvider {
         request = new VolleyRequest(method, url, listenerVolley,
                 headers, dataBytes);
         VolleyProvider.getInstance().addToRequestQueue(request);
-    }
-
-    public static VolleyInternetProvider newInternetProvider(int method,
-                                                           String url,
-                                                           Map<String, String> headers,
-                                                           String data, InternetProviderListener listener) {
-        return new VolleyInternetProvider(method, url, headers, data, listener);
     }
 
     @Override

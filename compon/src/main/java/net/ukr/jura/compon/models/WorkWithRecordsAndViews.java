@@ -158,6 +158,7 @@ public class WorkWithRecordsAndViews {
             } else {
                 st = "";
             }
+            if (st.length() == 0) return;
             if (st.contains("/")) {
                 if (!st.contains("http")) {
                     st = ComponGlob.getInstance().networkParams.baseUrl + st;

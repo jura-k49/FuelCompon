@@ -1,6 +1,7 @@
 package net.ukr.jura.compon.base;
 
 import android.text.Html;
+import android.util.Log;
 
 import net.ukr.jura.compon.ComponGlob;
 import net.ukr.jura.compon.interfaces_classes.IBase;
@@ -55,11 +56,25 @@ public class BasePresenter implements BaseInternetProvider.InternetProviderListe
     public void startInternetProvider() {
         isCanceled = false;
         if (paramModel.internetProvider == null) {
-            internetProvider = new VolleyInternetProvider(paramModel.method,
+            internetProvider = new VolleyInternetProvider();
+            internetProvider.setParam(paramModel.method,
                     url, headers, jsonSimple.ModelToJson(data), this);
         } else {
-            internetProvider = paramModel.internetProvider.newInternetProvider(paramModel.method,
-                    url, headers, jsonSimple.ModelToJson(data), this);
+            BaseInternetProvider bip = null;
+            try {
+                bip = (BaseInternetProvider) paramModel.internetProvider.newInstance();
+            } catch (InstantiationException e) {
+                e.printStackTrace();
+            } catch (IllegalAccessException e) {
+                e.printStackTrace();
+            }
+            if (bip != null) {
+                internetProvider = bip.getThis();
+                internetProvider.setParam(paramModel.method,
+                        url, headers, jsonSimple.ModelToJson(data), this);
+            } else {
+                Log.i("SMPL", "Ошибка создания internetProvider");
+            }
         }
         iBase.addInternetProvider(internetProvider);
         iBase.progressStart();

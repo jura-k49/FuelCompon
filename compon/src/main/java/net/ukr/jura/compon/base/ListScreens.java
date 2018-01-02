@@ -39,26 +39,42 @@ public class ListScreens {
 
     protected MultiComponents addFragment(String name, int layoutId, String title, String... args) {
         MultiComponents mc = new MultiComponents(name, layoutId, title, args);
-        mc.typeView = MultiComponents.TYPE_VIEW.Fragment;
+        mc.typeView = MultiComponents.TYPE_VIEW.FRAGMENT;
         MapScreen.put(name, mc);
         return mc;
     }
 
     protected MultiComponents addFragment(String name, int layoutId) {
         MultiComponents mc = new MultiComponents(name, layoutId);
-        mc.typeView = MultiComponents.TYPE_VIEW.Fragment;
+        mc.typeView = MultiComponents.TYPE_VIEW.FRAGMENT;
+        MapScreen.put(name, mc);
+        return mc;
+    }
+
+    protected MultiComponents addFragment(String name, Class customFragment) {
+        MultiComponents mc = new MultiComponents(name, customFragment);
+        mc.typeView = MultiComponents.TYPE_VIEW.CUSTOM_FRAGMENT;
+        MapScreen.put(name, mc);
+        return mc;
+    }
+
+    protected MultiComponents addCustomFragment(String name) {
+        MultiComponents mc = new MultiComponents(name);
         MapScreen.put(name, mc);
         return mc;
     }
 
     protected MultiComponents addActivity(String name, int layoutId, String title, String... args) {
         MultiComponents mc = new MultiComponents(name, layoutId, title, args);
-        mc.typeView = MultiComponents.TYPE_VIEW.Activity;
+        mc.typeView = MultiComponents.TYPE_VIEW.ACTIVITY;
         MapScreen.put(name, mc);
         return mc;
     }
 
     protected MultiComponents addActivity(String name, int layoutId) {
-        return addActivity(name, layoutId, null, null);
+        MultiComponents mc = new MultiComponents(name, layoutId);
+        mc.typeView = MultiComponents.TYPE_VIEW.ACTIVITY;
+        MapScreen.put(name, mc);
+        return mc;
     }
 }

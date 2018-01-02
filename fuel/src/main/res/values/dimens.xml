@@ -3,11 +3,18 @@
     <dimen name="h_header">56dp</dimen>
     <dimen name="h_button">44dp</dimen>
     <dimen name="d_icon">24dp</dimen>
+    <dimen name="d_icon_g">44dp</dimen>
 
+    <dimen name="pad_1">1dp</dimen>
+    <dimen name="pad_6">6dp</dimen>
     <dimen name="pad_8">8dp</dimen>
+    <dimen name="pad_12">12dp</dimen>
     <dimen name="pad_24">24dp</dimen>
     <dimen name="pad_56">56dp</dimen>
+    <dimen name="pad_72">72dp</dimen>
 
+
+    <dimen name="pad_140">140dp</dimen>
 
 
     <dimen name="activity_horizontal_margin">16dp</dimen>
@@ -21,17 +28,14 @@
     <dimen name="_icon_wh">24dp</dimen>
     <dimen name="_tool_bar_h">56dp</dimen>
     <dimen name="pad_1px">1px</dimen>
-    <dimen name="pad_1">1dp</dimen>
     <dimen name="_pad_2">2dp</dimen>
     <dimen name="pad_2">2dp</dimen>
     <dimen name="pad_4">4dp</dimen>
     <dimen name="_pad_6">6dp</dimen>
-    <dimen name="pad_6">6dp</dimen>
     <dimen name="_pad_8">8dp</dimen>
     <dimen name="_pad_10">10dp</dimen>
     <dimen name="pad_10">10dp</dimen>
     <dimen name="_pad_12">12dp</dimen>
-    <dimen name="pad_12">12dp</dimen>
     <dimen name="_pad_20">20dp</dimen>
     <dimen name="_pad_24">24dp</dimen>
 
@@ -92,7 +96,6 @@
     <dimen name="pad_100">100dp</dimen>
     <dimen name="pad_120">120dp</dimen>
     <dimen name="pad_130">130dp</dimen>
-    <dimen name="pad_140">140dp</dimen>
     <dimen name="pad_180">180dp</dimen>
     <dimen name="pad_200">200dp</dimen>
     <dimen name="pad_240">240dp</dimen>

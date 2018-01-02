@@ -7,4 +7,9 @@ public class ComponBaseStartActivity extends BaseActivity{
     public MultiComponents getScreen() {
         return null;
     }
+//
+//    @Override
+//    public int getLayoutId() {
+//        return 0;
+//    }
 }
