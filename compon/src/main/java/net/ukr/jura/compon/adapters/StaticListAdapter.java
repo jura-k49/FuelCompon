@@ -6,9 +6,9 @@ import android.view.View;
 
 import net.ukr.jura.compon.base.BaseComponent;
 import net.ukr.jura.compon.base.BaseProvider;
-import net.ukr.jura.compon.components.BaseStaticListAdapter;
-import net.ukr.jura.compon.models.ParamComponent;
-import net.ukr.jura.compon.models.WorkWithRecordsAndViews;
+import net.ukr.jura.compon.custom_components.BaseStaticListAdapter;
+import net.ukr.jura.compon.components.ParamComponent;
+import net.ukr.jura.compon.components.WorkWithRecordsAndViews;
 
 public class StaticListAdapter extends BaseStaticListAdapter {
 

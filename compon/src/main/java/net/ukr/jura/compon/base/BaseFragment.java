@@ -8,13 +8,16 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.google.android.gms.common.api.GoogleApiClient;
+
 import net.ukr.jura.compon.ComponGlob;
+import net.ukr.jura.compon.components.ComponentMap;
 import net.ukr.jura.compon.interfaces_classes.EventComponent;
 import net.ukr.jura.compon.interfaces_classes.IBase;
 import net.ukr.jura.compon.interfaces_classes.ParentModel;
 import net.ukr.jura.compon.interfaces_classes.ViewHandler;
 import net.ukr.jura.compon.json_simple.Field;
-import net.ukr.jura.compon.models.MultiComponents;
+import net.ukr.jura.compon.components.MultiComponents;
 import net.ukr.jura.compon.tools.StaticVM;
 
 import java.util.ArrayList;
@@ -34,6 +37,8 @@ public abstract class BaseFragment extends Fragment implements IBase {
     public MultiComponents mComponent;
     public List<EventComponent> listEvent;
     public List<ParentModel> parentModelList;
+    private Bundle savedInstanceState;
+    private GoogleApiClient googleApiClient;
 
     public BaseFragment() {
         mObject = null;
@@ -49,6 +54,7 @@ public abstract class BaseFragment extends Fragment implements IBase {
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        this.savedInstanceState = savedInstanceState;
         if (mComponent == null || mComponent.typeView == MultiComponents.TYPE_VIEW.CUSTOM_FRAGMENT) {
             parentLayout = inflater.inflate(getLayoutId(), null, false);
         } else {
@@ -74,8 +80,18 @@ public abstract class BaseFragment extends Fragment implements IBase {
         return parentLayout;
     }
 
+    @Override
+    public Bundle getSavedInstanceState() {
+        return savedInstanceState;
+    }
+
     public int getLayoutId() {
         return 0;
+    }
+
+    @Override
+    public void setComponentMap(ComponentMap componentMap) {
+        getBaseActivity().setComponentMap(componentMap);
     }
 
     View.OnClickListener navigatorClick = new View.OnClickListener() {
@@ -135,6 +151,34 @@ public abstract class BaseFragment extends Fragment implements IBase {
         super.onStop();
     }
 
+    @Override
+    public void setGoogleApiClient(GoogleApiClient googleApiClient) {
+        this.googleApiClient = googleApiClient;
+    }
+
+//    @Override
+//    public void onResume() {
+//        super.onResume();
+////        if (googleApiClient != null) {
+////            googleApiClient.connect();
+////        }
+//    }
+//
+//    @Override
+//    public void onPause() {
+////        if (googleApiClient != null) {
+////            googleApiClient.disconnect();
+////        }
+//        super.onPause();
+//    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        if (googleApiClient != null && googleApiClient.isConnected()) {
+            googleApiClient.disconnect();
+        }
+    }
 
     @Override
     public void setFragmentsContainerId(int id) {

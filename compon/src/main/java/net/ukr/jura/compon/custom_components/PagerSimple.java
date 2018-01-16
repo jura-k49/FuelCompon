@@ -1,4 +1,4 @@
-package net.ukr.jura.compon.components;
+package net.ukr.jura.compon.custom_components;
 
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -13,7 +13,7 @@ import net.ukr.jura.compon.R;
 import net.ukr.jura.compon.interfaces_classes.IComponent;
 import net.ukr.jura.compon.json_simple.ListRecords;
 import net.ukr.jura.compon.json_simple.Record;
-import net.ukr.jura.compon.models.WorkWithRecordsAndViews;
+import net.ukr.jura.compon.components.WorkWithRecordsAndViews;
 
 public class PagerSimple extends ViewPager implements IComponent {
     private int ITEM_LAYOUT_ID, INDICATOR;

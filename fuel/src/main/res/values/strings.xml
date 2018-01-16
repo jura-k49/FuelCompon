@@ -9,6 +9,7 @@
     <string name="help">help</string>
     <string name="choice_fuel">choice_fuel</string>
     <string name="map">map</string>
+    <string name="mapF">mapF</string>
 
 // Tickets
     <string name="my_tickets">Мои талоны</string>
@@ -24,7 +25,8 @@
 
 // Map
     <string name="map_txt">Карта</string>
-
+    <string name="nearest_station">Ближайшая заправка</string>
+    <string name="more_information">Больше информации</string>
 
 
     <string-array name="tab_tickets">

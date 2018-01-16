@@ -1,4 +1,4 @@
-package net.ukr.jura.compon.models;
+package net.ukr.jura.compon.components;
 
 import net.ukr.jura.compon.base.BaseComponent;
 import net.ukr.jura.compon.interfaces_classes.MoreWork;
@@ -7,7 +7,7 @@ import net.ukr.jura.compon.interfaces_classes.Navigator;
 public class ParamComponent <T>{
     public static enum TC {PANEL, PANEL_ENTER, PANEL_MULTI, SPINNER,
         RECYCLER, RECYCLER_HORIZONTAL, RECYCLER_GRID, RECYCLER_LEVEL, RECYCLER_STICKY,
-        MENU, CONTAINER,
+        MENU, CONTAINER, MAP,
         STATIC_LIST, MODEL, PAGER_V, PAGER_F};
     public ParamComponent () {
         additionalWork = null;
@@ -24,6 +24,7 @@ public class ParamComponent <T>{
 //    public String additionalWork;
     public ParamModel paramModel;
     public ParamView paramView;
+    public ParamMap paramMap;
     public Navigator navigator;
     public Class<T> additionalWork;
 }

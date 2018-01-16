@@ -9,8 +9,11 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
 import net.ukr.jura.compon.ComponGlob;
-import net.ukr.jura.compon.interfaces_classes.IPresenterListener;
+import net.ukr.jura.compon.components.ParamComponent;
+import net.ukr.jura.compon.components.ParamModel;
+import net.ukr.jura.compon.components.WorkWithRecordsAndViews;
 import net.ukr.jura.compon.interfaces_classes.IBase;
+import net.ukr.jura.compon.interfaces_classes.IPresenterListener;
 import net.ukr.jura.compon.interfaces_classes.Navigator;
 import net.ukr.jura.compon.interfaces_classes.OnClickItemRecycler;
 import net.ukr.jura.compon.interfaces_classes.ParentModel;
@@ -19,9 +22,6 @@ import net.ukr.jura.compon.json_simple.Field;
 import net.ukr.jura.compon.json_simple.FieldBroadcaster;
 import net.ukr.jura.compon.json_simple.ListRecords;
 import net.ukr.jura.compon.json_simple.Record;
-import net.ukr.jura.compon.models.ParamComponent;
-import net.ukr.jura.compon.models.ParamModel;
-import net.ukr.jura.compon.models.WorkWithRecordsAndViews;
 import net.ukr.jura.compon.presenter.ListPresenter;
 
 import java.util.List;
@@ -46,7 +46,6 @@ public abstract class BaseComponent {
         paramMV.baseComponent = this;
         this.iBase = iBase;
         activity = iBase.getBaseActivity();
-//        baseActivity = iBase.getBaseActivity();
         this.parentLayout = iBase.getParentLayout();
     }
 
@@ -145,36 +144,6 @@ public abstract class BaseComponent {
         changeData(field);
     }
 
-//    VolleyListener vl = new VolleyListener() {
-//        @Override
-//        public void onErrorResponse(VolleyError error) {
-//        }
-//        @Override
-//        public void onResponse(Object response) {
-//            String fName = paramMV.paramModel.nameField;
-//            if (fName != null) {
-//                Field field = (Field) response;
-//                String fNameTo = paramMV.paramModel.nameFieldTo;
-//                if (field.type == Field.TYPE_LIST) {
-//                    ListRecords listRecords = (ListRecords) field.value;
-//                    for (Record record : listRecords) {
-//                        Field f = record.getField(fName);
-//                        if (f != null) {
-//                            f.name = fNameTo;
-//                        }
-//                    }
-//                }
-//            }
-//            if (paramMV.paramModel.nameTakeField == null) {
-//                changeDataBase((Field) response);
-//            } else {
-//                Field f = (Field) response;
-//                Record r = (Record) f.value;
-//                changeDataBase(r.getField(paramMV.paramModel.nameTakeField));
-//            }
-//        }
-//    };
-
     private BroadcastReceiver changeFieldValue = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
@@ -268,25 +237,4 @@ public abstract class BaseComponent {
         }
     };
 
-//    VolleyListener vl_SEND_CHANGE_BACK = new VolleyListener() {
-//        @Override
-//        public void onErrorResponse(VolleyError error) {
-//        }
-//        @Override
-//        public void onResponse(Object response) {
-//            Field f = (Field) response;
-//            if (paramMV.paramModel.nameTakeField == null) {
-//                paramMV.paramModel.field.value = f.value;
-//            } else {
-//                if (f.type == Field.TYPE_CLASS) {
-//                    paramMV.paramModel.field.setValue(
-//                            ((Record) f.value).getField(paramMV.paramModel.nameTakeField).value,
-//                            paramMV.paramView.viewId, iBase);
-//                } else {
-//                    paramMV.paramModel.field.setValue(f.value, paramMV.paramView.viewId, iBase);
-//                }
-//            }
-//            iBase.backPressed();
-//        }
-//    };
 }

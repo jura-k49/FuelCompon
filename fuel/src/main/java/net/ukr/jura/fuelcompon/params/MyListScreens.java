@@ -3,11 +3,13 @@ package net.ukr.jura.fuelcompon.params;
 import android.content.Context;
 
 import net.ukr.jura.compon.base.ListScreens;
+import net.ukr.jura.compon.components.ParamComponent;
+import net.ukr.jura.compon.components.ParamMap;
+import net.ukr.jura.compon.components.ParamModel;
+import net.ukr.jura.compon.components.ParamView;
 import net.ukr.jura.compon.interfaces_classes.Navigator;
 import net.ukr.jura.compon.interfaces_classes.ViewHandler;
-import net.ukr.jura.compon.models.ParamComponent;
-import net.ukr.jura.compon.models.ParamModel;
-import net.ukr.jura.compon.models.ParamView;
+import net.ukr.jura.compon.tools.Constants;
 import net.ukr.jura.fuelcompon.R;
 import net.ukr.jura.fuelcompon.fragments.MapFragment;
 import net.ukr.jura.fuelcompon.network.Api;
@@ -25,7 +27,8 @@ public class MyListScreens extends ListScreens {
                 .addFragmentsContainer(R.id.content_frame, context.getString(R.string.tickets))
                 .addNavigator(new Navigator().add(R.id.radio1, context.getString(R.string.tickets))
                         .add(R.id.radio2, context.getString(R.string.map))
-                        .add(R.id.radio3, context.getString(R.string.group)));
+                        .add(R.id.radio3, context.getString(R.string.group))
+                        .add(R.id.radio4, context.getString(R.string.mapF)));
 
         addFragment(context.getString(R.string.tickets), R.layout.fragment_tickets)
                 .addNavigator(new Navigator().add(R.id.question, context.getString(R.string.help)))
@@ -40,7 +43,18 @@ public class MyListScreens extends ListScreens {
                         new ParamView(R.id.recycler, "type",
                                 new int[] {R.layout.item_active_tickets, R.layout.item_active_tickets_begining})
                                 .setSplashScreen(R.id.splash));
-        addFragment(context.getString(R.string.map), MapFragment.class);
+
+        addFragment(context.getString(R.string.mapF), MapFragment.class);
+
+
+        addFragment(context.getString(R.string.map), R.layout.fragment_map)
+                .addComponentMap(R.id.map, new ParamModel(Api.MARKER_MAP, "lat,lon").typeParam(ParamModel.TypeParam.NAME)
+                        .internetProvider(TestInternetProvider.class), new ParamMap(true)
+                        .coordinateValue(50.0276271, 36.2237879)
+                        .markerImg(R.drawable.loc, Constants.MARKER_NAME_NUMBER, R.drawable.azs, R.drawable.azs2)
+                        .markerClick(R.id.infoWindow));
+
+
         addFragment(context.getString(R.string.archive_tickets), R.layout.fragment_recycler)
                 .addComponent(ParamComponent.TC.RECYCLER, new ParamModel(Api.GROUP_SCHEDULE),
                         new ParamView(R.id.recycler, "isSelected", new int[]{R.layout.item_group_lessons,

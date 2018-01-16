@@ -1,4 +1,4 @@
-package net.ukr.jura.compon.models;
+package net.ukr.jura.compon.components;
 
 import net.ukr.jura.compon.interfaces_classes.IBase;
 import net.ukr.jura.compon.interfaces_classes.Navigator;
@@ -118,6 +118,21 @@ public class MultiComponents <T>{
         return this;
     }
 
+    public MultiComponents addComponentMap(int viewId, ParamModel paramModel, ParamMap paramMap) {
+        ParamComponent paramComponent = new ParamComponent();
+        paramComponent.type = ParamComponent.TC.MAP;
+        paramComponent.paramView = new ParamView(viewId);
+        paramComponent.paramModel = paramModel;
+        paramComponent.eventComponent = viewId;
+        paramComponent.paramMap = paramMap;
+        listComponents.add(paramComponent);
+        return this;
+    }
+
+    public MultiComponents addComponentMap(int viewId, ParamMap paramMap) {
+        return addComponentMap(viewId, null, paramMap);
+    }
+
     public MultiComponents addModel(String nameModel, ParamModel paramModel) {
         ParamComponent paramComponent = new ParamComponent();
         paramComponent.type = ParamComponent.TC.MODEL;
@@ -145,6 +160,11 @@ public class MultiComponents <T>{
     }
 
     public MultiComponents addNavigator(Navigator navigator) {
+        this.navigator = navigator;
+        return this;
+    }
+
+    public MultiComponents add(Navigator navigator) {
         this.navigator = navigator;
         return this;
     }
@@ -190,6 +210,9 @@ public class MultiComponents <T>{
                     break;
                 case CONTAINER:
                     new ComponentContainer(iBase, cMV);
+                    break;
+                case MAP:
+                    new ComponentMap(iBase, cMV);
                     break;
             }
             cMV.baseComponent.init();

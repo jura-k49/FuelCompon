@@ -1,4 +1,4 @@
-package net.ukr.jura.compon.models;
+package net.ukr.jura.compon.components;
 
 import android.view.View;
 import android.widget.AdapterView;

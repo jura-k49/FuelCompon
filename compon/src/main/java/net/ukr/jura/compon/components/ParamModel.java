@@ -1,4 +1,4 @@
-package net.ukr.jura.compon.models;
+package net.ukr.jura.compon.components;
 
 import net.ukr.jura.compon.ComponGlob;
 import net.ukr.jura.compon.json_simple.Field;
@@ -23,6 +23,8 @@ public class ParamModel <T> {
     public List<Record> addRecordBegining;
     public Field field;
     public Class<T>  internetProvider;
+    public enum TypeParam {MAP, NAME, SLASH};
+    public TypeParam typeParam = TypeParam.SLASH;
 //    public int progressId;
 
     public static void setDefaultMethod(int method) {
@@ -110,6 +112,11 @@ public class ParamModel <T> {
 
     public ParamModel takeField(String name) {
         nameTakeField = name;
+        return this;
+    }
+
+    public ParamModel typeParam(TypeParam typeParam) {
+        this.typeParam = typeParam;
         return this;
     }
 }

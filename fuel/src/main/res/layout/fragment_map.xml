@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/_white">
@@ -36,5 +35,32 @@
         class="com.google.android.gms.maps.SupportMapFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_below="@+id/header"
         map:uiZoomControls="true"/>
-</LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/infoWindow"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:orientation="vertical"
+        android:padding="@dimen/pad_24"
+        android:background="@color/white"
+        android:visibility="gone">
+
+        <TextView
+            style="@style/st_sub_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/nearest_station" />
+
+        <TextView
+            style="@style/st_title"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/h_button"
+            android:layout_gravity="center_horizontal"
+            android:gravity="center"
+            android:text="@string/more_information" />
+
+    </LinearLayout>
+</RelativeLayout>

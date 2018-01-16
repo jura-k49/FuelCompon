@@ -1,4 +1,4 @@
-package net.ukr.jura.compon.components;
+package net.ukr.jura.compon.custom_components;
 
 import android.content.Context;
 import android.content.res.TypedArray;

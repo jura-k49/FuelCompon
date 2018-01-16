@@ -2,14 +2,19 @@ package net.ukr.jura.compon.base;
 
 import android.app.DialogFragment;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.view.View;
 
+import com.google.android.gms.common.api.GoogleApiClient;
+
 import net.ukr.jura.compon.ComponGlob;
 import net.ukr.jura.compon.R;
+import net.ukr.jura.compon.components.ComponentMap;
 import net.ukr.jura.compon.dialogs.DialogTools;
 import net.ukr.jura.compon.functions_fragment.ComponentsFragment;
 import net.ukr.jura.compon.interfaces_classes.EventComponent;
@@ -17,7 +22,7 @@ import net.ukr.jura.compon.interfaces_classes.IBase;
 import net.ukr.jura.compon.interfaces_classes.ParentModel;
 import net.ukr.jura.compon.interfaces_classes.ViewHandler;
 import net.ukr.jura.compon.json_simple.Field;
-import net.ukr.jura.compon.models.MultiComponents;
+import net.ukr.jura.compon.components.MultiComponents;
 import net.ukr.jura.compon.tools.Constants;
 import net.ukr.jura.compon.tools.PreferenceTool;
 
@@ -42,10 +47,14 @@ public abstract class BaseActivity extends FragmentActivity implements IBase {
     protected String nameDrawer;
     private boolean isActive;
     public List<ParentModel> parentModelList;
+    private Bundle savedInstanceState;
+    private GoogleApiClient googleApiClient;
+    private ComponentMap componentMap;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        this.savedInstanceState = savedInstanceState;
         parentModelList = new ArrayList<>();
         mapFragment = ComponGlob.getInstance().MapScreen;
         countProgressStart = 0;
@@ -75,12 +84,49 @@ public abstract class BaseActivity extends FragmentActivity implements IBase {
         initView();
     }
 
+    @Override
+    public void setGoogleApiClient(GoogleApiClient googleApiClient) {
+        this.googleApiClient = googleApiClient;
+    }
+
+    @Override
+    public Bundle getSavedInstanceState() {
+        return savedInstanceState;
+    }
+
     public int getLayoutId() {
         return 0;
     }
 
     public void initView() {
 
+    }
+
+    @Override
+    public void setComponentMap(ComponentMap componentMap) {
+        this.componentMap = componentMap;
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions,
+                                           @NonNull int[] grantResults) {
+        if (requestCode == Constants.MAP_PERMISSION_REQUEST_CODE && grantResults.length > 0) {
+            if (grantResults[0] == PackageManager.PERMISSION_GRANTED
+                    && componentMap != null) {
+                componentMap.locationSettings();
+            }
+        }
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == Constants.MAP_REQUEST_CHECK_SETTINGS) {
+            if (resultCode == RESULT_OK) {
+                componentMap.setLocationServices();
+            }
+        }
     }
 
     View.OnClickListener navigatorClick = new View.OnClickListener() {
@@ -138,6 +184,30 @@ public abstract class BaseActivity extends FragmentActivity implements IBase {
         }
         isActive = false;
         super.onStop();
+    }
+
+//    @Override
+//    public void onResume() {
+//        super.onResume();
+////        if (googleApiClient != null) {
+////            googleApiClient.connect();
+////        }
+//    }
+//
+//    @Override
+//    public void onPause() {
+////        if (googleApiClient != null) {
+////            googleApiClient.disconnect();
+////        }
+//        super.onPause();
+//    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (googleApiClient != null && googleApiClient.isConnected()) {
+            googleApiClient.disconnect();
+        }
     }
 
     @Override

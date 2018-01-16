@@ -1,4 +1,4 @@
-package net.ukr.jura.compon.models;
+package net.ukr.jura.compon.components;
 
 import android.content.Context;
 import android.view.View;
@@ -9,8 +9,8 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 
 import net.ukr.jura.compon.ComponGlob;
-import net.ukr.jura.compon.components.SimpleImageView;
-import net.ukr.jura.compon.components.SimpleTextView;
+import net.ukr.jura.compon.custom_components.SimpleImageView;
+import net.ukr.jura.compon.custom_components.SimpleTextView;
 import net.ukr.jura.compon.interfaces_classes.IComponent;
 import net.ukr.jura.compon.interfaces_classes.Navigator;
 import net.ukr.jura.compon.interfaces_classes.ViewHandler;

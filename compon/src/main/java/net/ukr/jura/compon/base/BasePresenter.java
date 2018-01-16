@@ -8,7 +8,7 @@ import net.ukr.jura.compon.interfaces_classes.IBase;
 import net.ukr.jura.compon.interfaces_classes.IPresenterListener;
 import net.ukr.jura.compon.json_simple.JsonSimple;
 import net.ukr.jura.compon.json_simple.Record;
-import net.ukr.jura.compon.models.ParamModel;
+import net.ukr.jura.compon.components.ParamModel;
 import net.ukr.jura.compon.providers.VolleyInternetProvider;
 
 import java.util.Map;
@@ -35,7 +35,7 @@ public class BasePresenter implements BaseInternetProvider.InternetProviderListe
         this.method = paramModel.method;
         long duration = paramModel.duration;
         if (method == ParamModel.GET) {
-            String st = ComponGlob.getInstance().installParam(paramModel.param);
+            String st = ComponGlob.getInstance().installParam(paramModel.param, paramModel.typeParam);
             url = paramModel.url + st;
         } else {
             url = paramModel.url;

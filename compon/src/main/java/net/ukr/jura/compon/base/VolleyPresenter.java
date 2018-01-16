@@ -16,7 +16,7 @@ import net.ukr.jura.compon.interfaces_classes.VolleyListener;
 import net.ukr.jura.compon.json_simple.Field;
 import net.ukr.jura.compon.json_simple.JsonSimple;
 import net.ukr.jura.compon.json_simple.Record;
-import net.ukr.jura.compon.models.ParamModel;
+import net.ukr.jura.compon.components.ParamModel;
 import net.ukr.jura.compon.network.SimpleRequest;
 import net.ukr.jura.compon.tools.PreferenceTool;
 import net.ukr.jura.compon.volley.VolleyProvider;
@@ -126,7 +126,7 @@ public class VolleyPresenter<T> implements Response.Listener<T>, Response.ErrorL
 //        String st = iBase.getBaseActivity().installParam(baseComponent.paramMV.paramModel.param);
 //        url = baseComponent.paramMV.paramModel.url + st;
         if (method == ParamModel.GET) {
-            String st = ComponGlob.getInstance().installParam(paramModel.param);
+            String st = ComponGlob.getInstance().installParam(paramModel.param, paramModel.typeParam);
             url = paramModel.url + st;
         } else {
             url = paramModel.url;

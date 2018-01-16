@@ -32,6 +32,9 @@ public class SimpleRecordToJson {
                 case Field.TYPE_LONG :
                     sb.append(quote + f.name + quoteColon + (Long) f.value);
                     break;
+                case Field.TYPE_DOUBLE :
+                    sb.append(quote + f.name + quoteColon + (Double) f.value);
+                    break;
                 case Field.TYPE_LIST:
                     sb.append(quote + f.name + quoteColon);
                     listToJson((ListRecords) f.value);

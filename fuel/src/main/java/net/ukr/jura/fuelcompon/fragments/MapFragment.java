@@ -45,7 +45,7 @@ public class MapFragment extends BaseFragment
     @Override
     public void initView(Bundle savedInstanceState) {
 //        marker = bundle.getString(SyncStateContract.Constants.MARKER);
-        initGoogleLocationService();
+//        initGoogleLocationService();
 //        mapView = (MapView) parentLayout.findViewById(R.id.map);
 //        mapView.onCreate(savedInstanceState);
 //        mapView.onResume();
@@ -88,20 +88,23 @@ public class MapFragment extends BaseFragment
         if (mGoogleApiClient.isConnected()) {
             LocationRequest locationRequest = LocationRequest.create();
             locationRequest.setNumUpdates(1);
-            if (ActivityCompat.checkSelfPermission(getActivity(),
-                    Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED
-                    && ActivityCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-                // TODO: Consider calling
-                //    ActivityCompat#requestPermissions
-                // here to request the missing permissions, and then overriding
-                //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-                //                                          int[] grantResults)
-                // to handle the case where the user grants the permission. See the documentation
-                // for ActivityCompat#requestPermissions for more details.
-                return;
+            if (PackageManager.PERMISSION_GRANTED ==
+                    ActivityCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_FINE_LOCATION)
+                    || PackageManager.PERMISSION_GRANTED ==
+                    ActivityCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_COARSE_LOCATION)) {
+
             }
-            LocationServices.FusedLocationApi.requestLocationUpdates(mGoogleApiClient, locationRequest, locationListener);
+            if (hasAppLocationPermission()) {
+                LocationServices.FusedLocationApi.requestLocationUpdates(mGoogleApiClient, locationRequest, locationListener);
+            }
         }
+    }
+
+    private boolean hasAppLocationPermission() {
+        return PackageManager.PERMISSION_GRANTED ==
+                ActivityCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_FINE_LOCATION)
+                || PackageManager.PERMISSION_GRANTED ==
+                ActivityCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_COARSE_LOCATION);
     }
 
     private LocationListener locationListener = new LocationListener() {

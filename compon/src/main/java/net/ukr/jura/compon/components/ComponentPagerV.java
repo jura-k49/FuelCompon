@@ -1,4 +1,4 @@
-package net.ukr.jura.compon.models;
+package net.ukr.jura.compon.components;
 
 import android.content.Context;
 import android.support.v4.view.PagerAdapter;
@@ -9,7 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import net.ukr.jura.compon.base.BaseComponent;
-import net.ukr.jura.compon.components.PagerIndicator;
+import net.ukr.jura.compon.custom_components.PagerIndicator;
 import net.ukr.jura.compon.interfaces_classes.IBase;
 import net.ukr.jura.compon.json_simple.Field;
 import net.ukr.jura.compon.json_simple.ListRecords;

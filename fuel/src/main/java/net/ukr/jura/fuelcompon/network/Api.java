@@ -4,6 +4,7 @@ public class Api {
 
     public static final String TICKETS_ACTIVE = "/tickets/active";
     public static final String TICKETS_ARCHIVE = "/tickets/archive";
+    public static final String MARKER_MAP = "/marker";
 
     public static String GROUP_SCHEDULE = "/android/api/schedule/week/1";
     public static String MY_GOALS = "/android/api/goal/collection";

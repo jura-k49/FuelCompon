@@ -1,4 +1,4 @@
-package net.ukr.jura.compon.components;
+package net.ukr.jura.compon.custom_components;
 
 public class PointValue {
     public float value;

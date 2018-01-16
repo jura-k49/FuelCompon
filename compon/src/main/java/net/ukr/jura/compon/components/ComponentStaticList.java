@@ -1,11 +1,11 @@
-package net.ukr.jura.compon.models;
+package net.ukr.jura.compon.components;
 
 import android.util.Log;
 
 import net.ukr.jura.compon.adapters.StaticListAdapter;
 import net.ukr.jura.compon.base.BaseComponent;
 import net.ukr.jura.compon.base.BaseProvider;
-import net.ukr.jura.compon.components.StaticList;
+import net.ukr.jura.compon.custom_components.StaticList;
 import net.ukr.jura.compon.interfaces_classes.IBase;
 import net.ukr.jura.compon.json_simple.Field;
 import net.ukr.jura.compon.json_simple.ListRecords;

@@ -12,8 +12,8 @@ import net.ukr.jura.compon.interfaces_classes.Navigator;
 import net.ukr.jura.compon.interfaces_classes.ViewHandler;
 import net.ukr.jura.compon.json_simple.Field;
 import net.ukr.jura.compon.json_simple.Record;
-import net.ukr.jura.compon.models.ParamView;
-import net.ukr.jura.compon.models.WorkWithRecordsAndViews;
+import net.ukr.jura.compon.components.ParamView;
+import net.ukr.jura.compon.components.WorkWithRecordsAndViews;
 
 public class BaseProviderAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
     private int[] layoutItemId;

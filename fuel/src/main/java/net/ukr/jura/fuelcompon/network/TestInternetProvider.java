@@ -8,11 +8,12 @@ import net.ukr.jura.compon.json_simple.Field;
 import net.ukr.jura.compon.json_simple.ListRecords;
 import net.ukr.jura.compon.json_simple.Record;
 import net.ukr.jura.compon.json_simple.SimpleRecordToJson;
+import net.ukr.jura.compon.tools.Constants;
 
 import java.util.Map;
 
 public class TestInternetProvider extends BaseInternetProvider{
-    Handler handler;
+    private Handler handler;
 
     @Override
     public void setParam(int method, String url, Map<String, String> headers,
@@ -37,6 +38,7 @@ public class TestInternetProvider extends BaseInternetProvider{
     private String jsonResult(String request) {
         switch (request) {
             case Api.TICKETS_ACTIVE : return setActive();
+            case Api.MARKER_MAP : return setMarker();
         }
         return null;
     }
@@ -72,6 +74,42 @@ public class TestInternetProvider extends BaseInternetProvider{
 
 
         SimpleRecordToJson recordToJson = new SimpleRecordToJson();
+//        Log.d("QWERT","1111 RESULT="+recordToJson.modelToJson(f));
+        return recordToJson.modelToJson(f);
+    }
+
+    private String setMarker() {
+        int i = url.indexOf("?");
+        String par = "";
+        if (i > -1) {
+            par = url.substring(i + 1);
+        }
+        String[] parA = par.split("&");
+        String[] latLon = parA[0].split("=");
+        double lat = Double.valueOf(latLon[1]);
+        latLon = parA[1].split("=");
+        double lon = Double.valueOf(latLon[1]);
+        Record rec = new Record();
+        ListRecords lr = new ListRecords();
+        Field f = new Field("", Field.TYPE_LIST, lr);
+//        Field f = new Field("", Field.TYPE_RECORD, rec);
+//        rec.add(new Field("data", Field.TYPE_LIST, lr));
+
+        Record record;
+        record = new Record();
+        record.add(new Field(Constants.MARKER_LAT, Field.TYPE_DOUBLE, lat + 0.001));
+        record.add(new Field(Constants.MARKER_LON, Field.TYPE_DOUBLE, lon + 0.001));
+        record.add(new Field(Constants.MARKER_NAME_NUMBER, Field.TYPE_INTEGER, 1));
+        lr.add(record);
+
+        record = new Record();
+        record.add(new Field(Constants.MARKER_LAT, Field.TYPE_DOUBLE, lat - 0.001));
+        record.add(new Field(Constants.MARKER_LON, Field.TYPE_DOUBLE, lon - 0.001));
+        record.add(new Field(Constants.MARKER_NAME_NUMBER, Field.TYPE_INTEGER, 0));
+        lr.add(record);
+
+        SimpleRecordToJson recordToJson = new SimpleRecordToJson();
+//        Log.d("QWERT","RESULT="+recordToJson.modelToJson(f));
         return recordToJson.modelToJson(f);
     }
 

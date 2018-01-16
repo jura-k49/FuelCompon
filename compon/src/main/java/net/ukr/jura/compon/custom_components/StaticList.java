@@ -1,4 +1,4 @@
-package net.ukr.jura.compon.components;
+package net.ukr.jura.compon.custom_components;
 
 import android.content.Context;
 import android.util.AttributeSet;
@@ -8,7 +8,7 @@ import android.view.View;
 import net.ukr.jura.compon.interfaces_classes.IComponent;
 import net.ukr.jura.compon.json_simple.ListRecords;
 import net.ukr.jura.compon.json_simple.Record;
-import net.ukr.jura.compon.models.WorkWithRecordsAndViews;
+import net.ukr.jura.compon.components.WorkWithRecordsAndViews;
 
 public class StaticList extends BaseStaticList implements IComponent {
     protected ListRecords items;

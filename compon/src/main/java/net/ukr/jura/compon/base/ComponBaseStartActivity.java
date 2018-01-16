@@ -1,6 +1,6 @@
 package net.ukr.jura.compon.base;
 
-import net.ukr.jura.compon.models.MultiComponents;
+import net.ukr.jura.compon.components.MultiComponents;
 
 public class ComponBaseStartActivity extends BaseActivity{
     @Override

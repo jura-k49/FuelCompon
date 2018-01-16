@@ -1,4 +1,4 @@
-package net.ukr.jura.compon.models;
+package net.ukr.jura.compon.components;
 
 import net.ukr.jura.compon.base.BaseComponent;
 import net.ukr.jura.compon.interfaces_classes.IBase;

@@ -2,10 +2,11 @@ package net.ukr.jura.compon;
 
 import android.content.Context;
 
+import net.ukr.jura.compon.components.MultiComponents;
+import net.ukr.jura.compon.components.ParamModel;
 import net.ukr.jura.compon.json_simple.Field;
 import net.ukr.jura.compon.json_simple.FieldBroadcaster;
 import net.ukr.jura.compon.json_simple.Record;
-import net.ukr.jura.compon.models.MultiComponents;
 import net.ukr.jura.compon.network.CacheWork;
 import net.ukr.jura.compon.network.NetworkParams;
 import net.ukr.jura.compon.tools.Constants;
@@ -95,7 +96,34 @@ public class ComponGlob {
         valuesParams.add(paramValue);
     }
 
-    public String installParam(String param) {
+    public String installParam(String param, ParamModel.TypeParam typeParam) {
+        switch (typeParam) {
+            case NAME: return installParamName(param);
+            case SLASH: return installParamSlash(param);
+            default: return "";
+        }
+    }
+
+    public String installParamName(String param) {
+        String st = "?";
+        if (param != null && param.length() > 0) {
+            String[] paramArray = param.split(Constants.SEPARATOR_LIST);
+            int ik = namesParams.size();
+            String sep = "";
+            for (String par : paramArray) {
+                for (int i = 0; i < ik; i++) {
+                    if (par.equals(namesParams.get(i))) {
+                        st = st + sep + par + "=" + valuesParams.get(i);
+                        sep = "&";
+                        break;
+                    }
+                }
+            }
+        }
+        return st;
+    }
+
+    public String installParamSlash(String param) {
         String st = "";
         if (param != null && param.length() > 0) {
             String[] paramArray = param.split(Constants.SEPARATOR_LIST);

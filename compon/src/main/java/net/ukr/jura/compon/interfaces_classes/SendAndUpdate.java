@@ -1,6 +1,6 @@
 package net.ukr.jura.compon.interfaces_classes;
 
-import net.ukr.jura.compon.models.ParamModel;
+import net.ukr.jura.compon.components.ParamModel;
 
 public class SendAndUpdate extends ParamModel {
     public SendAndUpdate(String url) {
