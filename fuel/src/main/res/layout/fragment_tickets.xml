@@ -9,38 +9,37 @@
     <RelativeLayout
         android:id="@+id/header"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/h_header">
+        android:layout_height="@dimen/pad_127"
+        android:background="@drawable/shape_header">
 
         <TextView
-            style="@style/st_title"
+            android:id="@+id/title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_centerInParent="true"
-            android:text="@string/my_tickets" />
+            android:layout_marginTop="@dimen/pad_28"
+            android:layout_marginLeft="@dimen/pad_30"
+            style="@style/st_title" />
 
-        <LinearLayout
+        <ImageView
             android:id="@+id/question"
-            android:layout_width="@dimen/pad_56"
-            android:layout_height="match_parent"
+            android:layout_width="@dimen/d_icon"
+            android:layout_height="@dimen/d_icon"
             android:layout_alignParentRight="true"
-            android:gravity="center">
-            <ImageView
-                android:layout_width="@dimen/d_icon"
-                android:layout_height="@dimen/d_icon"
-                android:src="@drawable/question" />
-        </LinearLayout>
+            android:layout_marginTop="@dimen/pad_32"
+            android:layout_marginRight="@dimen/pad_30"
+            android:src="@drawable/invalid_name" />
     </RelativeLayout>
     <android.support.design.widget.TabLayout
         android:id="@+id/tabs"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/primary_30"
-        app:tabIndicatorColor="@color/primary_dark"
-        app:tabTextColor="@color/black_50"
-        app:tabSelectedTextColor="@color/black_70"
-        app:tabIndicatorHeight="3dp"
-        android:layout_below="@+id/header" />
+        app:tabIndicatorColor="@color/black"
+        app:tabTextAppearance="@style/st_tab"
+        app:tabSelectedTextColor="@color/white"
+        android:layout_marginTop="@dimen/pad_78"
+        android:layout_marginRight="@dimen/pad_30"
+        android:layout_marginLeft="@dimen/pad_30"
+        app:tabIndicatorHeight="3dp" />
     <android.support.v4.view.ViewPager
         android:id="@+id/pager"
         android:layout_width="match_parent"

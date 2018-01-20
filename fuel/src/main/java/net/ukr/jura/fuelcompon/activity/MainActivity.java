@@ -14,5 +14,4 @@ public class MainActivity extends BaseActivity {
     public int getLayoutId() {
         return 0;
     }
-    // prov
 }

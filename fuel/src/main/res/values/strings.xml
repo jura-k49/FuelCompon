@@ -1,7 +1,8 @@
 <resources>
     <string name="app_name">FuelCompon</string>
 
-    <string name="google_maps_key">AIzaSyByiwZbUxtT78DMglHKvS2zHGANZbpmKNc</string>
+    <!--<string name="google_maps_key">AIzaSyByiwZbUxtT78DMglHKvS2zHGANZbpmKNc</string>-->
+    <string name="google_maps_key">AIzaSyAPYR4EO-U2deKsKbXyNLR06ynnVaO0jCA</string>
 
 // name Screens
     <string name="main">main</string>
@@ -22,6 +23,7 @@
     <string name="choice_fuel_txt">Выберите тип топлива на\u0020</string>
     <string name="unit_l">л.</string>
     <string name="shelf_life">Действительный до</string>
+    <string name="pay_tickets">Купить талоны</string>
 
 // Map
     <string name="map_txt">Карта</string>
@@ -30,8 +32,8 @@
 
 
     <string-array name="tab_tickets">
-        <item>АКТИВНЫЕ</item>
-        <item>АРХИВ</item>
+        <item>Активные</item>
+        <item>Архив</item>
     </string-array>
 
 

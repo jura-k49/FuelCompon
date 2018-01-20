@@ -1,19 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="144dp"
-    android:id="@+id/rr">
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="144dp"
-        android:gravity="center"
-        android:background="@color/accent">
+    android:layout_height="@dimen/pad_140"
+    android:background="@color/white"
+    android:gravity="center">
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="@color/black"
-            android:text="Qwertty Asdff"/>
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/h_bottom"
+            android:layout_marginRight="@dimen/pad_30"
+            android:layout_marginLeft="@dimen/pad_30"
+            android:gravity="center"
+            android:background="@drawable/shape_button"
+            style="@style/st_button"
+            android:text="@string/pay_tickets"/>
 
-    </RelativeLayout>
 </RelativeLayout>

@@ -8,94 +8,55 @@
         android:layout_width="match_parent"
         android:layout_height="144dp">
 
-        <net.ukr.jura.fuelcompon.tools.ChartRing
-            xmlns:app="http://schemas.android.com/apk/res-auto"
-            android:layout_width="@dimen/_chart_diam"
-            android:layout_height="@dimen/_chart_diam"
-            android:id="@+id/goalValue"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:layout_marginRight="@dimen/_pad_32"
-            app:widthLine="4dp"/>
-
         <LinearLayout
-            android:layout_width="@dimen/_chart_diam"
-            android:layout_height="@dimen/_chart_diam"
+            android:layout_width="@dimen/d_icon_g"
+            android:layout_height="@dimen/d_icon_g"
             android:id="@+id/unit_l"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
-            android:layout_marginRight="@dimen/_pad_32"
+            android:layout_marginRight="@dimen/pad_32"
             android:orientation="vertical"
             android:gravity="center">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="еще"
-                style="@style/st_12_black_35"/>
-            <RelativeLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/integer"
-                    style="@style/st_20_black"
-                    android:layout_alignParentTop="false" />
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/fraction"
-                    style="@style/st_12_black"
-                    android:layout_toRightOf="@+id/integer"
-                    android:layout_alignParentTop="false"
-                    android:layout_marginTop="4dp" />
-            </RelativeLayout>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/unit"
-                android:text="ru"
-                style="@style/st_12_black_35"/>
+
         </LinearLayout>
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:id="@+id/text_r"
-            android:layout_marginLeft="72dp"
-            android:gravity="center_vertical"
-            android:layout_toLeftOf="@+id/goalValue"
-            android:layout_marginRight="@dimen/_pad_8">
+        <!--<RelativeLayout-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:id="@+id/text_r"-->
+            <!--android:layout_marginLeft="72dp"-->
+            <!--android:gravity="center_vertical"-->
+            <!--android:layout_toLeftOf="@+id/goalValue"-->
+            <!--android:layout_marginRight="@dimen/pad_8">-->
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                style="@style/st_20_black"
-                android:id="@+id/nameGoal"
-                android:singleLine="true"
-                android:layout_marginBottom="@dimen/_pad_12" />
+            <!--<TextView-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--style="@style/st_20_black"-->
+                <!--android:id="@+id/nameGoal"-->
+                <!--android:singleLine="true"-->
+                <!--android:layout_marginBottom="@dimen/_pad_12" />-->
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                style="@style/st_16_black_50"
-                android:text="Осталось дней:"
-                android:layout_below="@+id/nameGoal"
-                android:id="@+id/remained_txt" />
+            <!--<TextView-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--style="@style/st_16_black_50"-->
+                <!--android:text="Осталось дней:"-->
+                <!--android:layout_below="@+id/nameGoal"-->
+                <!--android:id="@+id/remained_txt" />-->
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/remained"
-                style="@style/st_16_black_50"
-                android:layout_marginLeft="@dimen/_pad_12"
-                android:layout_below="@+id/nameGoal"
-                android:layout_toRightOf="@+id/remained_txt" />
-        </RelativeLayout>
+            <!--<TextView-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:id="@+id/remained"-->
+                <!--style="@style/st_16_black_50"-->
+                <!--android:layout_marginLeft="@dimen/_pad_12"-->
+                <!--android:layout_below="@+id/nameGoal"-->
+                <!--android:layout_toRightOf="@+id/remained_txt" />-->
+        <!--</RelativeLayout>-->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="1px"
-            android:background="@color/_black_10"
             android:layout_alignParentBottom="true" />
     </RelativeLayout>
 </RelativeLayout>

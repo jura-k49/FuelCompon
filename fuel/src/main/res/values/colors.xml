@@ -1,43 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
-    <!--<color name="colorPrimary">#3F51B5</color>-->
-    <!--<color name="colorPrimaryDark">#303F9F</color>-->
-    <!--<color name="colorAccent">#ff4081</color>-->
-
-    <color name="primary">#ff9600</color>
-    <color name="primary_30">#50ff9600</color>
-    <color name="primary_dark">#ef9000</color>
+    <color name="primary">#1fe76e</color>
+    <color name="primary_30">#501fe76e</color>
+    <color name="primary_dark">#1bbf81</color>
     <color name="accent">#17d3ff</color>
+    <color name="accent_30">#5017d3ff</color>
 
     <color name="title">#c000</color>
     <color name="sub_title">#8000</color>
     <color name="comment">#5000</color>
     <color name="color_header">#50ff9600</color>
+    <color name="gunmetal">#515554</color>
+    <color name="charcoal">#262a29</color>
 
     <color name="black">#000</color>
+    <color name="black_10">#2000</color>
     <color name="black_30">#5000</color>
     <color name="black_50">#8000</color>
+    <color name="black_60">#a000</color>
     <color name="black_70">#b000</color>
     <color name="white">#ffffff</color>
     <color name="white_50">#8fff</color>
     <color name="white_70">#bfff</color>
-
-
-    <color name="_white">#FFF</color>
-    <color name="_black">#000</color>
-    <color name="_black_10">#1a000000</color>
-    <color name="_black_35">#55000000</color>
-    <color name="_black_50">#88000000</color>
-    <color name="_primary">#ff9600</color>
-    <color name="_primary_30">#50ff9600</color>
-    <color name="_primary_dark">#ef9000</color>
-    <color name="_gray_button">#ddd</color>
-    <color name="_accent">#17d3ff</color>
-    <color name="test">#17d3ff</color>
-    <color name="_gradient_2">#b5009a</color>
-    <color name="_red_accent">#fc3a4d</color>
-
-    <color name="gray">#728186</color>
+    <color name="white_80">#cfff</color>
 
 </resources>

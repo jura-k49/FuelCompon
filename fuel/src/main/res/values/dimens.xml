@@ -1,118 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="h_header">56dp</dimen>
-    <dimen name="h_button">44dp</dimen>
-    <dimen name="d_icon">24dp</dimen>
+    <dimen name="h_header">46dp</dimen>
+    <dimen name="h_button">50dp</dimen>
+    <dimen name="d_icon">40dp</dimen>
     <dimen name="d_icon_g">44dp</dimen>
+    <dimen name="h_bottom">50dp</dimen>
 
     <dimen name="pad_1">1dp</dimen>
     <dimen name="pad_6">6dp</dimen>
     <dimen name="pad_8">8dp</dimen>
+    <dimen name="pad_10">10dp</dimen>
     <dimen name="pad_12">12dp</dimen>
     <dimen name="pad_24">24dp</dimen>
-    <dimen name="pad_56">56dp</dimen>
-    <dimen name="pad_72">72dp</dimen>
-
-
-    <dimen name="pad_140">140dp</dimen>
-
-
-    <dimen name="activity_horizontal_margin">16dp</dimen>
-    <dimen name="activity_vertical_margin">16dp</dimen>
-    <dimen name="_pad_block">16dp</dimen>
-    <dimen name="_diam_photo">80dp</dimen>
-    <dimen name="_chart_diam">80dp</dimen>
-    <dimen name="_diam_photo_60">60dp</dimen>
-    <dimen name="_radius_photo">40dp</dimen>
-    <dimen name="_pad_elem_left">12dp</dimen>
-    <dimen name="_icon_wh">24dp</dimen>
-    <dimen name="_tool_bar_h">56dp</dimen>
-    <dimen name="pad_1px">1px</dimen>
-    <dimen name="_pad_2">2dp</dimen>
-    <dimen name="pad_2">2dp</dimen>
-    <dimen name="pad_4">4dp</dimen>
-    <dimen name="_pad_6">6dp</dimen>
-    <dimen name="_pad_8">8dp</dimen>
-    <dimen name="_pad_10">10dp</dimen>
-    <dimen name="pad_10">10dp</dimen>
-    <dimen name="_pad_12">12dp</dimen>
-    <dimen name="_pad_20">20dp</dimen>
-    <dimen name="_pad_24">24dp</dimen>
-
-    <dimen name="_pad_28">28dp</dimen>
-    <dimen name="_pad_32">32dp</dimen>
-    <dimen name="pad_34">34dp</dimen>
-    <dimen name="pad_35">35dp</dimen>
-    <dimen name="pad_36">36dp</dimen>
-    <dimen name="_pad_36">36dp</dimen>
-    <dimen name="_pad_40">40dp</dimen>
-    <dimen name="pad_40">40dp</dimen>
-    <dimen name="pad_44">44dp</dimen>
-    <dimen name="pad_50">50dp</dimen>
-
-    <dimen name="pad_60">60dp</dimen>
-    <dimen name="_pad_72">72dp</dimen>
-    <dimen name="pad_75">75dp</dimen>
-    <dimen name="pad_150">150dp</dimen>
-    <dimen name="_pad_80">80dp</dimen>
-    <dimen name="pad_80">80dp</dimen>
-    <dimen name="pad_160">160dp</dimen>
-    <dimen name="_pager_card_h">172dp</dimen>
-    <dimen name="_pad_276">276dp</dimen>
-    <dimen name="pad_5">5dp</dimen>
-
-    <dimen name="text_size_14">14sp</dimen>
-
-
-    <dimen name="pad_0">0dp</dimen>
-    <dimen name="pad_0.5">0.5dp</dimen>
-
-    <dimen name="pad_13">13sp</dimen>
-    <dimen name="pad_14">14dp</dimen>
-    <dimen name="pad_16">16dp</dimen>
-    <dimen name="pad_18">18dp</dimen>
-    <dimen name="pad_20">20dp</dimen>
-    <dimen name="pad_26">26dp</dimen>
     <dimen name="pad_28">28dp</dimen>
     <dimen name="pad_30">30dp</dimen>
     <dimen name="pad_32">32dp</dimen>
-    <dimen name="pad_38">38dp</dimen>
-    <dimen name="pad_42">42dp</dimen>
-    <dimen name="pad_43">43dp</dimen>
-    <dimen name="pad_48">48dp</dimen>
-    <dimen name="pad_52">52dp</dimen>
-    <dimen name="pad_54">54dp</dimen>
-    <dimen name="pad_58">58dp</dimen>
-    <dimen name="pad_62">62dp</dimen>
-    <dimen name="pad_64">64dp</dimen>
-    <dimen name="pad_66">66dp</dimen>
-    <dimen name="pad_68">68dp</dimen>
-    <dimen name="pad_70">70dp</dimen>
-    <dimen name="pad_82">82dp</dimen>
-    <dimen name="pad_84">84dp</dimen>
-    <dimen name="pad_86">86dp</dimen>
-    <dimen name="pad_88">88dp</dimen>
-    <dimen name="pad_90">90dp</dimen>
-    <dimen name="pad_100">100dp</dimen>
-    <dimen name="pad_120">120dp</dimen>
-    <dimen name="pad_130">130dp</dimen>
-    <dimen name="pad_180">180dp</dimen>
-    <dimen name="pad_200">200dp</dimen>
-    <dimen name="pad_240">240dp</dimen>
-    <dimen name="pad_280">280dp</dimen>
+    <dimen name="pad_56">56dp</dimen>
+    <dimen name="pad_72">72dp</dimen>
+    <dimen name="pad_78">78dp</dimen>
+    <dimen name="pad_127">127dp</dimen>
+    <dimen name="pad_140">140dp</dimen>
 
-
-    <dimen name="text_size_1">1sp</dimen>
-    <dimen name="text_size_2">2sp</dimen>
-    <dimen name="text_size_4">4sp</dimen>
-    <dimen name="text_size_6">6sp</dimen>
-    <dimen name="text_size_8">8sp</dimen>
-    <dimen name="text_size_10">10sp</dimen>
-    <dimen name="text_size_12">12sp</dimen>
-    <dimen name="text_size_16">16sp</dimen>
-    <dimen name="text_size_18">18sp</dimen>
-    <dimen name="text_size_20">20sp</dimen>
-    <dimen name="text_size_24">24sp</dimen>
-    <dimen name="text_size_26">26sp</dimen>
-    <dimen name="text_size_36">36sp</dimen>
 </resources>

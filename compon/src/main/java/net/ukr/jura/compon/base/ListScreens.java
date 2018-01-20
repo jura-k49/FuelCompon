@@ -1,6 +1,7 @@
 package net.ukr.jura.compon.base;
 
 import android.content.Context;
+import android.util.Log;
 
 import net.ukr.jura.compon.ComponGlob;
 import net.ukr.jura.compon.components.MultiComponents;

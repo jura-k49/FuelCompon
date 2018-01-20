@@ -7,13 +7,19 @@
         android:id="@+id/content_frame"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@+id/nav" />
+        android:layout_above="@+id/line" />
+    <LinearLayout
+        android:id="@+id/line"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/pad_1"
+        android:background="@color/black_10"
+        android:layout_above="@+id/nav"
+        android:orientation="horizontal"/>
     <RadioGroup
         android:id="@+id/nav"
         android:layout_width="match_parent"
-        android:layout_height="56dp"
+        android:layout_height="@dimen/h_bottom"
         android:layout_alignParentBottom="true"
-        android:background="@color/_primary_30"
         android:orientation="horizontal">
 
         <RadioButton
@@ -24,8 +30,8 @@
             android:button="@null"
             android:gravity="center"
             android:drawableTop="@drawable/selector1"
-            android:background="@drawable/selector2"
-            android:textColor="#000"
+            android:textSize="@dimen/pad_10"
+            android:textColor="@drawable/selector_menu_text"
             android:checked="true"
             android:layout_weight="1"
             android:text="Талоны" />
@@ -36,10 +42,10 @@
             android:paddingTop="5dp"
             android:button="@null"
             android:gravity="center"
-            android:drawableTop="@drawable/selector1"
-            android:background="@drawable/selector2"
+            android:drawableTop="@drawable/selector2"
             android:layout_weight="1"
-            android:textColor="#000"
+            android:textSize="@dimen/pad_10"
+            android:textColor="@drawable/selector_menu_text"
             android:text="Карта" />
 
         <RadioButton
@@ -49,10 +55,10 @@
             android:paddingTop="5dp"
             android:button="@null"
             android:gravity="center"
-            android:drawableTop="@drawable/selector1"
-            android:background="@drawable/selector2"
+            android:drawableTop="@drawable/selector3"
             android:layout_weight="1"
-            android:textColor="#000"
+            android:textSize="@dimen/pad_10"
+            android:textColor="@drawable/selector_menu_text"
             android:text="Расход" />
         <RadioButton
             android:id="@+id/radio4"
@@ -61,10 +67,10 @@
             android:paddingTop="5dp"
             android:button="@null"
             android:gravity="center"
-            android:drawableTop="@drawable/selector3"
-            android:background="@drawable/selector2"
+            android:drawableTop="@drawable/selector4"
             android:layout_weight="1"
-            android:textColor="#000"
+            android:textSize="@dimen/pad_10"
+            android:textColor="@drawable/selector_menu_text"
             android:text="Бонусы" />
         <RadioButton
             android:id="@+id/radio5"
@@ -73,10 +79,10 @@
             android:paddingTop="5dp"
             android:button="@null"
             android:gravity="center"
-            android:drawableTop="@drawable/selector1"
-            android:background="@drawable/selector2"
+            android:drawableTop="@drawable/selector5"
             android:layout_weight="1"
-            android:textColor="#000"
+            android:textSize="@dimen/pad_10"
+            android:textColor="@drawable/selector_menu_text"
             android:text="Аккаунт" />
     </RadioGroup>
 </RelativeLayout>

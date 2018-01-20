@@ -32,15 +32,15 @@ public class ErrorDialog extends DialogFragment implements IErrorDialog {
         message = (TextView) parentLayout.findViewById(R.id.message);
         title.setText(titl);
         message.setText(mes);
-        parentLayout.findViewById(R.id.cancel).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                dismiss();
-                if (listener != null) {
-                    listener.onClick(view);
-                }
-            }
-        });
+//        parentLayout.findViewById(R.id.cancel).setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                dismiss();
+//                if (listener != null) {
+//                    listener.onClick(view);
+//                }
+//            }
+//        });
         return parentLayout;
     }
 

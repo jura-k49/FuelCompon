@@ -60,12 +60,16 @@ public class MapFragment extends BaseFragment
     @Override
     public void onResume() {
         super.onResume();
-        mGoogleApiClient.connect();
+        if (mGoogleApiClient != null) {
+            mGoogleApiClient.connect();
+        }
     }
 
     @Override
     public void onPause() {
-        mGoogleApiClient.disconnect();
+        if (mGoogleApiClient != null) {
+            mGoogleApiClient.disconnect();
+        }
         super.onPause();
     }
 

@@ -3,6 +3,7 @@ package net.ukr.jura.compon.base;
 import android.app.DialogFragment;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -64,7 +65,9 @@ public abstract class BaseFragment extends Fragment implements IBase {
                 if (mComponent.args != null && mComponent.args.length > 0) {
                     title.setText(String.format(mComponent.title, setFormatParam(mComponent.args)));
                 } else {
-                    title.setText(mComponent.title);
+                    if (mComponent.title.length() > 0) {
+                        title.setText(mComponent.title);
+                    }
                 }
             }
             if (mComponent.navigator != null) {
