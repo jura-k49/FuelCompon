@@ -1,17 +1,98 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="@dimen/pad_140"
-    android:background="@color/white"
-    android:gravity="center">
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@color/white">
+
         <TextView
+            style="@style/st_button"
             android:layout_width="match_parent"
             android:layout_height="@dimen/h_bottom"
-            android:layout_marginRight="@dimen/pad_30"
-            android:layout_marginLeft="@dimen/pad_30"
-            android:gravity="center"
+            android:layout_margin="@dimen/pad_30"
             android:background="@drawable/shape_button"
-            style="@style/st_button"
-            android:text="@string/pay_tickets"/>
+            android:gravity="center"
+            android:elevation="@dimen/pad_6"
+            android:text="@string/pay_tickets" />
 
-</RelativeLayout>
+        <RelativeLayout
+            android:id="@+id/confirm_payment"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/pad_70"
+            android:background="@color/ffece2">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    style="@style/st_16_black"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/pad_30"
+                    android:text="@string/confirm_payment" />
+
+                <TextView
+                    android:id="@+id/amount_confirm"
+                    style="@style/st_16_black"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_toLeftOf="@+id/img1" />
+
+                <ImageView
+                    android:id="@+id/img1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="@dimen/pad_10"
+                    android:src="@drawable/arrow_right" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/expect_receive"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/pad_70">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    style="@style/st_16_black"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/pad_30"
+                    android:text="@string/expect_receive" />
+
+                <TextView
+                    android:id="@+id/amount_expect"
+                    style="@style/st_16_black"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_toLeftOf="@+id/img2" />
+
+                <ImageView
+                    android:id="@+id/img2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="@dimen/pad_10"
+                    android:src="@drawable/arrow_right" />
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/pad_1"
+            android:background="@color/black_15"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/pad_30"
+            android:layout_marginBottom="@dimen/pad_8"
+            android:textSize="16sp"
+            android:textColor="@color/black"
+            android:lineSpacingExtra="6sp"
+            android:gravity="center_horizontal"
+            android:text="@string/mark_used_coupons"
+            />
+</LinearLayout>

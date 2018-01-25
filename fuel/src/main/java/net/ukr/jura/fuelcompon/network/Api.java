@@ -2,7 +2,7 @@ package net.ukr.jura.fuelcompon.network;
 
 public class Api {
 
-    public static final String TICKETS_ACTIVE = "/tickets/active";
+    public static final String TICKETS_ACTIVE = "api/v1/tickets";
     public static final String TICKETS_ARCHIVE = "/tickets/archive";
     public static final String MARKER_MAP = "/marker";
 

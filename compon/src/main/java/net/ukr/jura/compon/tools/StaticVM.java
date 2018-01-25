@@ -4,6 +4,10 @@ import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
+
 public class StaticVM {
 
     public static View findViewByName(View v, String name) {
@@ -35,5 +39,21 @@ public class StaticVM {
             }
         }
         return vS;
+    }
+
+    public static Calendar stringToDate(String st) {
+        Calendar c;
+        String dd = "";
+        if (st.indexOf("T") > 0) {
+            dd = st.split("T")[0];
+        } else {
+            dd = st;
+        }
+        Log.d("QWERT","DDDD="+dd);
+        String[] d = dd.split("-");
+        c = new GregorianCalendar(Integer.valueOf(d[0]),
+                Integer.valueOf(d[1]) - 1,
+                Integer.valueOf(d[2]));
+        return c;
     }
 }

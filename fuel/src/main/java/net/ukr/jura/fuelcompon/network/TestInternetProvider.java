@@ -1,6 +1,7 @@
 package net.ukr.jura.fuelcompon.network;
 
 import android.os.Handler;
+import android.util.Log;
 
 import net.ukr.jura.compon.ComponGlob;
 import net.ukr.jura.compon.base.BaseInternetProvider;
@@ -46,35 +47,39 @@ public class TestInternetProvider extends BaseInternetProvider{
     private String setActive() {
         Record rec = new Record();
         ListRecords lr = new ListRecords();
-        Field f = new Field("", Field.TYPE_LIST, lr);
-//        Field f = new Field("", Field.TYPE_RECORD, rec);
-//        rec.add(new Field("data", Field.TYPE_LIST, lr));
+//        Field f = new Field("", Field.TYPE_LIST, lr);
+        Field f = new Field("", Field.TYPE_RECORD, rec);
+        rec.add(new Field("data", Field.TYPE_LIST, lr));
 
         Record record;
         record = new Record();
-        record.add(new Field("ticketId", Field.TYPE_INTEGER, 0));
-        record.add(new Field("amount", Field.TYPE_INTEGER, 100));
-        record.add(new Field("fuelingName", Field.TYPE_STRING, "ОККО"));
-        record.add(new Field("fuelingImg", Field.TYPE_STRING, "test_okko"));
-        record.add(new Field("fuelTypeName", Field.TYPE_STRING, "92"));
-        record.add(new Field("fuelTypeImg", Field.TYPE_STRING, "test_a92_r"));
-        record.add(new Field("shelfLife", Field.TYPE_STRING, "12 февраля"));
+        record.add(new Field("type", Field.TYPE_INTEGER, 1));
+        record.add(new Field("amount_confirm", Field.TYPE_INTEGER, 5));
+        record.add(new Field("amount_expect", Field.TYPE_INTEGER, 3));
         lr.add(record);
 
         record = new Record();
-        record.add(new Field("ticketId", Field.TYPE_INTEGER, 1));
-        record.add(new Field("amount", Field.TYPE_INTEGER, 200));
+        record.add(new Field("id", Field.TYPE_INTEGER, 0));
+        record.add(new Field("volume", Field.TYPE_INTEGER, 100));
         record.add(new Field("fuelingName", Field.TYPE_STRING, "ОККО"));
-        record.add(new Field("fuelingImg", Field.TYPE_STRING, "test_okko"));
-        record.add(new Field("fuelTypeName", Field.TYPE_STRING, "95"));
-        record.add(new Field("fuelTypeImg", Field.TYPE_STRING, "test_a95"));
-        record.add(new Field("shelfLife", Field.TYPE_STRING, "20 марта"));
+        record.add(new Field("network_icon", Field.TYPE_STRING, "azs_active"));
+        record.add(new Field("fuelTypeName", Field.TYPE_STRING, "92"));
+        record.add(new Field("fuel_icon", Field.TYPE_STRING, "a92_evro"));
+        record.add(new Field("due_date", Field.TYPE_STRING, "2019-05-24"));
         lr.add(record);
 
-
+        record = new Record();
+        record.add(new Field("id", Field.TYPE_INTEGER, 1));
+        record.add(new Field("volume", Field.TYPE_INTEGER, 200));
+        record.add(new Field("fuelingName", Field.TYPE_STRING, "ОККО"));
+        record.add(new Field("network_icon", Field.TYPE_STRING, "azs_active"));
+        record.add(new Field("fuelTypeName", Field.TYPE_STRING, "95"));
+        record.add(new Field("fuel_icon", Field.TYPE_STRING, "a95_evro"));
+        record.add(new Field("due_date", Field.TYPE_STRING, "2019-01-12"));
+        lr.add(record);
 
         SimpleRecordToJson recordToJson = new SimpleRecordToJson();
-//        Log.d("QWERT","1111 RESULT="+recordToJson.modelToJson(f));
+        Log.d("QWERT","1111 RESULT="+recordToJson.modelToJson(f));
         return recordToJson.modelToJson(f);
     }
 

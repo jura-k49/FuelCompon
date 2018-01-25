@@ -45,11 +45,11 @@ public class ComponentMultiPanel extends BaseComponent {
         if (record != null && record.size() > 0) {
             ((ViewGroup)viewComponent).addView(mInflater.inflate(paramMV.paramView.layoutTypeId[0], null));
             workWithRecordsAndViews.RecordToView((Record) paramMV.paramModel.field.value,
-                    viewComponent, paramMV.navigator, click);
+                    viewComponent, paramMV.navigator, click, paramMV.paramView.visibilityArray);
         } else {
             ((ViewGroup)viewComponent).addView(mInflater.inflate(paramMV.paramView.layoutFurtherTypeId[0], null));
             workWithRecordsAndViews.RecordToView((Record) paramMV.paramModel.field.value,
-                    viewComponent, paramMV.navigator, click);
+                    viewComponent, paramMV.navigator, click, paramMV.paramView.visibilityArray);
         }
     }
 
@@ -68,7 +68,7 @@ public class ComponentMultiPanel extends BaseComponent {
                             ((BaseActivity) activity).closeDrawer();
                             break;
                         case NAME_FRAGMENT :
-                            iBase.startFragment(vh.nameFragment, false);
+                            iBase.startScreen(vh.nameFragment, false);
                             break;
                     }
                 }

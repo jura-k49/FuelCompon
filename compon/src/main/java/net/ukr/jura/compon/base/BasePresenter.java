@@ -6,12 +6,15 @@ import android.util.Log;
 import net.ukr.jura.compon.ComponGlob;
 import net.ukr.jura.compon.interfaces_classes.IBase;
 import net.ukr.jura.compon.interfaces_classes.IPresenterListener;
+import net.ukr.jura.compon.json_simple.Field;
 import net.ukr.jura.compon.json_simple.JsonSimple;
 import net.ukr.jura.compon.json_simple.Record;
 import net.ukr.jura.compon.components.ParamModel;
 import net.ukr.jura.compon.providers.VolleyInternetProvider;
 
 import java.util.Map;
+
+import static net.ukr.jura.compon.json_simple.Field.TYPE_CLASS;
 
 public class BasePresenter implements BaseInternetProvider.InternetProviderListener {
     private IBase iBase;
@@ -98,7 +101,23 @@ public class BasePresenter implements BaseInternetProvider.InternetProviderListe
                     paramModel.duration, response);
         }
         if ( ! isCanceled) {
-            listener.onResponse(jsonSimple.jsonToModel(response));
+            Field f = jsonSimple.jsonToModel(response);
+            Field f1 = ((Record) f.value).getField("data");
+            if (f1 != null) {
+                if (f1.type == TYPE_CLASS) {
+                    Field f2 = ((Record) f1.value).getField("items");
+                    if (f2 != null) {
+                        listener.onResponse(f2);
+                    } else {
+                        listener.onResponse(f1);
+                    }
+                } else {
+                    listener.onResponse(f1);
+                }
+//            listener.onResponse(jsonSimple.jsonToModel(response));
+            } else {
+
+            }
         }
     }
 

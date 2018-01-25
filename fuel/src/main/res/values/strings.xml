@@ -11,6 +11,7 @@
     <string name="choice_fuel">choice_fuel</string>
     <string name="map">map</string>
     <string name="mapF">mapF</string>
+    <string name="receipt_coupons">receipt_coupons</string>
 
 // Tickets
     <string name="my_tickets">Мои талоны</string>
@@ -22,8 +23,19 @@
     <string name="choice_fuel_title">Выбор топлива</string>
     <string name="choice_fuel_txt">Выберите тип топлива на\u0020</string>
     <string name="unit_l">л.</string>
-    <string name="shelf_life">Действительный до</string>
+    <string name="shelf_life">до</string>
     <string name="pay_tickets">Купить талоны</string>
+    <string name="splash_text">Талоны дешевле, чем на АЗС,\nи удобнее бумажных</string>
+    <string name="splash_archive">Здесь будут все\nиспользованные талоны</string>
+    <string name="splash_archive_1">Списанные талоны можно\nвосстановить, если от покупки\nпрошло меньше 3 месяцев</string>
+    <string name="splash_text_1">ДТ и бензин</string>
+    <string name="splash_text_2">от 20 грн</string>
+    <string name="splash_text_3">Газ</string>
+    <string name="splash_text_4">от 8 грн</string>
+    <string name="mark_used_coupons">Отмечайте использованные талоны</string>
+    <string name="confirm_payment">Подтвердите оплату</string>
+    <string name="expect_receive">Ожидайте получения</string>
+    <string name="receipt_coupons_txt">Получение талонов</string>
 
 // Map
     <string name="map_txt">Карта</string>

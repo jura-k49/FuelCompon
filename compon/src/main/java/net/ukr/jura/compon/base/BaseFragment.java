@@ -262,12 +262,16 @@ public abstract class BaseFragment extends Fragment implements IBase {
         return parentLayout;
     }
 
-    @Override
+//    @Override
     public void startActivitySimple(String nameMVP) {
         getBaseActivity().startActivitySimple(nameMVP);
     }
 
     @Override
+    public void startScreen(String nameMVP, boolean startFlag) {
+        getBaseActivity().startScreen(nameMVP, startFlag);
+    }
+//    @Override
     public void startFragment(String nameMVP, boolean startFlag) {
         getBaseActivity().startFragment(nameMVP, startFlag);
     }

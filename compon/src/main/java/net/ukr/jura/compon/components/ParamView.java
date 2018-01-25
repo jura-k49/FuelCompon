@@ -1,5 +1,8 @@
 package net.ukr.jura.compon.components;
 
+import net.ukr.jura.compon.interfaces_classes.RecyclerExpandedAnimate;
+import net.ukr.jura.compon.interfaces_classes.Visibility;
+
 public class ParamView {
     public int viewId;
     public String fieldType;
@@ -11,6 +14,7 @@ public class ParamView {
     public int splashScreenViewId;
     public ParamModel paramModel;
     public String[] nameFragment;
+    public Visibility[] visibilityArray;
 
     public ParamView(int viewId) {
         this(viewId, "", null, null);
@@ -80,4 +84,36 @@ public class ParamView {
         this.splashScreenViewId = splashScreenViewId;
         return this;
     }
+
+    public ParamView recyclerExpanded(int viewClickId, String nameFieldDataLevel, RecyclerExpandedAnimate ... args) {
+
+        return this;
+    }
+
+    public static RecyclerExpandedAnimate rotate(int viewId, int valueExpanded) {
+        RecyclerExpandedAnimate rla = new RecyclerExpandedAnimate();
+        rla.type = RecyclerExpandedAnimate.TypeAnim.rotate;
+        rla.valueExpanded = valueExpanded;
+        return rla;
+    }
+
+    public ParamView visibilityManager(Visibility ... args) {
+        visibilityArray = args;
+        return this;
+    }
+
+    public static Visibility visibility(int viewId, String nameField) {
+        return new Visibility(viewId, nameField);
+    }
+//
+//    public class Visibility {
+//        int viewId;
+//        String nameField;
+//
+//        public Visibility(int viewId, String nameField) {
+//            this.viewId = viewId;
+//            this.nameField = nameField;
+//        }
+//    }
+
 }

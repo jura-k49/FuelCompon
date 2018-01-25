@@ -25,9 +25,10 @@ public class ComponentEnterPanel extends BaseComponent {
         } else {
             if (paramMV.paramModel != null && paramMV.paramModel.method == paramMV.paramModel.FIELD) {
                 workWithRecordsAndViews.RecordToView((Record) paramMV.paramModel.field.value,
-                        viewComponent, paramMV.navigator, clickView);
+                        viewComponent, paramMV.navigator, clickView, paramMV.paramView.visibilityArray);
             } else {
-                workWithRecordsAndViews.RecordToView(null, viewComponent, paramMV.navigator, clickView);
+                workWithRecordsAndViews.RecordToView(null, viewComponent, paramMV.navigator,
+                        clickView, paramMV.paramView.visibilityArray);
             }
         }
     }
@@ -36,7 +37,8 @@ public class ComponentEnterPanel extends BaseComponent {
     public void changeData(Field field) {
         if (field == null) return;
         Record rec = (Record)field.value;
-        workWithRecordsAndViews.RecordToView(rec, viewComponent, paramMV.navigator, clickView);
+        workWithRecordsAndViews.RecordToView(rec, viewComponent, paramMV.navigator,
+                clickView, paramMV.paramView.visibilityArray);
     }
 
 //    private View.OnClickListener click = new View.OnClickListener() {

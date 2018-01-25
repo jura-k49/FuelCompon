@@ -186,7 +186,7 @@ public class MultiComponents <T>{
                 case SPINNER :
                     new ComponentSpinner(iBase, cMV);
                     break;
-                case RECYCLER_LEVEL:
+                case RECYCLER_EXPANDED:
                 case RECYCLER_STICKY:
                 case RECYCLER :
                 case RECYCLER_HORIZONTAL :

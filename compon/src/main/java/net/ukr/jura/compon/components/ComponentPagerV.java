@@ -70,7 +70,7 @@ public class ComponentPagerV extends BaseComponent {
                             indicator.setSelect(position);
                         }
                         if (further != null) {
-                            modelToFurther.RecordToView(listData.get(position), further, null, null);
+                            modelToFurther.RecordToView(listData.get(position), further, null, null, null);
                         }
                     }
 
@@ -82,7 +82,7 @@ public class ComponentPagerV extends BaseComponent {
                 pager.setAdapter(adapter);
                 if (count == 1) {
                     if (further != null) {
-                        modelToFurther.RecordToView(listData.get(0), further, null, null);
+                        modelToFurther.RecordToView(listData.get(0), further, null, null, null);
                     }
                 }
             }
@@ -100,7 +100,7 @@ public class ComponentPagerV extends BaseComponent {
         public Object instantiateItem(ViewGroup viewGroup, int position) {
             ViewGroup v = (ViewGroup) inflater.inflate(paramMV.paramView.layoutTypeId[0], null);
             Record record = listData.get(position);
-            modelToView.RecordToView(record, v, null, null);
+            modelToView.RecordToView(record, v, null, null, null);
             viewGroup.addView(v);
             return v;
         }

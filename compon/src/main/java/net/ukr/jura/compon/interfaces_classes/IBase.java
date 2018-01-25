@@ -20,8 +20,9 @@ public interface IBase {
     public void sendEvent(int sender);
     public ParentModel getParentModel(String name);
     public Field getProfile();
-    public void startActivitySimple(String nameMVP);
-    public void startFragment(String nameMVP, boolean startFlag);
+//    public void startActivitySimple(String nameMVP);
+//    public void startFragment(String nameMVP, boolean startFlag);
+    public void startScreen(String nameMVP, boolean startFlag);
     public void backPressed();
     public void progressStart();
     public void progressStop();

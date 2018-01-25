@@ -14,7 +14,7 @@ public class ComponentContainer extends BaseComponent{
     public void initView() {
         iBase.setFragmentsContainerId(paramMV.fragmentsContainerId);
         if (paramMV.nameStartFragment != null && paramMV.nameStartFragment.length() > 0) {
-            iBase.startFragment(paramMV.nameStartFragment, false);
+            iBase.startScreen(paramMV.nameStartFragment, false);
         }
     }
 

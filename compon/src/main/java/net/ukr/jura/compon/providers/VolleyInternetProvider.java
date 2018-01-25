@@ -29,7 +29,10 @@ public class VolleyInternetProvider extends BaseInternetProvider {
             if (headers == null) {
                 headers = new HashMap<>();
             }
-            headers.put("authorization", "key=" + st);
+//            headers.put("authorization", "key=" + st);
+            headers.put("accept", "application/json");
+            headers.put("X-Auth-Token", "bceee76d3c7d761c9ec92c286fb8bebcefb4225c311bb87e");
+
         }
         request = new VolleyRequest(method, url, listenerVolley,
                 headers, dataBytes);

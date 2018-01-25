@@ -31,7 +31,7 @@ public class StaticListAdapter extends BaseStaticListAdapter {
     @Override
     public View getView(int position) {
         View view = LayoutInflater.from(context).inflate(mvParam.paramView.layoutTypeId[0], null);
-        modelToView.RecordToView(provider.get(position), view, null, null);
+        modelToView.RecordToView(provider.get(position), view, null, null, mvParam.paramView.visibilityArray);
         return view;
     }
 

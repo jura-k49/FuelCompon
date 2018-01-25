@@ -240,7 +240,7 @@ public abstract class BaseActivity extends FragmentActivity implements IBase {
         return isActive;
     }
 
-    @Override
+//    @Override
     public void startActivitySimple(String nameMVP) {
         Intent intent = new Intent(this, ComponBaseStartActivity.class);
         intent.putExtra(Constants.NAME_MVP, nameMVP);
@@ -310,6 +310,7 @@ public abstract class BaseActivity extends FragmentActivity implements IBase {
         transaction.commit();
     }
 
+    @Override
     public void startScreen(String nameMVP, boolean startFlag) {
         MultiComponents mComponent = mapFragment.get(nameMVP);
 //        if (mComponent.typeView == MultiComponents.TYPE_VIEW.Activity) {

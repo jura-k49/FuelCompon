@@ -9,11 +9,14 @@ import net.ukr.jura.compon.components.ParamModel;
 import net.ukr.jura.compon.components.ParamView;
 import net.ukr.jura.compon.interfaces_classes.Navigator;
 import net.ukr.jura.compon.interfaces_classes.ViewHandler;
+import net.ukr.jura.compon.json_simple.Record;
 import net.ukr.jura.compon.tools.Constants;
 import net.ukr.jura.fuelcompon.R;
 import net.ukr.jura.fuelcompon.fragments.MapFragment;
 import net.ukr.jura.fuelcompon.network.Api;
 import net.ukr.jura.fuelcompon.network.TestInternetProvider;
+
+import static net.ukr.jura.compon.components.ParamView.visibility;
 
 public class MyListScreens extends ListScreens {
 
@@ -35,17 +38,20 @@ public class MyListScreens extends ListScreens {
                         new String[] {context.getString(R.string.active_tickets), context.getString(R.string.archive_tickets)})
                         .setTab(R.id.tabs, R.array.tab_tickets));
 
-        addFragment(context.getString(R.string.active_tickets), R.layout.fragment_recycler_splash)
+        addFragment(context.getString(R.string.active_tickets), R.layout.fragment_active)
                 .addComponent(ParamComponent.TC.RECYCLER, new ParamModel(Api.TICKETS_ACTIVE)
-                                .internetProvider(TestInternetProvider.class)
-                                .addToBeginning("type",1),
+                                .addToBeginning(new Record().addIntField("type", 1)
+                                        .addIntField("amount_confirm", 4)),
                         new ParamView(R.id.recycler, "type",
                                 new int[] {R.layout.item_active_tickets, R.layout.item_active_tickets_begining})
-                                .setSplashScreen(R.id.splash));
-        addFragment(context.getString(R.string.archive_tickets), R.layout.fragment_recycler_splash)
+                                .visibilityManager(visibility(R.id.expect_receive, "amount_expect")
+                                        ,visibility(R.id.confirm_payment, "amount_confirm"))
+                                .setSplashScreen(R.id.splash),
+                        new Navigator().add(R.id.confirm_payment, context.getString(R.string.receipt_coupons))
+                                .add(R.id.expect_receive, context.getString(R.string.receipt_coupons)));
+        addFragment(context.getString(R.string.archive_tickets), R.layout.fragment_archive)
                 .addComponent(ParamComponent.TC.RECYCLER, new ParamModel(Api.TICKETS_ACTIVE)
-                                .internetProvider(TestInternetProvider.class)
-                                .addToBeginning("type",1),
+                                .internetProvider(TestInternetProvider.class),
                         new ParamView(R.id.recycler, "type",
                                 new int[] {R.layout.item_active_tickets, R.layout.item_active_tickets_begining})
                                 .setSplashScreen(R.id.splash));
@@ -63,6 +69,8 @@ public class MyListScreens extends ListScreens {
         addActivity(context.getString(R.string.help), R.layout.activity_help)
                 .addNavigator(new Navigator().add(R.id.back, ViewHandler.TYPE.BACK)
                                             .add(R.id.call_operator, getString(R.string.choice_fuel)));
+
+        addActivity(context.getString(R.string.receipt_coupons), R.layout.activity_receipt_coupons);
 
         addActivity(getString(R.string.choice_fuel), R.layout.activity_choice_fuel);
 

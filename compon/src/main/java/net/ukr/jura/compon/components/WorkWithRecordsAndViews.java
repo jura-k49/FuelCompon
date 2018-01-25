@@ -14,6 +14,7 @@ import net.ukr.jura.compon.custom_components.SimpleTextView;
 import net.ukr.jura.compon.interfaces_classes.IComponent;
 import net.ukr.jura.compon.interfaces_classes.Navigator;
 import net.ukr.jura.compon.interfaces_classes.ViewHandler;
+import net.ukr.jura.compon.interfaces_classes.Visibility;
 import net.ukr.jura.compon.json_simple.Field;
 import net.ukr.jura.compon.json_simple.Record;
 
@@ -30,18 +31,21 @@ public class WorkWithRecordsAndViews {
     protected String[] param;
     protected Record recordResult;
     private boolean setParam;
+    private Visibility[] visibilityManager;
 
     public void RecordToView(Record model, View view) {
-        RecordToView(model, view, null, null);
+        RecordToView(model, view, null, null, null);
     }
 
-    public void RecordToView(Record model, View view, Navigator navigator, View.OnClickListener clickView) {
+    public void RecordToView(Record model, View view, Navigator navigator,
+                             View.OnClickListener clickView, Visibility[] visibilityManager) {
         this.model = model;
         this.view = view;
         this.navigator = navigator;
         this.clickView = clickView;
         context = view.getContext();
         setParam = false;
+        this.visibilityManager = visibilityManager;
         enumViewChild(view);
     }
 
@@ -173,6 +177,19 @@ public class WorkWithRecordsAndViews {
                 } else {
                     ((ImageView) v).setBackgroundResource(view.getContext().getResources()
                             .getIdentifier(st, "drawable", view.getContext().getPackageName()));
+                }
+            }
+        }
+
+        if (visibilityManager != null && visibilityManager.length > 0) {
+            for (Visibility vis : visibilityManager) {
+                if (vis.viewId == id) {
+                    if (model.getBooleanVisibility(vis.nameField)) {
+                        v.setVisibility(View.VISIBLE);
+                    } else {
+                        v.setVisibility(View.GONE);
+                    }
+                    break;
                 }
             }
         }

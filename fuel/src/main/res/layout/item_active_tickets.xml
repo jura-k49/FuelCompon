@@ -1,64 +1,81 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="@dimen/pad_140"
+    android:layout_height="wrap_content"
     android:background="@color/white">
 
-    <ImageView
-        android:id="@+id/fuelingImg"
-        android:layout_width="@dimen/d_icon_g"
-        android:layout_height="@dimen/d_icon_g"
-        android:layout_marginLeft="@dimen/pad_24"
-        android:layout_marginTop="@dimen/pad_12" />
-
-    <TextView
-        android:id="@+id/amount"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        style="@style/st_amount"
-        android:layout_marginLeft="@dimen/pad_72"
-        android:layout_marginTop="@dimen/pad_12"
-        android:text="200" />
-
-    <TextView
-        android:id="@+id/unit"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        style="@style/st_amount"
-        android:layout_marginLeft="@dimen/pad_6"
-        android:layout_marginTop="@dimen/pad_12"
-        android:layout_toRightOf="@+id/amount"
-        android:text="@string/unit_l" />
-    <ImageView
-        android:id="@+id/fuelTypeImg"
-        android:layout_width="@dimen/pad_56"
-        android:layout_height="@dimen/pad_24"
-        android:layout_marginTop="@dimen/pad_12"
-        android:layout_marginLeft="@dimen/pad_6"
-        android:layout_toRightOf="@+id/unit"/>
-
-    <TextView
-        android:id="@+id/txt1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        style="@style/st_comment"
-        android:layout_below="@+id/amount"
-        android:layout_marginLeft="@dimen/pad_72"
-        android:layout_marginTop="@dimen/pad_12"
-        android:text="@string/shelf_life" />
-    <TextView
-        android:id="@+id/shelfLife"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        style="@style/st_sub_title"
-        android:layout_marginLeft="@dimen/pad_72"
-        android:layout_marginTop="@dimen/pad_6"
-        android:layout_below="@+id/txt1"/>
-
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="@dimen/pad_1"
-        android:layout_alignParentBottom="true"
-        android:background="@color/black_30" />
-</RelativeLayout>
+        android:layout_height="@dimen/pad_100"
+        android:layout_marginTop="@dimen/pad_3"
+        android:layout_marginBottom="@dimen/pad_3"
+        android:layout_marginRight="@dimen/pad_10"
+        android:layout_marginLeft="@dimen/pad_10"
+        android:background="@drawable/shape_rect_f1_r4">
+
+        <ImageView
+            android:id="@+id/network_icon"
+            android:layout_width="@dimen/d_icon_g"
+            android:layout_height="@dimen/d_icon_g"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/pad_20" />
+
+        <TextView
+            android:id="@+id/volume"
+            style="@style/st_amount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/pad_18"
+            android:layout_marginTop="@dimen/pad_18"
+            android:layout_toRightOf="@+id/network_icon" />
+
+        <TextView
+            android:id="@+id/unit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/st_amount"
+            android:layout_marginLeft="@dimen/pad_6"
+            android:layout_marginTop="@dimen/pad_18"
+            android:layout_toRightOf="@+id/volume"
+            android:text="@string/unit_l" />
+
+        <LinearLayout
+            android:layout_width="@dimen/pad_1"
+            android:layout_height="match_parent"
+            android:layout_marginRight="@dimen/pad_20"
+            android:layout_toLeftOf="@+id/fuel_icon"
+            android:background="@color/black_10" />
+
+        <ImageView
+            android:id="@+id/fuel_icon"
+            android:layout_width="@dimen/pad_80"
+            android:layout_height="@dimen/pad_38"
+            android:layout_marginRight="@dimen/pad_20"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true" />
+
+        <TextView
+            android:id="@+id/txt1"
+            style="@style/st_comment"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/volume"
+            android:layout_marginTop="@dimen/pad_6"
+            android:layout_marginLeft="@dimen/pad_18"
+            android:layout_toRightOf="@+id/network_icon"
+            android:text="@string/shelf_life" />
+
+        <net.ukr.jura.compon.custom_components.SimpleTextView
+            android:id="@+id/due_date"
+            style="@style/st_sub_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/volume"
+            android:layout_marginLeft="@dimen/pad_6"
+            android:layout_marginTop="@dimen/pad_6"
+            app:dateFormat="dd MMM YYYY"
+            android:layout_toRightOf="@+id/txt1" />
+    </RelativeLayout>
+</LinearLayout>

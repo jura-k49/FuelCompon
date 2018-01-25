@@ -79,7 +79,7 @@ public class ComponentMenu extends BaseComponent {
             ((BaseActivity) activity).closeDrawer();
             Record record = listData.get(position);
             ComponGlob.getInstance().setParam(record);
-            iBase.startFragment(record.getString(selectViewHandler.nameFragment), true);
+            iBase.startScreen(record.getString(selectViewHandler.nameFragment), true);
         }
     }
 

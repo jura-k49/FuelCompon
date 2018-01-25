@@ -9,12 +9,13 @@
     <color name="title">#c000</color>
     <color name="sub_title">#8000</color>
     <color name="comment">#5000</color>
-    <color name="color_header">#50ff9600</color>
+    <!--<color name="color_header">#50ff9600</color>-->
     <color name="gunmetal">#515554</color>
     <color name="charcoal">#262a29</color>
 
     <color name="black">#000</color>
     <color name="black_10">#2000</color>
+    <color name="black_15">#3000</color>
     <color name="black_30">#5000</color>
     <color name="black_50">#8000</color>
     <color name="black_60">#a000</color>
@@ -23,5 +24,7 @@
     <color name="white_50">#8fff</color>
     <color name="white_70">#bfff</color>
     <color name="white_80">#cfff</color>
+    <color name="f1">#f1f1f1</color>
+    <color name="ffece2">#ffece2</color>
 
 </resources>

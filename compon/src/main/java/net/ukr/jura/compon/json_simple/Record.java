@@ -11,6 +11,11 @@ public class Record extends ArrayList<Field>{
         }
     }
 
+    public Record addIntField(String name, int value) {
+        add(new Field(name, Field.TYPE_INTEGER, value));
+        return this;
+    }
+
     public Field getField(String name) {
         if (name.indexOf(".") < 0) {
             for (Field f : this) {
@@ -93,6 +98,22 @@ public class Record extends ArrayList<Field>{
             return String.valueOf(f.value);
         } else {
             return null;
+        }
+    }
+
+    public boolean getBooleanVisibility(String name) {
+        Field f = getField(name);
+        if (f != null) {
+            switch (f.type) {
+                case Field.TYPE_BOOLEAN : return (boolean) f.value;
+                case Field.TYPE_DOUBLE : return ((Double) f.value) != 0d;
+                case Field.TYPE_INTEGER : return ((Integer) f.value) != 0;
+                case Field.TYPE_LONG : return ((Long) f.value) != 0;
+                case Field.TYPE_STRING : return ((String) f.value).length() > 0;
+                default: return false;
+            }
+        } else {
+            return false;
         }
     }
 }

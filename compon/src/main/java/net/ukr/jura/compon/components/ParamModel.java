@@ -25,6 +25,10 @@ public class ParamModel <T> {
     public Class<T>  internetProvider;
     public enum TypeParam {MAP, NAME, SLASH};
     public TypeParam typeParam = TypeParam.SLASH;
+    public boolean isPagination;
+    public int paginationPerPage;
+    public String paginationNameParamPerPage;
+    public String paginationNameParamNumberPage;
 //    public int progressId;
 
     public static void setDefaultMethod(int method) {
@@ -117,6 +121,23 @@ public class ParamModel <T> {
 
     public ParamModel typeParam(TypeParam typeParam) {
         this.typeParam = typeParam;
+        return this;
+    }
+
+    public ParamModel pagination() {
+        isPagination = true;
+        paginationPerPage = ComponGlob.getInstance().networkParams.paginationPerPage;
+        paginationNameParamPerPage = ComponGlob.getInstance().networkParams.paginationNameParamPerPage;
+        paginationNameParamNumberPage = ComponGlob.getInstance().networkParams.paginationNameParamNumberPage;
+        return this;
+    }
+
+    public ParamModel pagination(int paginationPerPage, String paginationNameParamPerPage,
+                                 String paginationNameParamNumberPage) {
+        isPagination = true;
+        this.paginationPerPage = paginationPerPage;
+        this.paginationNameParamPerPage = paginationNameParamPerPage;
+        this.paginationNameParamNumberPage = paginationNameParamNumberPage;
         return this;
     }
 }

@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import net.ukr.jura.compon.interfaces_classes.MoreWork;
 import net.ukr.jura.compon.interfaces_classes.Navigator;
 import net.ukr.jura.compon.interfaces_classes.ViewHandler;
+import net.ukr.jura.compon.interfaces_classes.Visibility;
 import net.ukr.jura.compon.json_simple.Field;
 import net.ukr.jura.compon.json_simple.Record;
 import net.ukr.jura.compon.components.ParamView;
@@ -27,6 +28,7 @@ public class BaseProviderAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
     private MoreWork moreWork;
     private BaseComponent baseComponent;
     private boolean isClickItem;
+    private Visibility[] visibilityManager;
     private LayoutInflater inflater;
 
 //    public void setStartFlag(boolean b) {
@@ -56,6 +58,7 @@ public class BaseProviderAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
             layoutItemId = null;
             fieldType = "";
         }
+        visibilityManager = paramView.visibilityArray;
         modelToView = new WorkWithRecordsAndViews();
         layout = "";
 //        startFlag = false;
@@ -118,7 +121,8 @@ public class BaseProviderAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
             public void onClick(View view) {
                 baseComponent.clickItem.onClick(holder, view, holder.getAdapterPosition());
             }
-        });
+        }, visibilityManager);
+
         if (isClickItem) {
             holder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override

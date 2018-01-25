@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <android.support.v7.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/recycler"/>
+    <LinearLayout
+        android:id="@+id/splash"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        android:orientation="vertical"
+        android:visibility="gone">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/h_bottom"
+            android:layout_marginTop="@dimen/pad_30"
+            android:layout_marginRight="@dimen/pad_30"
+            android:layout_marginLeft="@dimen/pad_30"
+            android:gravity="center"
+            android:background="@drawable/shape_button"
+            style="@style/st_button"
+            android:text="@string/pay_tickets"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/pad_30"
+            android:gravity="center_horizontal"
+            style="@style/st_16_black_6"
+            android:text="@string/splash_text"/>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="@dimen/pad_30"
+            android:background="@color/f1"
+            android:paddingLeft="@dimen/pad_30"
+            android:paddingRight="@dimen/pad_30">
+
+            <TextView
+                android:id="@+id/t1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/pad_40"
+                android:lineSpacingExtra="8sp"
+                android:text="Экономия на 10 литрах"
+                android:textColor="@color/black"
+                android:textSize="@dimen/pad_24" />
+
+            <TextView
+                android:id="@+id/t2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/t1"
+                android:layout_marginTop="@dimen/pad_52"
+                android:text="@string/splash_text_1"
+                android:textColor="@color/black"
+                android:textSize="@dimen/pad_16" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_below="@+id/t1"
+                android:layout_marginTop="@dimen/pad_52"
+                android:text="@string/splash_text_2"
+                android:textColor="@color/black"
+                android:textSize="@dimen/pad_16" />
+
+            <LinearLayout
+                android:id="@+id/l1"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/pad_1"
+                android:orientation="vertical"
+                android:background="@color/black_15"
+                android:layout_marginTop="@dimen/pad_32"
+                android:layout_below="@+id/t2"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/l1"
+                android:layout_marginTop="@dimen/pad_52"
+                android:text="@string/splash_text_3"
+                android:textColor="@color/black"
+                android:textSize="@dimen/pad_16" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_below="@+id/l1"
+                android:layout_marginTop="@dimen/pad_52"
+                android:text="@string/splash_text_4"
+                android:textColor="@color/black"
+                android:textSize="@dimen/pad_16" />
+        </RelativeLayout>
+    </LinearLayout>
+</RelativeLayout>

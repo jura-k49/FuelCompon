@@ -138,7 +138,8 @@ public abstract class BaseComponent {
     };
 
     private void changeDataBase(Field field) {
-        if (paramMV.paramModel != null && paramMV.paramModel.addRecordBegining != null) {
+        if (paramMV.paramModel != null && paramMV.paramModel.addRecordBegining != null
+                && ((ListRecords) field.value).size() > 0) {
             ((ListRecords) field.value).addAll(0, paramMV.paramModel.addRecordBegining);
         }
         changeData(field);
@@ -183,11 +184,11 @@ public abstract class BaseComponent {
                                         position, null);
                             }
                             ComponGlob.getInstance().setParam(record);
-                            iBase.startFragment((String) record.getValue(vh.nameFragment), false);
+                            iBase.startScreen((String) record.getValue(vh.nameFragment), false);
                             break;
                         case NAME_FRAGMENT:
                             ComponGlob.getInstance().setParam(record);
-                            iBase.startFragment(vh.nameFragment, false);
+                            iBase.startScreen(vh.nameFragment, false);
                             break;
                     }
                     break;
