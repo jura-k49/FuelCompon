@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="h_header">46dp</dimen>
+    <dimen name="h_header">50dp</dimen>
     <dimen name="h_button">50dp</dimen>
     <dimen name="d_icon">40dp</dimen>
     <dimen name="d_icon_g">62dp</dimen>
@@ -9,6 +9,7 @@
     <dimen name="pad_1">1dp</dimen>
     <dimen name="pad_3">3dp</dimen>
     <dimen name="pad_4">4dp</dimen>
+    <dimen name="pad_5">5dp</dimen>
     <dimen name="pad_6">6dp</dimen>
     <dimen name="pad_8">8dp</dimen>
     <dimen name="pad_10">10dp</dimen>
@@ -17,6 +18,7 @@
     <dimen name="pad_18">18dp</dimen>
     <dimen name="pad_20">20dp</dimen>
     <dimen name="pad_24">24dp</dimen>
+    <dimen name="pad_25">25dp</dimen>
     <dimen name="pad_28">28dp</dimen>
     <dimen name="pad_30">30dp</dimen>
     <dimen name="pad_32">32dp</dimen>
@@ -28,8 +30,11 @@
     <dimen name="pad_72">72dp</dimen>
     <dimen name="pad_78">78dp</dimen>
     <dimen name="pad_80">80dp</dimen>
+    <dimen name="pad_90">90dp</dimen>
     <dimen name="pad_100">100dp</dimen>
     <dimen name="pad_127">127dp</dimen>
     <dimen name="pad_140">140dp</dimen>
+    <dimen name="pad_160">160dp</dimen>
+    <dimen name="pad_210">210dp</dimen>
 
 </resources>

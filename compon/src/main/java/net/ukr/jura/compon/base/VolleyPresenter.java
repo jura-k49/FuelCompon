@@ -126,7 +126,7 @@ public class VolleyPresenter<T> implements Response.Listener<T>, Response.ErrorL
 //        String st = iBase.getBaseActivity().installParam(baseComponent.paramMV.paramModel.param);
 //        url = baseComponent.paramMV.paramModel.url + st;
         if (method == ParamModel.GET) {
-            String st = ComponGlob.getInstance().installParam(paramModel.param, paramModel.typeParam);
+            String st = ComponGlob.getInstance().installParam(paramModel.param, paramModel.typeParam, paramModel.url);
             url = paramModel.url + st;
         } else {
             url = paramModel.url;

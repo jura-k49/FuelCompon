@@ -8,6 +8,7 @@ import android.support.annotation.NonNull;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.util.Log;
 import android.view.View;
 
 import com.google.android.gms.common.api.GoogleApiClient;
@@ -23,6 +24,9 @@ import net.ukr.jura.compon.interfaces_classes.ParentModel;
 import net.ukr.jura.compon.interfaces_classes.ViewHandler;
 import net.ukr.jura.compon.json_simple.Field;
 import net.ukr.jura.compon.components.MultiComponents;
+import net.ukr.jura.compon.json_simple.ListRecords;
+import net.ukr.jura.compon.json_simple.Record;
+import net.ukr.jura.compon.json_simple.SimpleRecordToJson;
 import net.ukr.jura.compon.tools.Constants;
 import net.ukr.jura.compon.tools.PreferenceTool;
 
@@ -59,7 +63,7 @@ public abstract class BaseActivity extends FragmentActivity implements IBase {
         mapFragment = ComponGlob.getInstance().MapScreen;
         countProgressStart = 0;
         listInternetProvider = new ArrayList<>();
-        PreferenceTool.setUserKey("3d496f249f157fdea7681704abf2b4d74b20c619a3e979dc790c43dc27c26aa6");
+//        PreferenceTool.setUserKey("3d496f249f157fdea7681704abf2b4d74b20c619a3e979dc790c43dc27c26aa6");
         mComponent = getScreen();
         if (mComponent == null) {
             Intent intent = getIntent();
@@ -241,9 +245,21 @@ public abstract class BaseActivity extends FragmentActivity implements IBase {
     }
 
 //    @Override
-    public void startActivitySimple(String nameMVP) {
+    public void startActivitySimple(String nameMVP, Object object) {
         Intent intent = new Intent(this, ComponBaseStartActivity.class);
         intent.putExtra(Constants.NAME_MVP, nameMVP);
+        if (object != null) {
+            SimpleRecordToJson recordToJson = new SimpleRecordToJson();
+            Field f = new Field();
+            f.value = object;
+            if (object instanceof Record) {
+                f.type = Field.TYPE_RECORD;
+                intent.putExtra(Constants.NAME_PARAM_FOR_SCREEN, recordToJson.modelToJson(f));
+            } else if (object instanceof ListRecords) {
+                f.type = Field.TYPE_LIST;
+                intent.putExtra(Constants.NAME_PARAM_FOR_SCREEN, recordToJson.modelToJson(f));
+            }
+        }
         startActivity(intent);
     }
 
@@ -312,26 +328,34 @@ public abstract class BaseActivity extends FragmentActivity implements IBase {
 
     @Override
     public void startScreen(String nameMVP, boolean startFlag) {
+        startScreen(nameMVP, startFlag, null);
+    }
+
+    @Override
+    public void startScreen(String nameMVP, boolean startFlag, Object object) {
         MultiComponents mComponent = mapFragment.get(nameMVP);
 //        if (mComponent.typeView == MultiComponents.TYPE_VIEW.Activity) {
 //            startActivitySimple(nameMVP);
 //        } else {
 //            startFragment(nameMVP, startFlag);
 //        }
+        if (mComponent == null) {
+            Log.d("SMPL", "Нет Screens с именем " + nameMVP);
+        }
         switch (mComponent.typeView) {
             case ACTIVITY:
-                startActivitySimple(nameMVP);
+                startActivitySimple(nameMVP, object);
                 break;
             case FRAGMENT:
-                startFragment(nameMVP, startFlag);
+                startFragment(nameMVP, startFlag, object);
                 break;
             case CUSTOM_FRAGMENT:
-                startCustomFragment(nameMVP);
+                startCustomFragment(nameMVP, object);
                 break;
         }
     }
 
-    public void startCustomFragment(String nameMVP) {
+    public void startCustomFragment(String nameMVP, Object object) {
         MultiComponents multiComponents = mapFragment.get(nameMVP);
         BaseFragment bf = null;
         try {
@@ -350,17 +374,31 @@ public abstract class BaseActivity extends FragmentActivity implements IBase {
         }
     }
 
-    public void startFragment(String nameMVP, boolean startFlag) {
+    public void startFragment(String nameMVP, boolean startFlag, Object object) {
         BaseFragment fr = (BaseFragment) getSupportFragmentManager().findFragmentByTag(nameMVP);
         int count = (fr == null) ? 0 : 1;
         if (startFlag) {
             clearBackStack(count);
         }
         BaseFragment fragment = (fr != null) ? fr : new ComponentsFragment();
-        for (String key : mapFragment.keySet()) {
-            System.out.println("Key: " + key);
+//        for (String key : mapFragment.keySet()) {
+//            System.out.println("Key: " + key);
+//        }
+        Bundle bundle;
+        if (object != null) {
+            bundle = new Bundle();
+            SimpleRecordToJson recordToJson = new SimpleRecordToJson();
+            Field f = new Field();
+            f.value = object;
+            if (object instanceof Record) {
+                f.type = Field.TYPE_RECORD;
+                bundle.putString(Constants.NAME_PARAM_FOR_SCREEN, recordToJson.modelToJson(f));
+            } else if (object instanceof ListRecords) {
+                f.type = Field.TYPE_LIST;
+                bundle.putString(Constants.NAME_PARAM_FOR_SCREEN, recordToJson.modelToJson(f));
+            }
+            fragment.setArguments(bundle);
         }
-
         fragment.setModel(mapFragment.get(nameMVP));
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         transaction.replace(containerFragmentId, fragment, nameMVP)
@@ -406,6 +444,15 @@ public abstract class BaseActivity extends FragmentActivity implements IBase {
         for (EventComponent ev : listEvent) {
             if (ev.eventSenderId == sender) {
                 ev.eventReceiverComponent.actual();
+            }
+        }
+    }
+
+    @Override
+    public void sendEvent(int sender, Object paramEvent) {
+        for (EventComponent ev : listEvent) {
+            if (ev.eventSenderId == sender) {
+                ev.eventReceiverComponent.actual(paramEvent);
             }
         }
     }

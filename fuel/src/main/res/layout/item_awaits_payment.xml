@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@color/white">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/pad_100"
+        android:layout_marginRight="@dimen/pad_10"
+        android:layout_marginLeft="@dimen/pad_10"
+        android:background="@drawable/shape_rect_f1_r4">
+
+        <ImageView
+            android:id="@+id/network_icon"
+            android:layout_width="@dimen/d_icon_g"
+            android:layout_height="@dimen/d_icon_g"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/pad_20" />
+
+        <TextView
+            android:id="@+id/count"
+            style="@style/st_amount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/pad_18"
+            android:layout_marginTop="@dimen/pad_18"
+            android:layout_toRightOf="@+id/network_icon" />
+
+        <!--<TextView-->
+            <!--android:id="@+id/unit"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--style="@style/st_amount"-->
+            <!--android:layout_marginLeft="@dimen/pad_6"-->
+            <!--android:layout_marginTop="@dimen/pad_18"-->
+            <!--android:layout_toRightOf="@+id/count"-->
+            <!--android:text="@string/ticket" />-->
+
+        <net.ukr.jura.compon.custom_components.TextViewGrammar
+            android:id="@+id/unit"
+            app:alias="count"
+            app:stringArray="@array/tickets_ar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/st_amount"
+            android:layout_marginLeft="@dimen/pad_6"
+            android:layout_marginTop="@dimen/pad_18"
+            android:layout_toRightOf="@+id/count"/>
+
+        <LinearLayout
+            android:layout_width="@dimen/pad_1"
+            android:layout_height="match_parent"
+            android:layout_marginRight="@dimen/pad_20"
+            android:layout_toLeftOf="@+id/fuel_icon"
+            android:background="@color/black_10" />
+
+        <ImageView
+            android:id="@+id/fuel_icon"
+            android:layout_width="@dimen/pad_80"
+            android:layout_height="@dimen/pad_38"
+            android:layout_marginRight="@dimen/pad_20"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true" />
+
+        <TextView
+            android:id="@+id/amount"
+            style="@style/st_14_black"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/count"
+            android:layout_marginTop="@dimen/pad_6"
+            android:layout_marginLeft="@dimen/pad_18"
+            android:layout_toRightOf="@+id/network_icon"/>
+
+        <TextView
+            android:id="@+id/txt1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/count"
+            style="@style/st_14_black"
+            android:layout_marginTop="@dimen/pad_6"
+            android:layout_toRightOf="@+id/amount"
+            android:text=" / "/>
+        <TextView
+            android:id="@+id/volume"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/count"
+            style="@style/st_14_black"
+            android:layout_marginTop="@dimen/pad_6"
+            android:layout_toRightOf="@+id/txt1"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/count"
+            style="@style/st_14_black"
+            android:layout_marginLeft="@dimen/pad_4"
+            android:layout_marginTop="@dimen/pad_6"
+            android:layout_toRightOf="@+id/volume"
+            android:text="@string/unit_l"/>
+    </RelativeLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/pad_5"
+        android:layout_marginRight="@dimen/pad_20"
+        android:layout_marginLeft="@dimen/pad_20"
+        android:background="@drawable/shape_rect_e2_r4"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/pad_5"
+        android:layout_marginRight="@dimen/pad_30"
+        android:layout_marginLeft="@dimen/pad_30"
+        android:background="@drawable/shape_rect_d8_r4"/>
+    <TextView
+        android:id="@+id/confirm_payment"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/h_button"
+        android:layout_marginTop="@dimen/pad_10"
+        android:layout_marginBottom="@dimen/pad_10"
+        android:gravity="center"
+        android:textColor="@color/green_teal"
+        android:textSize="@dimen/pad_16"
+        android:text="@string/confirm_payment_1"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/pad_1"
+        android:layout_marginBottom="@dimen/pad_30"
+        android:background="@color/black_10"/>
+</LinearLayout>

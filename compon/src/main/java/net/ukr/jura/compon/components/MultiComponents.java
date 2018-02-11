@@ -159,6 +159,16 @@ public class MultiComponents <T>{
         return this;
     }
 
+    public MultiComponents addComponentSplash(String tutorial, String auth, String main) {
+        ParamComponent paramComponent = new ParamComponent();
+        paramComponent.type = ParamComponent.TC.SPLASH;
+        paramComponent.tutorial = tutorial;
+        paramComponent.auth = auth;
+        paramComponent.main = main;
+        listComponents.add(paramComponent);
+        return this;
+    }
+
     public MultiComponents addNavigator(Navigator navigator) {
         this.navigator = navigator;
         return this;
@@ -192,6 +202,9 @@ public class MultiComponents <T>{
                 case RECYCLER_HORIZONTAL :
                 case RECYCLER_GRID :
                     new ComponentRecycler(iBase, cMV);
+                    break;
+                case SPLASH :
+                    new ComponentSplash(iBase, cMV);
                     break;
                 case MENU :
                     new ComponentMenu(iBase, cMV);
@@ -257,4 +270,5 @@ public class MultiComponents <T>{
         }
         return st;
     }
+
 }

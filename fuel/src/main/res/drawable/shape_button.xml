@@ -7,5 +7,5 @@
         android:startColor="@color/gunmetal">
     </gradient>
     <corners
-        android:radius="@dimen/pad_30"></corners>
+        android:radius="@dimen/pad_25"></corners>
 </shape>

@@ -8,12 +8,18 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import net.ukr.jura.compon.ComponGlob;
+import net.ukr.jura.compon.R;
 import net.ukr.jura.compon.base.BaseComponent;
 import net.ukr.jura.compon.custom_components.PagerIndicator;
 import net.ukr.jura.compon.interfaces_classes.IBase;
+import net.ukr.jura.compon.interfaces_classes.Navigator;
+import net.ukr.jura.compon.interfaces_classes.ViewHandler;
 import net.ukr.jura.compon.json_simple.Field;
 import net.ukr.jura.compon.json_simple.ListRecords;
 import net.ukr.jura.compon.json_simple.Record;
+import net.ukr.jura.compon.presenter.ListPresenter;
+import net.ukr.jura.compon.tools.PreferenceTool;
 import net.ukr.jura.compon.tools.StaticVM;
 
 public class ComponentPagerV extends BaseComponent {
@@ -57,6 +63,8 @@ public class ComponentPagerV extends BaseComponent {
                 }
                 if (paramMV.paramView.furtherViewId != 0) {
                     further = (View) parentLayout.findViewById(paramMV.paramView.furtherViewId);
+                    modelToFurther.RecordToView(listData.get(0), further, navigator, listener,
+                            paramMV.paramView.visibilityArray);
                 }
                 pager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
                     @Override
@@ -70,7 +78,8 @@ public class ComponentPagerV extends BaseComponent {
                             indicator.setSelect(position);
                         }
                         if (further != null) {
-                            modelToFurther.RecordToView(listData.get(position), further, null, null, null);
+                            modelToFurther.RecordToView(listData.get(position), further, navigator, listener,
+                                    paramMV.paramView.visibilityArray);
                         }
                     }
 
@@ -82,7 +91,7 @@ public class ComponentPagerV extends BaseComponent {
                 pager.setAdapter(adapter);
                 if (count == 1) {
                     if (further != null) {
-                        modelToFurther.RecordToView(listData.get(0), further, null, null, null);
+                        modelToFurther.RecordToView(listData.get(0), further, navigator, listener, null);
                     }
                 }
             }
@@ -100,7 +109,7 @@ public class ComponentPagerV extends BaseComponent {
         public Object instantiateItem(ViewGroup viewGroup, int position) {
             ViewGroup v = (ViewGroup) inflater.inflate(paramMV.paramView.layoutTypeId[0], null);
             Record record = listData.get(position);
-            modelToView.RecordToView(record, v, null, null, null);
+            modelToView.RecordToView(record, v, navigator, listener, null);
             viewGroup.addView(v);
             return v;
         }
@@ -113,6 +122,43 @@ public class ComponentPagerV extends BaseComponent {
         @Override
         public void destroyItem(ViewGroup viewGroup, int position, Object view) {
             viewGroup.removeView((View) view);
+        }
+    };
+
+    View.OnClickListener listener = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            if (navigator != null) {
+                int id = v.getId();
+                for (ViewHandler vh : navigator.viewHandlers) {
+                    if (vh.viewId == id) {
+                        switch (vh.type) {
+                            case NAME_FRAGMENT:
+                                iBase.startScreen(vh.nameFragment, false);
+                                break;
+                            case PREFERENCE_SET_VALUE:
+                                switch (vh.typePref) {
+                                    case STRING:
+                                        PreferenceTool.setNameString(vh.namePreference, vh.pref_value_string);
+                                        break;
+                                    case BOOLEAN:
+                                        PreferenceTool.setNameBoolean(vh.namePreference, vh.pref_value_boolean);
+                                        break;
+                                }
+                                break;
+                            case BACK:
+                                iBase.backPressed();
+                                break;
+                            case PAGER_PLUS:
+                                int posit = pager.getCurrentItem() + 1;
+                                if (posit < count) {
+                                    pager.setCurrentItem(posit);
+                                }
+                                break;
+                        }
+                    }
+                }
+            }
         }
     };
 }

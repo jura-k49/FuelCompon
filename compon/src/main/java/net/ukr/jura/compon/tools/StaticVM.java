@@ -49,11 +49,25 @@ public class StaticVM {
         } else {
             dd = st;
         }
-        Log.d("QWERT","DDDD="+dd);
         String[] d = dd.split("-");
         c = new GregorianCalendar(Integer.valueOf(d[0]),
                 Integer.valueOf(d[1]) - 1,
                 Integer.valueOf(d[2]));
         return c;
+    }
+
+    public static String TextForNumbet(int num, String t1, String t2_4, String t5_9) {
+        int n1 = num % 100;
+        if (n1 < 21 && n1 > 4) {
+            return t5_9;
+        }
+        n1 = num % 10;
+        if (n1 == 1) {
+            return t1;
+        }
+        if (n1 > 1 && n1 < 5) {
+            return t2_4;
+        }
+        return t5_9;
     }
 }

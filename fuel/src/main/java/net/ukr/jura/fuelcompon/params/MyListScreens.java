@@ -1,22 +1,26 @@
 package net.ukr.jura.fuelcompon.params;
 
 import android.content.Context;
+import android.util.Log;
 
 import net.ukr.jura.compon.base.ListScreens;
 import net.ukr.jura.compon.components.ParamComponent;
 import net.ukr.jura.compon.components.ParamMap;
 import net.ukr.jura.compon.components.ParamModel;
 import net.ukr.jura.compon.components.ParamView;
+import net.ukr.jura.compon.interfaces_classes.FilterParam;
+import net.ukr.jura.compon.interfaces_classes.Filters;
 import net.ukr.jura.compon.interfaces_classes.Navigator;
 import net.ukr.jura.compon.interfaces_classes.ViewHandler;
-import net.ukr.jura.compon.json_simple.Record;
 import net.ukr.jura.compon.tools.Constants;
 import net.ukr.jura.fuelcompon.R;
+import net.ukr.jura.fuelcompon.flawsBackEnd.FuelMoreWork;
 import net.ukr.jura.fuelcompon.fragments.MapFragment;
 import net.ukr.jura.fuelcompon.network.Api;
 import net.ukr.jura.fuelcompon.network.TestInternetProvider;
 
 import static net.ukr.jura.compon.components.ParamView.visibility;
+import static net.ukr.jura.compon.interfaces_classes.FilterParam.Operation.equally;
 
 public class MyListScreens extends ListScreens {
 
@@ -26,6 +30,26 @@ public class MyListScreens extends ListScreens {
 
     @Override
     public void initScreen() {
+        addActivity(context.getString(R.string.splash), R.layout.activity_splash)
+                .addComponentSplash(context.getString(R.string.tutorial),
+                        context.getString(R.string.auth), context.getString(R.string.main));
+
+        addActivity(getString(R.string.tutorial), R.layout.activity_tutorial)
+                .addComponent(ParamComponent.TC.PAGER_V, new ParamModel(Api.TUTORIAL)
+                                .internetProvider(TestInternetProvider.class),
+                        new ParamView(R.id.pager, R.layout.item_tutorial)
+                                .visibilityManager(visibility(R.id.contin, "contin"),
+                                        visibility(R.id.proceed, "proceed"))
+                                .setIndicator(R.id.indicator).setFurtherView(R.id.further),
+                        new Navigator().add(R.id.skip, context.getString(R.string.tutorial), true)
+                                .add(R.id.skip, context.getString(R.string.main))
+                                .add(R.id.skip, ViewHandler.TYPE.BACK)
+                                .add(R.id.proceed, context.getString(R.string.tutorial), true)
+                                .add(R.id.proceed, context.getString(R.string.main))
+                                .add(R.id.proceed, ViewHandler.TYPE.BACK)
+                                .add(R.id.contin, ViewHandler.TYPE.PAGER_PLUS));
+        addActivity(context.getString(R.string.auth), R.layout.activity_auth);
+
         addActivity(context.getString(R.string.main), R.layout.activity_fuel)
                 .addFragmentsContainer(R.id.content_frame, context.getString(R.string.tickets))
                 .addNavigator(new Navigator().add(R.id.radio1, context.getString(R.string.tickets))
@@ -39,19 +63,20 @@ public class MyListScreens extends ListScreens {
                         .setTab(R.id.tabs, R.array.tab_tickets));
 
         addFragment(context.getString(R.string.active_tickets), R.layout.fragment_active)
-                .addComponent(ParamComponent.TC.RECYCLER, new ParamModel(Api.TICKETS_ACTIVE)
-                                .addToBeginning(new Record().addIntField("type", 1)
-                                        .addIntField("amount_confirm", 4)),
+                .addComponent(ParamComponent.TC.RECYCLER, new ParamModel(Api.TICKETS_ACTIVE),
                         new ParamView(R.id.recycler, "type",
                                 new int[] {R.layout.item_active_tickets, R.layout.item_active_tickets_begining})
-                                .visibilityManager(visibility(R.id.expect_receive, "amount_expect")
-                                        ,visibility(R.id.confirm_payment, "amount_confirm"))
+                                .visibilityManager(visibility(R.id.expect_receive, "pending")
+                                        ,visibility(R.id.confirm_payment, "awaits_payment"))
                                 .setSplashScreen(R.id.splash),
-                        new Navigator().add(R.id.confirm_payment, context.getString(R.string.receipt_coupons))
-                                .add(R.id.expect_receive, context.getString(R.string.receipt_coupons)));
+                        new Navigator().add(R.id.confirm_payment, context.getString(R.string.awaits_payment))
+                                .add(R.id.expect_receive, context.getString(R.string.new_wait))
+                                .add(0, context.getString(R.string.infoTicket)),
+//                                .add(0, context.getString(R.string.infoTicket), ViewHandler.TYPE_PARAM_FOR_SCREEN.RECORD),
+                        0, FuelMoreWork.class);
+
         addFragment(context.getString(R.string.archive_tickets), R.layout.fragment_archive)
-                .addComponent(ParamComponent.TC.RECYCLER, new ParamModel(Api.TICKETS_ACTIVE)
-                                .internetProvider(TestInternetProvider.class),
+                .addComponent(ParamComponent.TC.RECYCLER, new ParamModel(Api.TICKETS_ARCHIVE),
                         new ParamView(R.id.recycler, "type",
                                 new int[] {R.layout.item_active_tickets, R.layout.item_active_tickets_begining})
                                 .setSplashScreen(R.id.splash));
@@ -70,7 +95,24 @@ public class MyListScreens extends ListScreens {
                 .addNavigator(new Navigator().add(R.id.back, ViewHandler.TYPE.BACK)
                                             .add(R.id.call_operator, getString(R.string.choice_fuel)));
 
-        addActivity(context.getString(R.string.receipt_coupons), R.layout.activity_receipt_coupons);
+        addActivity(context.getString(R.string.infoTicket), R.layout.activity_info_ticket)
+                .addComponent(ParamComponent.TC.PANEL, new ParamModel(Api.TICKETS_ACTIVE_ID, "id"),
+//                .addComponent(ParamComponent.TC.PANEL, new ParamModel(ParamModel.ARGUMENTS),
+                        new ParamView(R.id.panel));
+
+        addActivity(context.getString(R.string.new_wait), R.layout.activity_new_wait)
+                .addNavigator(new Navigator().add(R.id.back, ViewHandler.TYPE.BACK)
+                        .add(R.id.question, context.getString(R.string.help)))
+                .addComponent(ParamComponent.TC.RECYCLER, new ParamModel(Api.TICKETS_ACTIVE)
+                                .filter(new Filters(new FilterParam("status", equally, "pending"))),
+                        new ParamView(R.id.recycler, R.layout.item_active_tickets));
+
+        addActivity(context.getString(R.string.awaits_payment), R.layout.activity_awaits_payment)
+                .addNavigator(new Navigator().add(R.id.back, ViewHandler.TYPE.BACK)
+                        .add(R.id.question, context.getString(R.string.help)))
+                .addComponent(ParamComponent.TC.RECYCLER, new ParamModel(Api.TICKETS_ACTIVE),
+                        new ParamView(R.id.recycler, R.layout.item_awaits_payment),
+                        null, 0, FuelMoreWork.class);
 
         addActivity(getString(R.string.choice_fuel), R.layout.activity_choice_fuel);
 

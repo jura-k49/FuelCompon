@@ -5,18 +5,27 @@
     <string name="google_maps_key">AIzaSyAPYR4EO-U2deKsKbXyNLR06ynnVaO0jCA</string>
 
 // name Screens
+    <string name="splash">splash</string>
     <string name="main">main</string>
     <string name="tickets">tickets</string>
+    <string name="active_tickets">active_tickets</string>
+    <string name="archive_tickets">archive_tickets</string>
     <string name="help">help</string>
     <string name="choice_fuel">choice_fuel</string>
     <string name="map">map</string>
     <string name="mapF">mapF</string>
-    <string name="receipt_coupons">receipt_coupons</string>
+    <string name="new_wait">new_wait</string>
+    <string name="awaits_payment">awaits_payment</string>
+    <string name="infoTicket">infoTicket</string>
+    <string name="tutorial">tutorial</string>
+    <string name="auth">auth</string>
+
+// Auth
+    <string name="code_uk">+380</string>
 
 // Tickets
     <string name="my_tickets">Мои талоны</string>
-    <string name="active_tickets">active_tickets</string>
-    <string name="archive_tickets">archive_tickets</string>
+    <string name="ticket">талона</string>
     <string name="contact_us">Связь с нами</string>
     <string name="help_1">Возникли проблемы и вопросы?\nМы поможем.</string>
     <string name="call_operator">Позвонить оператору</string>
@@ -36,6 +45,20 @@
     <string name="confirm_payment">Подтвердите оплату</string>
     <string name="expect_receive">Ожидайте получения</string>
     <string name="receipt_coupons_txt">Получение талонов</string>
+    <string name="white">Ожидайте получение талонов\nв течении 5–10 минут</string>
+    <string name="awaits_payment_txt">Ожидаем подтверждения оплаты талонов</string>
+    <string name="orders">Заказы</string>
+    <string name="confirm_payment_1">Подтвердить платеж</string>
+    <string name="active_ticket">Активный талон</string>
+    <string name="begining">Начало работы</string>
+    <string name="number_phone">Номер телефона</string>
+    <string name="info_phone">Который хотите использовать или использовали для работы</string>
+
+    <string-array name="tickets_ar">
+        <item>талон</item>
+        <item>талона</item>
+        <item>талонов</item>
+    </string-array>
 
 // Map
     <string name="map_txt">Карта</string>

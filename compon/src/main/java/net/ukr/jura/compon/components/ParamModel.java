@@ -1,6 +1,8 @@
 package net.ukr.jura.compon.components;
 
 import net.ukr.jura.compon.ComponGlob;
+import net.ukr.jura.compon.interfaces_classes.FilterParam;
+import net.ukr.jura.compon.interfaces_classes.Filters;
 import net.ukr.jura.compon.json_simple.Field;
 import net.ukr.jura.compon.json_simple.Record;
 
@@ -17,6 +19,7 @@ public class ParamModel <T> {
     public static int POST = 1;
     public static final int PARENT = 100;
     public static final int FIELD = 101;
+    public static final int ARGUMENTS = 102;
     public static int defaultMethod = GET;
     public String nameField, nameFieldTo;
     public String nameTakeField;
@@ -24,11 +27,13 @@ public class ParamModel <T> {
     public Field field;
     public Class<T>  internetProvider;
     public enum TypeParam {MAP, NAME, SLASH};
-    public TypeParam typeParam = TypeParam.SLASH;
+    public TypeParam typeParam = TypeParam.NAME;
     public boolean isPagination;
     public int paginationPerPage;
     public String paginationNameParamPerPage;
     public String paginationNameParamNumberPage;
+    public Filters filters;
+//    public FilterParam[] filterParams;
 //    public int progressId;
 
     public static void setDefaultMethod(int method) {
@@ -37,6 +42,10 @@ public class ParamModel <T> {
 
     public ParamModel() {
         this(PARENT, PARENT_MODEL, "", -1);
+    }
+    public ParamModel(int method) {
+        this.method = method;
+        param = "";
     }
     public ParamModel(String url) {
         this(url, "", -1);
@@ -138,6 +147,11 @@ public class ParamModel <T> {
         this.paginationPerPage = paginationPerPage;
         this.paginationNameParamPerPage = paginationNameParamPerPage;
         this.paginationNameParamNumberPage = paginationNameParamNumberPage;
+        return this;
+    }
+
+    public ParamModel filter(Filters filters) {
+        this.filters = filters;
         return this;
     }
 }

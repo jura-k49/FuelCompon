@@ -51,7 +51,7 @@ public class DialogTools {
                 e.printStackTrace();
             }
             if (errorDialog != null) {
-                String title = "Ошибка";
+                String title = "Ошибка statusCode="+statusCode;
                 String description = null;
                 switch (statusCode) {
                     case ERRORINMESSAGE :

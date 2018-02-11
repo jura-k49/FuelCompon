@@ -1,6 +1,7 @@
 package net.ukr.jura.compon.components;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -16,6 +17,7 @@ import net.ukr.jura.compon.interfaces_classes.Navigator;
 import net.ukr.jura.compon.interfaces_classes.ViewHandler;
 import net.ukr.jura.compon.interfaces_classes.Visibility;
 import net.ukr.jura.compon.json_simple.Field;
+import net.ukr.jura.compon.json_simple.ListRecords;
 import net.ukr.jura.compon.json_simple.Record;
 
 import java.text.SimpleDateFormat;
@@ -32,6 +34,9 @@ public class WorkWithRecordsAndViews {
     protected Record recordResult;
     private boolean setParam;
     private Visibility[] visibilityManager;
+//    private String quote = "\"";
+//    private String quoteColon = "\":";
+//    private StringBuffer sb;
 
     public void RecordToView(Record model, View view) {
         RecordToView(model, view, null, null, null);
@@ -94,6 +99,12 @@ public class WorkWithRecordsAndViews {
         int id = v.getId();
         String st;
         String name = v.getContext().getResources().getResourceEntryName(id);
+        if (v instanceof IComponent) {
+            st = ((IComponent) v).getAlias();
+            if (st != null && st.length() > 0) {
+                name = st;
+            }
+        }
         if (setParam) {
             setRecordField(v, name);
         }
@@ -110,6 +121,18 @@ public class WorkWithRecordsAndViews {
         }
         Field field = model.getField(name);
         if (field != null) {
+            if (visibilityManager != null && visibilityManager.length > 0) {
+                for (Visibility vis : visibilityManager) {
+                    if (vis.viewId == id) {
+                        if (model.getBooleanVisibility(vis.nameField)) {
+                            v.setVisibility(View.VISIBLE);
+                        } else {
+                            v.setVisibility(View.GONE);
+                        }
+                        break;
+                    }
+                }
+            }
             if (v instanceof IComponent) {
                 ((IComponent) v).setData(field.value);
                 return;
@@ -151,6 +174,23 @@ public class WorkWithRecordsAndViews {
                 }
                 return;
             }
+
+//            Log.d("QWERT","visibilityManager="+visibilityManager);
+//            if (visibilityManager != null && visibilityManager.length > 0) {
+//                Log.d("QWERT","ZZZZZ ++++++++++++++++++++");
+//                for (Visibility vis : visibilityManager) {
+//                    Log.d("QWERT","nameField="+vis.nameField+"< VisID="+vis.viewId+"< ID="+id+"< NAME="+name);
+//                    if (vis.viewId == id) {
+//                        if (model.getBooleanVisibility(vis.nameField)) {
+//                            v.setVisibility(View.VISIBLE);
+//                        } else {
+//                            v.setVisibility(View.GONE);
+//                        }
+//                        break;
+//                    }
+//                }
+//                Log.d("QWERT","ZZZZZ --------------------");
+//            }
         }
 
         if (v instanceof ImageView) {
@@ -181,17 +221,69 @@ public class WorkWithRecordsAndViews {
             }
         }
 
-        if (visibilityManager != null && visibilityManager.length > 0) {
-            for (Visibility vis : visibilityManager) {
-                if (vis.viewId == id) {
-                    if (model.getBooleanVisibility(vis.nameField)) {
-                        v.setVisibility(View.VISIBLE);
-                    } else {
-                        v.setVisibility(View.GONE);
-                    }
-                    break;
-                }
-            }
-        }
+//        Log.d("QWERT","visibilityManager="+visibilityManager);
+//        if (visibilityManager != null && visibilityManager.length > 0) {
+//            Log.d("QWERT","ZZZZZZZZZZZZZZZ");
+//            for (Visibility vis : visibilityManager) {
+//                Log.d("QWERT","nameField="+vis.nameField+"< VisID="+vis.viewId+"< ID="+id+"< NAME="+name);
+//                if (vis.viewId == id) {
+//                    if (model.getBooleanVisibility(vis.nameField)) {
+//                        v.setVisibility(View.VISIBLE);
+//                    } else {
+//                        v.setVisibility(View.GONE);
+//                    }
+//                    break;
+//                }
+//            }
+//        }
     }
+
+//    public String modelToJson(Field field) {
+//        sb = new StringBuffer( 1000);
+//        if (field.type == Field.TYPE_RECORD) {
+//            recordToJson((Record) field.value);
+//        } else {
+//            listToJson((ListRecords) field.value);
+//        }
+//        return sb.toString();
+//    }
+//
+//    public void recordToJson(Record rec) {
+//        sb.append("{");
+//        String separator = "";
+//        for (Field f : rec) {
+//            sb.append(separator);
+//            separator = ",";
+//            switch (f.type) {
+//                case Field.TYPE_STRING :
+//                    sb.append(quote + f.name + quoteColon + quote + (String) f.value + quote);
+//                    break;
+//                case Field.TYPE_INTEGER :
+//                    sb.append(quote + f.name + quoteColon + (Integer) f.value);
+//                    break;
+//                case Field.TYPE_LONG :
+//                    sb.append(quote + f.name + quoteColon + (Long) f.value);
+//                    break;
+//                case Field.TYPE_DOUBLE :
+//                    sb.append(quote + f.name + quoteColon + (Double) f.value);
+//                    break;
+//                case Field.TYPE_LIST:
+//                    sb.append(quote + f.name + quoteColon);
+//                    listToJson((ListRecords) f.value);
+//                    break;
+//            }
+//        }
+//        sb.append("}");
+//    }
+//
+//    private void listToJson(ListRecords listRecords) {
+//        sb.append("[");
+//        String separator = "";
+//        for (Record r : listRecords) {
+//            sb.append(separator);
+//            separator = ",";
+//            recordToJson(r);
+//        }
+//        sb.append("]");
+//    }
 }

@@ -6,23 +6,28 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 
 import net.ukr.jura.compon.ComponGlob;
 import net.ukr.jura.compon.components.ParamComponent;
 import net.ukr.jura.compon.components.ParamModel;
 import net.ukr.jura.compon.components.WorkWithRecordsAndViews;
+import net.ukr.jura.compon.interfaces_classes.FilterParam;
 import net.ukr.jura.compon.interfaces_classes.IBase;
 import net.ukr.jura.compon.interfaces_classes.IPresenterListener;
+import net.ukr.jura.compon.interfaces_classes.MoreWork;
 import net.ukr.jura.compon.interfaces_classes.Navigator;
 import net.ukr.jura.compon.interfaces_classes.OnClickItemRecycler;
 import net.ukr.jura.compon.interfaces_classes.ParentModel;
 import net.ukr.jura.compon.interfaces_classes.ViewHandler;
 import net.ukr.jura.compon.json_simple.Field;
 import net.ukr.jura.compon.json_simple.FieldBroadcaster;
+import net.ukr.jura.compon.json_simple.JsonSimple;
 import net.ukr.jura.compon.json_simple.ListRecords;
 import net.ukr.jura.compon.json_simple.Record;
 import net.ukr.jura.compon.presenter.ListPresenter;
+import net.ukr.jura.compon.tools.Constants;
 
 import java.util.List;
 
@@ -35,6 +40,7 @@ public abstract class BaseComponent {
     public ParamComponent paramMV;
     public BaseActivity activity;
     public Navigator navigator;
+    public MoreWork moreWork;
     public IBase iBase;
     public ViewHandler selectViewHandler;
     public View viewComponent;
@@ -47,6 +53,17 @@ public abstract class BaseComponent {
         this.iBase = iBase;
         activity = iBase.getBaseActivity();
         this.parentLayout = iBase.getParentLayout();
+        moreWork = null;
+        moreWork = paramMV.moreWork;
+        if (paramMV.additionalWork != null) {
+            try {
+                moreWork = (MoreWork) paramMV.additionalWork.newInstance();
+            } catch (InstantiationException e) {
+                e.printStackTrace();
+            } catch (IllegalAccessException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
     public void init() {
@@ -66,6 +83,10 @@ public abstract class BaseComponent {
     }
 
     public void actual() {
+        actual(null);
+    }
+
+    public void actual(Object paramEvent) {
         if (paramMV.paramModel != null) {
             switch (paramMV.paramModel.method) {
                 case ParamModel.PARENT :
@@ -83,6 +104,12 @@ public abstract class BaseComponent {
                     break;
                 case ParamModel.FIELD:
                     changeDataBase(paramMV.paramModel.field);
+                    break;
+                case ParamModel.ARGUMENTS :
+                    Intent intent = activity.getIntent();
+                    String st = intent.getStringExtra(Constants.NAME_PARAM_FOR_SCREEN);
+                    JsonSimple jsonSimple = new JsonSimple();
+                    changeDataBase(jsonSimple.jsonToModel(st));
                     break;
                 default:
                     new BasePresenter(iBase, paramMV.paramModel, null, null, listener);
@@ -110,9 +137,16 @@ public abstract class BaseComponent {
 
     }
 
+    private BaseComponent getThis() {
+        return this;
+    }
+
     IPresenterListener listener = new IPresenterListener() {
         @Override
         public void onResponse(Field response) {
+            if (moreWork != null) {
+                moreWork.beforeProcessingResponse(response, getThis());
+            }
             String fName = paramMV.paramModel.nameField;
             if (fName != null) {
 //                Field field = response;
@@ -126,6 +160,18 @@ public abstract class BaseComponent {
                         }
                     }
                 }
+            }
+
+            ListRecords lr = null;
+            if (paramMV.paramModel.filters != null) {
+                lr = new ListRecords();
+                ListRecords lrResp = (ListRecords) response.value;
+                for (Record rec : lrResp) {
+                    if (paramMV.paramModel.filters.isConditions(rec)) {
+                        lr.add(rec);
+                    }
+                }
+                response.value = lr;
             }
             if (paramMV.paramModel.nameTakeField == null) {
                 changeDataBase((Field) response);
@@ -188,7 +234,11 @@ public abstract class BaseComponent {
                             break;
                         case NAME_FRAGMENT:
                             ComponGlob.getInstance().setParam(record);
-                            iBase.startScreen(vh.nameFragment, false);
+                            if (vh.paramForScreen == ViewHandler.TYPE_PARAM_FOR_SCREEN.RECORD) {
+                                iBase.startScreen(vh.nameFragment, false, record);
+                            } else {
+                                iBase.startScreen(vh.nameFragment, false);
+                            }
                             break;
                     }
                     break;

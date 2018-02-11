@@ -18,10 +18,12 @@ public interface IBase {
     public View getParentLayout();
     public void addEvent(int sender, BaseComponent receiver);
     public void sendEvent(int sender);
+    public void sendEvent(int sender, Object paramEvent);
     public ParentModel getParentModel(String name);
     public Field getProfile();
 //    public void startActivitySimple(String nameMVP);
 //    public void startFragment(String nameMVP, boolean startFlag);
+    public void startScreen(String nameMVP, boolean startFlag, Object object);
     public void startScreen(String nameMVP, boolean startFlag);
     public void backPressed();
     public void progressStart();

@@ -69,6 +69,16 @@ public class SimpleTextView extends android.support.v7.widget.AppCompatTextView
         }
     }
 
+    @Override
+    public String getAlias() {
+        return null;
+    }
+
+    @Override
+    public Object getData() {
+        return null;
+    }
+
     public Calendar stringToDate(String st) {
         Calendar c;
         String dd = "";

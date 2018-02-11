@@ -22,10 +22,19 @@
         <!--<attr name="widthLine" format="reference|dimension"/>-->
     <!--</declare-styleable>-->
     <declare-styleable name="Simple">
+        <attr name="mask" format="string"/>
+        <attr name="imageId" format="reference"/>
+        <attr name="selectorLine" format="reference"/>
+        <attr name="heightLine" format="dimension"/>
         <attr name="numberFormat" format="string"/>
         <attr name="dateFormat" format="string"/>
         <attr name="placeholder" format="reference"/>
-        <attr name="viewLayoutId" format="reference"/>
+        <attr name="viewLayoutId" format="string"/>
         <attr name="fadedScreenColor" format="color"/>
+        <attr name="textSize" format="dimension"/>
+        <attr name="hintTextColor" format="color"/>
+        <attr name="textColor" format="color"/>
+        <attr name="stringArray" format="reference"/>
+        <attr name="alias" format="string"/>
     </declare-styleable>
 </resources>

@@ -18,6 +18,11 @@ public class Navigator {
         return this;
     }
 
+    public Navigator add(int viewId, String nameFragment, ViewHandler.TYPE_PARAM_FOR_SCREEN paramForScreen) {
+        viewHandlers.add(new ViewHandler(viewId, nameFragment, paramForScreen));
+        return this;
+    }
+
     public Navigator add(int viewId, ParamModel paramModel) {
         viewHandlers.add(new ViewHandler(viewId, paramModel));
         return this;
@@ -25,6 +30,16 @@ public class Navigator {
 
     public Navigator add(int viewId, ViewHandler.TYPE type, ParamModel paramModel) {
         viewHandlers.add(new ViewHandler(viewId, type, paramModel));
+        return this;
+    }
+
+    public Navigator add(int viewId, String namePreference, boolean value) {
+        viewHandlers.add(new ViewHandler(viewId, namePreference, value));
+        return this;
+    }
+
+    public Navigator add(int viewId, String namePreference, String value) {
+        viewHandlers.add(new ViewHandler(viewId, namePreference, value));
         return this;
     }
 

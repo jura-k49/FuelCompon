@@ -15,6 +15,7 @@ public class Constants {
     public static String SEPARATOR_LIST = ",";
     public static String SIMPLE_ViewId = "SIMPLE_ViewId";
     public static String NAME_MVP = "NAME_MVP";
+    public static String NAME_PARAM_FOR_SCREEN = "NAME_PARAM_FOR_SCREEN";
     public static String MARKER_LAT = "markerLatitude";
     public static String MARKER_LON = "markerLongitude";
     public static String MARKER_NAME_NUMBER = "markerNumber";

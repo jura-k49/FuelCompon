@@ -7,6 +7,7 @@
     android:background="@color/white">
 
         <TextView
+            android:id="@+id/pay_tickets"
             style="@style/st_button"
             android:layout_width="match_parent"
             android:layout_height="@dimen/h_bottom"
@@ -31,7 +32,7 @@
                     android:text="@string/confirm_payment" />
 
                 <TextView
-                    android:id="@+id/amount_confirm"
+                    android:id="@+id/awaits_payment"
                     style="@style/st_16_black"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -62,7 +63,7 @@
                     android:text="@string/expect_receive" />
 
                 <TextView
-                    android:id="@+id/amount_expect"
+                    android:id="@+id/pending"
                     style="@style/st_16_black"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"

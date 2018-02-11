@@ -6,8 +6,10 @@ import android.util.Log;
 import net.ukr.jura.compon.ComponGlob;
 import net.ukr.jura.compon.interfaces_classes.IBase;
 import net.ukr.jura.compon.interfaces_classes.IPresenterListener;
+import net.ukr.jura.compon.interfaces_classes.MoreWork;
 import net.ukr.jura.compon.json_simple.Field;
 import net.ukr.jura.compon.json_simple.JsonSimple;
+import net.ukr.jura.compon.json_simple.ListRecords;
 import net.ukr.jura.compon.json_simple.Record;
 import net.ukr.jura.compon.components.ParamModel;
 import net.ukr.jura.compon.providers.VolleyInternetProvider;
@@ -38,7 +40,7 @@ public class BasePresenter implements BaseInternetProvider.InternetProviderListe
         this.method = paramModel.method;
         long duration = paramModel.duration;
         if (method == ParamModel.GET) {
-            String st = ComponGlob.getInstance().installParam(paramModel.param, paramModel.typeParam);
+            String st = ComponGlob.getInstance().installParam(paramModel.param, paramModel.typeParam, paramModel.url);
             url = paramModel.url + st;
         } else {
             url = paramModel.url;
@@ -114,9 +116,8 @@ public class BasePresenter implements BaseInternetProvider.InternetProviderListe
                 } else {
                     listener.onResponse(f1);
                 }
-//            listener.onResponse(jsonSimple.jsonToModel(response));
             } else {
-
+                iBase.showDialog("", "no response 11111111111", null);
             }
         }
     }

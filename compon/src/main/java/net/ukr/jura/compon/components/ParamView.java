@@ -9,6 +9,7 @@ public class ParamView {
     public int[] layoutTypeId, layoutFurtherTypeId;
     public int indicatorId;
     public int furtherViewId;
+//    public Visibility[] furtherVisibilityArray;
     public int tabId;
     public int arrayLabelId;
     public int splashScreenViewId;
@@ -79,6 +80,12 @@ public class ParamView {
         this.furtherViewId = furtherViewId;
         return this;
     }
+
+//    public ParamView setFurtherView(int furtherViewId, Visibility ... args) {
+//        this.furtherViewId = furtherViewId;
+//        furtherVisibilityArray = args;
+//        return this;
+//    }
 
     public ParamView setSplashScreen(int splashScreenViewId) {
         this.splashScreenViewId = splashScreenViewId;

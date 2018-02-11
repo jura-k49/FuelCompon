@@ -54,7 +54,6 @@ public class PagerIndicator extends LinearLayout{
         if (count < 0) {
             selectPosition = position;
         } else {
-            Log.d("QWERT","selectPosition="+selectPosition+" position="+position);
             list.get(selectPosition).setBackgroundResource(ITEM_ID);
             selectPosition = position;
             list.get(selectPosition).setBackgroundResource(ITEM_SELECT_ID);

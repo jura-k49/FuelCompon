@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center_horizontal"
+    android:background="@color/white">
+    <RelativeLayout
+        android:id="@+id/header"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/h_header"
+        android:background="@drawable/shape_header">
+
+        <!--<ImageView-->
+            <!--android:id="@+id/back"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:src="@drawable/back_arrow"/>-->
+
+        <TextView
+            style="@style/st_16_white"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerInParent="true"
+            android:text="@string/begining" />
+
+        <ImageView
+            android:id="@+id/question"
+            android:layout_width="@dimen/h_button"
+            android:layout_height="@dimen/h_button"
+            android:layout_marginRight="@dimen/pad_10"
+            android:layout_alignParentRight="true"
+            android:src="@drawable/question" />
+
+    </RelativeLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/pad_40"
+        android:layout_marginLeft="@dimen/pad_30"
+        android:layout_marginRight="@dimen/pad_30"
+        style="@style/st_16_black"
+        android:text="@string/number_phone"/>
+
+    <!--<net.ukr.jura.fuelcompon.tools.PhoneEdit-->
+        <!--android:id="@+id/phone"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_marginLeft="@dimen/pad_30"-->
+        <!--android:layout_marginRight="@dimen/pad_30"-->
+        <!--android:layout_marginTop="@dimen/pad_10"/>-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/BaseEditTextStyle">
+
+        <net.ukr.jura.compon.custom_components.EditTextMask
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/pad_30"
+            android:layout_marginRight="@dimen/pad_30"
+            android:layout_marginTop="@dimen/pad_10"
+            android:inputType="number"
+            android:textColor="@color/primary_dark"
+            android:textColorHint="@color/accent"
+            android:textSize="@dimen/pad_20"
+            app:mask="+38 ___ ___ __ __" />
+    </LinearLayout>
+
+    <net.ukr.jura.compon.custom_components.EditPhone
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/pad_30"
+        android:layout_marginRight="@dimen/pad_30"
+        android:layout_marginTop="@dimen/pad_10"
+        android:theme="@style/BaseEditTextStyle"
+        android:inputType="number"
+        android:textColor="@color/primary"
+        android:textColorHint="@color/accent"
+        android:textSize="20dp"
+        app:mask="+38 ___ ___ __ __"
+        app:imageId="@drawable/del"
+        app:heightLine="5dp"
+        app:selectorLine="@drawable/selector_edit_text"/>
+    <net.ukr.jura.compon.custom_components.EditPhone
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/pad_30"
+        android:layout_marginRight="@dimen/pad_30"
+        android:layout_marginTop="@dimen/pad_10"
+        android:theme="@style/BaseEditTextStyle"
+        android:inputType="number"
+        android:textColor="@color/primary"
+        android:textColorHint="@color/accent"
+        android:textSize="30dp"
+        app:mask="+38 ___ ___ __ __"
+        app:imageId="@drawable/del"
+        app:heightLine="5dp"
+        app:selectorLine="@drawable/selector_edit_text"/>
+    <net.ukr.jura.compon.custom_components.EditPhone
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/pad_30"
+        android:layout_marginRight="@dimen/pad_30"
+        android:layout_marginTop="@dimen/pad_10"
+        android:theme="@style/BaseEditTextStyle"
+        android:inputType="number"
+        android:textColor="@color/primary"
+        android:textColorHint="@color/accent"
+        android:textSize="40dp"
+        app:mask="+38 ___ ___ __ __"
+        app:imageId="@drawable/del"
+        app:heightLine="5dp"
+        app:selectorLine="@drawable/selector_edit_text"/>
+    <net.ukr.jura.compon.custom_components.EditPhone
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/pad_30"
+        android:layout_marginRight="@dimen/pad_30"
+        android:layout_marginTop="@dimen/pad_10"
+        android:theme="@style/BaseEditTextStyle"
+        android:inputType="number"
+        android:textColor="@color/primary"
+        android:textColorHint="@color/accent"
+        android:textSize="50dp"
+        app:mask="+38 ___ ___ __ __"
+        app:imageId="@drawable/del"
+        app:heightLine="5dp"
+        app:selectorLine="@drawable/selector_edit_text"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/pad_18"
+        android:layout_marginLeft="@dimen/pad_30"
+        android:layout_marginRight="@dimen/pad_30"
+        style="@style/st_14_black_50_sp8"
+        android:text="@string/info_phone"/>
+
+</LinearLayout>

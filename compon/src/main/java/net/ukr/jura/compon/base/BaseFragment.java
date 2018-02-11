@@ -263,8 +263,13 @@ public abstract class BaseFragment extends Fragment implements IBase {
     }
 
 //    @Override
-    public void startActivitySimple(String nameMVP) {
-        getBaseActivity().startActivitySimple(nameMVP);
+    public void startActivitySimple(String nameMVP, Object object) {
+        getBaseActivity().startActivitySimple(nameMVP, object);
+    }
+
+    @Override
+    public void startScreen(String nameMVP, boolean startFlag, Object object) {
+        getBaseActivity().startScreen(nameMVP, startFlag, object);
     }
 
     @Override
@@ -272,8 +277,8 @@ public abstract class BaseFragment extends Fragment implements IBase {
         getBaseActivity().startScreen(nameMVP, startFlag);
     }
 //    @Override
-    public void startFragment(String nameMVP, boolean startFlag) {
-        getBaseActivity().startFragment(nameMVP, startFlag);
+    public void startFragment(String nameMVP, boolean startFlag,Object object) {
+        getBaseActivity().startFragment(nameMVP, startFlag, object);
     }
 
 //    @Override

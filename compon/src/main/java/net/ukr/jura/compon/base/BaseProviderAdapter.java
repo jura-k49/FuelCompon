@@ -25,7 +25,7 @@ public class BaseProviderAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
     private String layout;
     private Navigator navigator;
 //    private boolean startFlag;
-    private MoreWork moreWork;
+//    private MoreWork moreWork;
     private BaseComponent baseComponent;
     private boolean isClickItem;
     private Visibility[] visibilityManager;
@@ -61,19 +61,18 @@ public class BaseProviderAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
         visibilityManager = paramView.visibilityArray;
         modelToView = new WorkWithRecordsAndViews();
         layout = "";
-//        startFlag = false;
-        moreWork = null;
+//        moreWork = null;
         layout = "item_recycler_" + baseComponent.paramMV.nameParentComponent;
-        moreWork = baseComponent.paramMV.moreWork;
-        if (baseComponent.paramMV.additionalWork != null) {
-            try {
-                moreWork = (MoreWork) baseComponent.paramMV.additionalWork.newInstance();
-            } catch (InstantiationException e) {
-                e.printStackTrace();
-            } catch (IllegalAccessException e) {
-                e.printStackTrace();
-            }
-        }
+//        moreWork = baseComponent.paramMV.moreWork;
+//        if (baseComponent.paramMV.additionalWork != null) {
+//            try {
+//                moreWork = (MoreWork) baseComponent.paramMV.additionalWork.newInstance();
+//            } catch (InstantiationException e) {
+//                e.printStackTrace();
+//            } catch (IllegalAccessException e) {
+//                e.printStackTrace();
+//            }
+//        }
     }
 
     @Override
@@ -131,8 +130,8 @@ public class BaseProviderAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
                 }
             });
         }
-        if (moreWork != null) {
-            moreWork.afterBindViewHolder(record, holder);
+        if (baseComponent.moreWork != null) {
+            baseComponent.moreWork.afterBindViewHolder(record, holder);
         }
     }
 

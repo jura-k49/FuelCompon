@@ -1,6 +1,7 @@
 package net.ukr.jura.compon;
 
 import android.content.Context;
+import android.util.Log;
 
 import net.ukr.jura.compon.components.MultiComponents;
 import net.ukr.jura.compon.components.ParamModel;
@@ -58,6 +59,9 @@ public class ComponGlob {
                         case Field.TYPE_INTEGER :
                             valuesParams.set(i, String.valueOf((Integer) f.value));
                             break;
+                        case Field.TYPE_LONG :
+                            valuesParams.set(i, String.valueOf((Long) f.value));
+                            break;
                         case Field.TYPE_FLOAT :
                             valuesParams.set(i, String.valueOf((Float) f.value));
                             break;
@@ -96,17 +100,22 @@ public class ComponGlob {
         valuesParams.add(paramValue);
     }
 
-    public String installParam(String param, ParamModel.TypeParam typeParam) {
+    public String installParam(String param, ParamModel.TypeParam typeParam, String url) {
         switch (typeParam) {
-            case NAME: return installParamName(param);
+            case NAME: return installParamName(param, url);
             case SLASH: return installParamSlash(param);
             default: return "";
         }
     }
 
-    public String installParamName(String param) {
-        String st = "?";
+    public String installParamName(String param, String url) {
+        String st = "";
         if (param != null && param.length() > 0) {
+            if (url.contains("?")) {
+                st = "&";
+            } else {
+                st = "?";
+            }
             String[] paramArray = param.split(Constants.SEPARATOR_LIST);
             int ik = namesParams.size();
             String sep = "";

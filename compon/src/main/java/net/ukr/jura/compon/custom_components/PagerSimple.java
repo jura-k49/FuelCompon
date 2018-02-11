@@ -69,6 +69,16 @@ public class PagerSimple extends ViewPager implements IComponent {
         setAdapter(adapter);
     }
 
+    @Override
+    public String getAlias() {
+        return null;
+    }
+
+    @Override
+    public Object getData() {
+        return null;
+    }
+
     PagerAdapter adapter = new PagerAdapter() {
         WorkWithRecordsAndViews modelToView = new WorkWithRecordsAndViews();
         @Override

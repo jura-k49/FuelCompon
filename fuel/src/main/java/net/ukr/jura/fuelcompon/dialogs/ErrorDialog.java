@@ -2,7 +2,9 @@ package net.ukr.jura.fuelcompon.dialogs;
 
 import android.app.DialogFragment;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.Nullable;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,6 +19,7 @@ public class ErrorDialog extends DialogFragment implements IErrorDialog {
     private TextView title;
     private TextView message;
     private View.OnClickListener listener;
+    private int count;
 
     public ErrorDialog() {
         setStyle(STYLE_NO_TITLE, 0);
@@ -30,8 +33,13 @@ public class ErrorDialog extends DialogFragment implements IErrorDialog {
         parentLayout = inflater.inflate(R.layout.dialog_error, container, false);
         title = (TextView) parentLayout.findViewById(R.id.title);
         message = (TextView) parentLayout.findViewById(R.id.message);
-        title.setText(titl);
-        message.setText(mes);
+        Log.d("QWERT","title="+titl+" message="+mes);
+        count = 0;
+        handler.postDelayed(whiteTitle, 50);
+//        if (title != null) {
+//            title.setText(titl);
+//            message.setText(mes);
+//        }
 //        parentLayout.findViewById(R.id.cancel).setOnClickListener(new View.OnClickListener() {
 //            @Override
 //            public void onClick(View view) {
@@ -43,6 +51,24 @@ public class ErrorDialog extends DialogFragment implements IErrorDialog {
 //        });
         return parentLayout;
     }
+
+    Handler handler = new Handler();
+
+    Runnable whiteTitle = new Runnable() {
+        @Override
+        public void run() {
+            Log.d("QWERT","title="+title+" message="+message+" count="+count);
+            if (title == null || message == null) {
+                if (count >= 10) return;
+                count++;
+                handler.postDelayed(whiteTitle, 50);
+            } else {
+                Log.d("QWERT","title=+++++++++++++++++++++++++");
+                title.setText(titl);
+                message.setText(mes);
+            }
+        }
+    };
 
     @Override
     public void setTitle(String title) {

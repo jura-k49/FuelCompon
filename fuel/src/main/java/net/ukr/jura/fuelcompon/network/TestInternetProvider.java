@@ -10,6 +10,7 @@ import net.ukr.jura.compon.json_simple.ListRecords;
 import net.ukr.jura.compon.json_simple.Record;
 import net.ukr.jura.compon.json_simple.SimpleRecordToJson;
 import net.ukr.jura.compon.tools.Constants;
+import net.ukr.jura.fuelcompon.network.Api;
 
 import java.util.Map;
 
@@ -37,14 +38,67 @@ public class TestInternetProvider extends BaseInternetProvider{
     };
 
     private String jsonResult(String request) {
-        switch (request) {
-            case Api.TICKETS_ACTIVE : return setActive();
-            case Api.MARKER_MAP : return setMarker();
+        if (Api.TICKETS_ACTIVE.contains(request)) {
+            return setActive();
+        } else {
+            switch (request) {
+                case Api.TICKETS_ACTIVE:
+                    return setActive();
+                case Api.MARKER_MAP:
+                    return setMarker();
+                case Api.TUTORIAL:
+                    return setTutorial();
+            }
         }
         return null;
     }
 
+    private String setTutorial() {
+        Record rec = new Record();
+        ListRecords lr = new ListRecords();
+        Field f = new Field("", Field.TYPE_RECORD, rec);
+        rec.add(new Field("data", Field.TYPE_LIST, lr));
+
+        Record record;
+        record = new Record();
+        record.add(new Field("text", Field.TYPE_STRING, "Талоны дешевле на 12%, чем на АЗС"));
+        record.add(new Field("img", Field.TYPE_STRING, "tutorial_1"));
+        record.add(new Field("skip", Field.TYPE_STRING, "Пропустить знакомство"));
+        record.add(new Field("contin", Field.TYPE_STRING, "Продолжить"));
+        record.add(new Field("proceed", Field.TYPE_STRING, ""));
+        lr.add(record);
+
+        record = new Record();
+        record.add(new Field("text", Field.TYPE_STRING, "Электронные талоны всегда с собой"));
+        record.add(new Field("img", Field.TYPE_STRING, "tutorial_2"));
+        record.add(new Field("skip", Field.TYPE_STRING, "Пропустить знакомство"));
+        record.add(new Field("contin", Field.TYPE_STRING, "Продолжить"));
+        record.add(new Field("proceed", Field.TYPE_STRING, ""));
+        lr.add(record);
+
+        record = new Record();
+        record.add(new Field("text", Field.TYPE_STRING, "Становитесь агентом и зарабатывайте"));
+        record.add(new Field("img", Field.TYPE_STRING, "tutorial_3"));
+        record.add(new Field("skip", Field.TYPE_STRING, "Пропустить знакомство"));
+        record.add(new Field("contin", Field.TYPE_STRING, "Продолжить"));
+        record.add(new Field("proceed", Field.TYPE_STRING, ""));
+        lr.add(record);
+
+        record = new Record();
+        record.add(new Field("text", Field.TYPE_STRING, "Навигатор укажет путь к ближайшей заправке"));
+        record.add(new Field("img", Field.TYPE_STRING, "tutorial_4"));
+        record.add(new Field("skip", Field.TYPE_STRING, ""));
+        record.add(new Field("contin", Field.TYPE_STRING, ""));
+        record.add(new Field("proceed", Field.TYPE_STRING, "Приступить"));
+        lr.add(record);
+
+        SimpleRecordToJson recordToJson = new SimpleRecordToJson();
+//        Log.d("QWERT","1111 RESULT="+recordToJson.modelToJson(f));
+        return recordToJson.modelToJson(f);
+    }
+
     private String setActive() {
+        Log.d("QWERT","setActive setActive setActive");
         Record rec = new Record();
         ListRecords lr = new ListRecords();
 //        Field f = new Field("", Field.TYPE_LIST, lr);
@@ -96,9 +150,9 @@ public class TestInternetProvider extends BaseInternetProvider{
         double lon = Double.valueOf(latLon[1]);
         Record rec = new Record();
         ListRecords lr = new ListRecords();
-        Field f = new Field("", Field.TYPE_LIST, lr);
-//        Field f = new Field("", Field.TYPE_RECORD, rec);
-//        rec.add(new Field("data", Field.TYPE_LIST, lr));
+//        Field f = new Field("", Field.TYPE_LIST, lr);
+        Field f = new Field("", Field.TYPE_RECORD, rec);
+        rec.add(new Field("data", Field.TYPE_LIST, lr));
 
         Record record;
         record = new Record();

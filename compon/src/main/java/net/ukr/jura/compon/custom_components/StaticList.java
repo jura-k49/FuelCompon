@@ -26,6 +26,16 @@ public class StaticList extends BaseStaticList implements IComponent {
         setAdapter(adapter, false);
     }
 
+    @Override
+    public String getAlias() {
+        return null;
+    }
+
+    @Override
+    public Object getData() {
+        return null;
+    }
+
     BaseStaticListAdapter adapter = new BaseStaticListAdapter() {
         WorkWithRecordsAndViews modelToView = new WorkWithRecordsAndViews();
 
