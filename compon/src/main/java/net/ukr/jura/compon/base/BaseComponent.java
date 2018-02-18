@@ -10,10 +10,9 @@ import android.util.Log;
 import android.view.View;
 
 import net.ukr.jura.compon.ComponGlob;
-import net.ukr.jura.compon.components.ParamComponent;
-import net.ukr.jura.compon.components.ParamModel;
-import net.ukr.jura.compon.components.WorkWithRecordsAndViews;
-import net.ukr.jura.compon.interfaces_classes.FilterParam;
+import net.ukr.jura.compon.param.ParamComponent;
+import net.ukr.jura.compon.param.ParamModel;
+import net.ukr.jura.compon.json_simple.WorkWithRecordsAndViews;
 import net.ukr.jura.compon.interfaces_classes.IBase;
 import net.ukr.jura.compon.interfaces_classes.IPresenterListener;
 import net.ukr.jura.compon.interfaces_classes.MoreWork;
@@ -75,6 +74,9 @@ public abstract class BaseComponent {
                         .registerReceiver(changeFieldValue, new IntentFilter(paramMV.paramModel.field.name));
             }
         }
+        if (paramMV.mustValid != null) {
+            iBase.addEvent(paramMV.mustValid, this);
+        }
         if (paramMV.eventComponent == 0) {
             actual();
         } else {
@@ -82,11 +84,11 @@ public abstract class BaseComponent {
         }
     }
 
-    public void actual() {
-        actual(null);
+    public void actualEvent(int sender, Object paramEvent) {
+        actual();
     }
 
-    public void actual(Object paramEvent) {
+    public void actual() {
         if (paramMV.paramModel != null) {
             switch (paramMV.paramModel.method) {
                 case ParamModel.PARENT :
@@ -208,7 +210,10 @@ public abstract class BaseComponent {
                     switch (vh.type) {
                         case SEND_CHANGE_BACK :
                             Record param = workWithRecordsAndViews.ViewToRecord(viewComponent, vh.paramModel.param);
-//                            new VolleyPresenter<String>(iBase, vh.paramModel, setRecord(param), vl_SEND_CHANGE_BACK);
+                            new BasePresenter(iBase, vh.paramModel, null, setRecord(param), listener_send_change);
+                            break;
+                        case SEND_BACK_SCREEN :
+                            param = workWithRecordsAndViews.ViewToRecord(viewComponent, vh.paramModel.param);
                             new BasePresenter(iBase, vh.paramModel, null, setRecord(param), listener_send_change);
                             break;
                     }

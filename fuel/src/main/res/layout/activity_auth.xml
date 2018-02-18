@@ -5,140 +5,114 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:gravity="center_horizontal"
     android:background="@color/white">
-    <RelativeLayout
-        android:id="@+id/header"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/h_header"
-        android:background="@drawable/shape_header">
 
-        <!--<ImageView-->
-            <!--android:id="@+id/back"-->
+    <FrameLayout
+        android:id="@+id/content_frame"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+    <!--<RelativeLayout-->
+        <!--android:id="@+id/header"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="@dimen/h_header"-->
+        <!--android:background="@drawable/shape_header">-->
+
+        <!--&lt;!&ndash;<ImageView&ndash;&gt;-->
+            <!--&lt;!&ndash;android:id="@+id/back"&ndash;&gt;-->
+            <!--&lt;!&ndash;android:layout_width="wrap_content"&ndash;&gt;-->
+            <!--&lt;!&ndash;android:layout_height="wrap_content"&ndash;&gt;-->
+            <!--&lt;!&ndash;android:src="@drawable/back_arrow"/>&ndash;&gt;-->
+
+        <!--<TextView-->
+            <!--style="@style/st_16_white"-->
             <!--android:layout_width="wrap_content"-->
             <!--android:layout_height="wrap_content"-->
-            <!--android:src="@drawable/back_arrow"/>-->
+            <!--android:layout_centerHorizontal="true"-->
+            <!--android:layout_centerInParent="true"-->
+            <!--android:text="@string/begining" />-->
 
-        <TextView
-            style="@style/st_16_white"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_centerInParent="true"
-            android:text="@string/begining" />
+        <!--<ImageView-->
+            <!--android:id="@+id/question"-->
+            <!--android:layout_width="@dimen/h_button"-->
+            <!--android:layout_height="@dimen/h_button"-->
+            <!--android:layout_marginRight="@dimen/pad_10"-->
+            <!--android:layout_alignParentRight="true"-->
+            <!--android:src="@drawable/question" />-->
 
-        <ImageView
-            android:id="@+id/question"
-            android:layout_width="@dimen/h_button"
-            android:layout_height="@dimen/h_button"
-            android:layout_marginRight="@dimen/pad_10"
-            android:layout_alignParentRight="true"
-            android:src="@drawable/question" />
+    <!--</RelativeLayout>-->
 
-    </RelativeLayout>
+    <!--<TextView-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_marginTop="@dimen/pad_40"-->
+        <!--android:layout_marginLeft="@dimen/pad_30"-->
+        <!--android:layout_marginRight="@dimen/pad_30"-->
+        <!--style="@style/st_16_black"-->
+        <!--android:text="@string/number_phone"/>-->
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/pad_40"
-        android:layout_marginLeft="@dimen/pad_30"
-        android:layout_marginRight="@dimen/pad_30"
-        style="@style/st_16_black"
-        android:text="@string/number_phone"/>
+    <!--&lt;!&ndash;<net.ukr.jura.fuelcompon.tools.PhoneEdit&ndash;&gt;-->
+        <!--&lt;!&ndash;android:id="@+id/phone"&ndash;&gt;-->
+        <!--&lt;!&ndash;android:layout_width="match_parent"&ndash;&gt;-->
+        <!--&lt;!&ndash;android:layout_height="wrap_content"&ndash;&gt;-->
+        <!--&lt;!&ndash;android:layout_marginLeft="@dimen/pad_30"&ndash;&gt;-->
+        <!--&lt;!&ndash;android:layout_marginRight="@dimen/pad_30"&ndash;&gt;-->
+        <!--&lt;!&ndash;android:layout_marginTop="@dimen/pad_10"/>&ndash;&gt;-->
+    <!--&lt;!&ndash;<LinearLayout&ndash;&gt;-->
+        <!--&lt;!&ndash;android:layout_width="match_parent"&ndash;&gt;-->
+        <!--&lt;!&ndash;android:layout_height="wrap_content"&ndash;&gt;-->
+        <!--&lt;!&ndash;android:theme="@style/BaseEditTextStyle">&ndash;&gt;-->
 
-    <!--<net.ukr.jura.fuelcompon.tools.PhoneEdit-->
+        <!--&lt;!&ndash;<net.ukr.jura.compon.custom_components.EditTextMask&ndash;&gt;-->
+            <!--&lt;!&ndash;android:layout_width="match_parent"&ndash;&gt;-->
+            <!--&lt;!&ndash;android:layout_height="wrap_content"&ndash;&gt;-->
+            <!--&lt;!&ndash;android:layout_marginLeft="@dimen/pad_30"&ndash;&gt;-->
+            <!--&lt;!&ndash;android:layout_marginRight="@dimen/pad_30"&ndash;&gt;-->
+            <!--&lt;!&ndash;android:layout_marginTop="@dimen/pad_10"&ndash;&gt;-->
+            <!--&lt;!&ndash;android:inputType="number"&ndash;&gt;-->
+            <!--&lt;!&ndash;android:textColor="@color/primary_dark"&ndash;&gt;-->
+            <!--&lt;!&ndash;android:textColorHint="@color/accent"&ndash;&gt;-->
+            <!--&lt;!&ndash;android:textSize="@dimen/pad_20"&ndash;&gt;-->
+            <!--&lt;!&ndash;app:mask="+38 ___ ___ __ __" />&ndash;&gt;-->
+    <!--&lt;!&ndash;</LinearLayout>&ndash;&gt;-->
+
+    <!--<net.ukr.jura.compon.custom_components.EditPhone-->
         <!--android:id="@+id/phone"-->
         <!--android:layout_width="match_parent"-->
         <!--android:layout_height="wrap_content"-->
         <!--android:layout_marginLeft="@dimen/pad_30"-->
         <!--android:layout_marginRight="@dimen/pad_30"-->
-        <!--android:layout_marginTop="@dimen/pad_10"/>-->
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:theme="@style/BaseEditTextStyle">
+        <!--android:layout_marginTop="@dimen/pad_10"-->
+        <!--android:theme="@style/BaseEditTextStyle"-->
+        <!--android:inputType="number"-->
+        <!--android:textColor="@color/primary"-->
+        <!--android:textColorHint="@color/accent"-->
+        <!--android:textSize="20dp"-->
+        <!--app:mask="+38 ___ ___ __ __"-->
+        <!--app:imageId="@drawable/del"-->
+        <!--app:heightLine="5dp"-->
+        <!--app:selectorLine="@drawable/selector_edit_text"/>-->
 
-        <net.ukr.jura.compon.custom_components.EditTextMask
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/pad_30"
-            android:layout_marginRight="@dimen/pad_30"
-            android:layout_marginTop="@dimen/pad_10"
-            android:inputType="number"
-            android:textColor="@color/primary_dark"
-            android:textColorHint="@color/accent"
-            android:textSize="@dimen/pad_20"
-            app:mask="+38 ___ ___ __ __" />
-    </LinearLayout>
+    <!--<TextView-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_marginTop="@dimen/pad_18"-->
+        <!--android:layout_marginLeft="@dimen/pad_30"-->
+        <!--android:layout_marginRight="@dimen/pad_30"-->
+        <!--style="@style/st_14_black_50_sp8"-->
+        <!--android:text="@string/info_phone"/>-->
 
-    <net.ukr.jura.compon.custom_components.EditPhone
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="@dimen/pad_30"
-        android:layout_marginRight="@dimen/pad_30"
-        android:layout_marginTop="@dimen/pad_10"
-        android:theme="@style/BaseEditTextStyle"
-        android:inputType="number"
-        android:textColor="@color/primary"
-        android:textColorHint="@color/accent"
-        android:textSize="20dp"
-        app:mask="+38 ___ ___ __ __"
-        app:imageId="@drawable/del"
-        app:heightLine="5dp"
-        app:selectorLine="@drawable/selector_edit_text"/>
-    <net.ukr.jura.compon.custom_components.EditPhone
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="@dimen/pad_30"
-        android:layout_marginRight="@dimen/pad_30"
-        android:layout_marginTop="@dimen/pad_10"
-        android:theme="@style/BaseEditTextStyle"
-        android:inputType="number"
-        android:textColor="@color/primary"
-        android:textColorHint="@color/accent"
-        android:textSize="30dp"
-        app:mask="+38 ___ ___ __ __"
-        app:imageId="@drawable/del"
-        app:heightLine="5dp"
-        app:selectorLine="@drawable/selector_edit_text"/>
-    <net.ukr.jura.compon.custom_components.EditPhone
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="@dimen/pad_30"
-        android:layout_marginRight="@dimen/pad_30"
-        android:layout_marginTop="@dimen/pad_10"
-        android:theme="@style/BaseEditTextStyle"
-        android:inputType="number"
-        android:textColor="@color/primary"
-        android:textColorHint="@color/accent"
-        android:textSize="40dp"
-        app:mask="+38 ___ ___ __ __"
-        app:imageId="@drawable/del"
-        app:heightLine="5dp"
-        app:selectorLine="@drawable/selector_edit_text"/>
-    <net.ukr.jura.compon.custom_components.EditPhone
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="@dimen/pad_30"
-        android:layout_marginRight="@dimen/pad_30"
-        android:layout_marginTop="@dimen/pad_10"
-        android:theme="@style/BaseEditTextStyle"
-        android:inputType="number"
-        android:textColor="@color/primary"
-        android:textColorHint="@color/accent"
-        android:textSize="50dp"
-        app:mask="+38 ___ ___ __ __"
-        app:imageId="@drawable/del"
-        app:heightLine="5dp"
-        app:selectorLine="@drawable/selector_edit_text"/>
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/pad_18"
-        android:layout_marginLeft="@dimen/pad_30"
-        android:layout_marginRight="@dimen/pad_30"
-        style="@style/st_14_black_50_sp8"
-        android:text="@string/info_phone"/>
+    <!--<TextView-->
+        <!--android:id="@+id/done"-->
+        <!--style="@style/st_button"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="@dimen/h_bottom"-->
+        <!--android:layout_marginLeft="@dimen/pad_30"-->
+        <!--android:layout_marginRight="@dimen/pad_30"-->
+        <!--android:layout_marginTop="@dimen/pad_72"-->
+        <!--android:background="@drawable/selector_button"-->
+        <!--android:elevation="@dimen/pad_6"-->
+        <!--android:gravity="center"-->
+        <!--android:enabled="false"-->
+        <!--android:text="@string/contin"/>-->
 
 </LinearLayout>

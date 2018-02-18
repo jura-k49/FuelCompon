@@ -1,7 +1,6 @@
-package net.ukr.jura.compon.components;
+package net.ukr.jura.compon.param;
 
 import net.ukr.jura.compon.ComponGlob;
-import net.ukr.jura.compon.interfaces_classes.FilterParam;
 import net.ukr.jura.compon.interfaces_classes.Filters;
 import net.ukr.jura.compon.json_simple.Field;
 import net.ukr.jura.compon.json_simple.Record;

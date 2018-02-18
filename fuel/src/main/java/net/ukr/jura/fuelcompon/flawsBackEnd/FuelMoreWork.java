@@ -47,6 +47,11 @@ public class FuelMoreWork extends MoreWork{
             }
         }
         Record record;
+        if (lrN.size() == 0) {
+            record = new Record();
+            record.add(new Field("type", Field.TYPE_INTEGER, 2));
+            lrN.add(record);
+        }
         record = new Record();
         record.add(new Field("type", Field.TYPE_INTEGER, 1));
         record.add(new Field("awaits_payment", Field.TYPE_INTEGER, payment));
@@ -58,7 +63,7 @@ public class FuelMoreWork extends MoreWork{
 
     private void awaits_payment(Field response) {
         ListRecords lr = (ListRecords) response.value;
-        int payment = 0, pending = 0;
+//        int payment = 0, pending = 0;
         ListRecords lrN = new ListRecords();
         for (Record rec : lr) {
             String status = rec.getString("status");

@@ -16,12 +16,14 @@ import net.ukr.jura.compon.functions_fragment.ComponentsFragment;
 import net.ukr.jura.compon.interfaces_classes.IBase;
 import net.ukr.jura.compon.json_simple.Field;
 import net.ukr.jura.compon.json_simple.ListRecords;
+import net.ukr.jura.compon.json_simple.WorkWithRecordsAndViews;
+import net.ukr.jura.compon.param.ParamComponent;
 import net.ukr.jura.compon.tools.StaticVM;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class ComponentPagerF extends BaseComponent {
+public class PagerFComponent extends BaseComponent {
     ViewPager pager;
     ListRecords listData;
     PagerIndicator indicator;
@@ -33,7 +35,7 @@ public class ComponentPagerF extends BaseComponent {
     private TabLayout tabLayout;
     private Adapter adapter;
 
-    public ComponentPagerF(IBase iBase, ParamComponent paramMV) {
+    public PagerFComponent(IBase iBase, ParamComponent paramMV) {
         super(iBase, paramMV);
     }
 

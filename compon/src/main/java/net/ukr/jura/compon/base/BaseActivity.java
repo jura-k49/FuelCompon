@@ -15,7 +15,7 @@ import com.google.android.gms.common.api.GoogleApiClient;
 
 import net.ukr.jura.compon.ComponGlob;
 import net.ukr.jura.compon.R;
-import net.ukr.jura.compon.components.ComponentMap;
+import net.ukr.jura.compon.components.MapComponent;
 import net.ukr.jura.compon.dialogs.DialogTools;
 import net.ukr.jura.compon.functions_fragment.ComponentsFragment;
 import net.ukr.jura.compon.interfaces_classes.EventComponent;
@@ -28,7 +28,6 @@ import net.ukr.jura.compon.json_simple.ListRecords;
 import net.ukr.jura.compon.json_simple.Record;
 import net.ukr.jura.compon.json_simple.SimpleRecordToJson;
 import net.ukr.jura.compon.tools.Constants;
-import net.ukr.jura.compon.tools.PreferenceTool;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -53,7 +52,7 @@ public abstract class BaseActivity extends FragmentActivity implements IBase {
     public List<ParentModel> parentModelList;
     private Bundle savedInstanceState;
     private GoogleApiClient googleApiClient;
-    private ComponentMap componentMap;
+    private MapComponent mapComponent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,6 +62,7 @@ public abstract class BaseActivity extends FragmentActivity implements IBase {
         mapFragment = ComponGlob.getInstance().MapScreen;
         countProgressStart = 0;
         listInternetProvider = new ArrayList<>();
+        listEvent = new ArrayList<>();
 //        PreferenceTool.setUserKey("3d496f249f157fdea7681704abf2b4d74b20c619a3e979dc790c43dc27c26aa6");
         mComponent = getScreen();
         if (mComponent == null) {
@@ -107,8 +107,8 @@ public abstract class BaseActivity extends FragmentActivity implements IBase {
     }
 
     @Override
-    public void setComponentMap(ComponentMap componentMap) {
-        this.componentMap = componentMap;
+    public void setMapComponent(MapComponent mapComponent) {
+        this.mapComponent = mapComponent;
     }
 
     @Override
@@ -116,8 +116,8 @@ public abstract class BaseActivity extends FragmentActivity implements IBase {
                                            @NonNull int[] grantResults) {
         if (requestCode == Constants.MAP_PERMISSION_REQUEST_CODE && grantResults.length > 0) {
             if (grantResults[0] == PackageManager.PERMISSION_GRANTED
-                    && componentMap != null) {
-                componentMap.locationSettings();
+                    && mapComponent != null) {
+                mapComponent.locationSettings();
             }
         }
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
@@ -128,7 +128,7 @@ public abstract class BaseActivity extends FragmentActivity implements IBase {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == Constants.MAP_REQUEST_CHECK_SETTINGS) {
             if (resultCode == RESULT_OK) {
-                componentMap.setLocationServices();
+                mapComponent.setLocationServices();
             }
         }
     }
@@ -440,6 +440,13 @@ public abstract class BaseActivity extends FragmentActivity implements IBase {
     }
 
     @Override
+    public void addEvent(int[] senderList, BaseComponent receiver) {
+        for (int sender : senderList) {
+            listEvent.add(new EventComponent(sender, receiver));
+        }
+    }
+
+    @Override
     public void sendEvent(int sender) {
         for (EventComponent ev : listEvent) {
             if (ev.eventSenderId == sender) {
@@ -449,10 +456,10 @@ public abstract class BaseActivity extends FragmentActivity implements IBase {
     }
 
     @Override
-    public void sendEvent(int sender, Object paramEvent) {
+    public void sendActualEvent(int sender, Object paramEvent) {
         for (EventComponent ev : listEvent) {
             if (ev.eventSenderId == sender) {
-                ev.eventReceiverComponent.actual(paramEvent);
+                ev.eventReceiverComponent.actualEvent(sender, paramEvent);
             }
         }
     }

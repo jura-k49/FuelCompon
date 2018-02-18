@@ -8,10 +8,10 @@ import android.text.Spanned;
 import android.text.TextWatcher;
 import android.text.style.ForegroundColorSpan;
 import android.util.AttributeSet;
-import android.util.Log;
 
 import net.ukr.jura.compon.R;
 import net.ukr.jura.compon.interfaces_classes.IComponent;
+import net.ukr.jura.compon.interfaces_classes.OnChangeStatusListener;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,6 +27,9 @@ public class EditTextMask extends android.support.v7.widget.AppCompatEditText im
     private int lenPref;
     private String textPref;
     private String oldStr;
+    private OnChangeStatusListener statusListener;
+    private Integer status = new Integer(-1);
+    private boolean isNoBlank, isValid, isTimeOut;
 
     public EditTextMask(Context context) {
         super(context);
@@ -59,6 +62,7 @@ public class EditTextMask extends android.support.v7.widget.AppCompatEditText im
         hintColor = getCurrentHintTextColor();
         textColor = getCurrentTextColor();
         maskProcessing();
+        isNoBlank = isValid = isTimeOut = false;
         oldStr = formText("");;
         setSpan(oldStr);
         setSelection(oldStr.length());
@@ -241,6 +245,28 @@ public class EditTextMask extends android.support.v7.widget.AppCompatEditText im
                 return;
             }
             String origin = stripText(st);
+            if (origin.length() == 0) {
+                if (isNoBlank) {
+                    isNoBlank = false;
+                    setEvent(0);
+                }
+            } else {
+                if ( ! isNoBlank) {
+                    isNoBlank = true;
+                    setEvent(1);
+                }
+            }
+            if (origin.length() >= lenOriginText) {
+                if ( ! isValid) {
+                    isValid = true;
+                    setEvent(3);
+                }
+            } else {
+                if (isValid) {
+                    isValid = false;
+                    setEvent(2);
+                }
+            }
             if (origin.length() > lenOriginText) {
                 setSpan(oldStr);
                 if (sel > oldStr.length()) {
@@ -269,6 +295,13 @@ public class EditTextMask extends android.support.v7.widget.AppCompatEditText im
         }
     }
 
+    private void setEvent(int stat) {
+        if (statusListener != null) {
+            status = stat;
+            statusListener.changeStatus(this, status);
+        }
+    }
+
     private void setSpan(String text) {
         if (lenPref > 0) {
             SpannableString ss;
@@ -278,6 +311,17 @@ public class EditTextMask extends android.support.v7.widget.AppCompatEditText im
         } else {
             setText(text);
         }
+    }
+
+    @Override
+    public void setOnChangeStatusListener(OnChangeStatusListener statusListener) {
+        this.statusListener = statusListener;
+    }
+
+    @Override
+    public String getString() {
+        String st = stripNumber(getText().toString());
+        return st;
     }
 
     private class MaskElem {

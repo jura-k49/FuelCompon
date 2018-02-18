@@ -12,14 +12,15 @@ import net.ukr.jura.compon.base.BaseProviderAdapter;
 import net.ukr.jura.compon.interfaces_classes.IBase;
 import net.ukr.jura.compon.json_simple.Field;
 import net.ukr.jura.compon.json_simple.ListRecords;
+import net.ukr.jura.compon.param.ParamComponent;
 import net.ukr.jura.compon.tools.StaticVM;
 
-public class ComponentRecycler extends BaseComponent {
+public class RecyclerComponent extends BaseComponent {
     RecyclerView recycler;
     ListRecords listData;
     BaseProviderAdapter adapter;
 
-    public ComponentRecycler(IBase iBase, ParamComponent paramMV) {
+    public RecyclerComponent(IBase iBase, ParamComponent paramMV) {
         super(iBase, paramMV);
     }
 
@@ -32,6 +33,7 @@ public class ComponentRecycler extends BaseComponent {
         }
         if (recycler == null) {
             Log.i("SMPL", "Не найден RecyclerView в " + paramMV.nameParentComponent);
+            return;
         }
         listData = new ListRecords();
         provider = new BaseProvider(listData);

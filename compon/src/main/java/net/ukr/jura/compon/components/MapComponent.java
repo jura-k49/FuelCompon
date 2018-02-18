@@ -41,12 +41,14 @@ import net.ukr.jura.compon.interfaces_classes.IBase;
 import net.ukr.jura.compon.json_simple.Field;
 import net.ukr.jura.compon.json_simple.ListRecords;
 import net.ukr.jura.compon.json_simple.Record;
+import net.ukr.jura.compon.param.ParamComponent;
+import net.ukr.jura.compon.param.ParamMap;
 import net.ukr.jura.compon.tools.Constants;
 import net.ukr.jura.compon.tools.StaticVM;
 
 import static android.content.Context.LOCATION_SERVICE;
 
-public class ComponentMap extends BaseComponent {
+public class MapComponent extends BaseComponent {
 
     protected MapView mapView;
     protected ListRecords listData;
@@ -64,7 +66,7 @@ public class ComponentMap extends BaseComponent {
     private MarkerOptions myMarker;
     private double ofset = 0;
 
-    public ComponentMap(IBase iBase, ParamComponent paramMV) {
+    public MapComponent(IBase iBase, ParamComponent paramMV) {
         super(iBase, paramMV);
     }
 
@@ -79,7 +81,7 @@ public class ComponentMap extends BaseComponent {
             Log.i("SMPL", "Не найден MapView в " + paramMV.nameParentComponent);
         }
         baseActivity = iBase.getBaseActivity();
-        baseActivity.setComponentMap(this);
+        baseActivity.setMapComponent(this);
         listData = new ListRecords();
         paramMap = paramMV.paramMap;
         if (paramMap.locationService) {

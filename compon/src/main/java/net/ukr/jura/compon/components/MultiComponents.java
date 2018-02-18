@@ -2,6 +2,10 @@ package net.ukr.jura.compon.components;
 
 import net.ukr.jura.compon.interfaces_classes.IBase;
 import net.ukr.jura.compon.interfaces_classes.Navigator;
+import net.ukr.jura.compon.param.ParamComponent;
+import net.ukr.jura.compon.param.ParamMap;
+import net.ukr.jura.compon.param.ParamModel;
+import net.ukr.jura.compon.param.ParamView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -169,6 +173,27 @@ public class MultiComponents <T>{
         return this;
     }
 
+    public MultiComponents addEditPhoneComponent(int viewId) {
+        ParamComponent paramComponent = new ParamComponent();
+        paramComponent.type = ParamComponent.TC.PHONE;
+        paramComponent.paramView = new ParamView(viewId);
+        listComponents.add(paramComponent);
+        return this;
+    }
+
+    public MultiComponents addButtonComponent(int viewId,
+                                              Navigator navigator,
+                                              int... mustValid) {
+        ParamComponent paramComponent = new ParamComponent();
+        paramComponent.type = ParamComponent.TC.BUTTON;
+        paramComponent.mustValid = mustValid;
+        paramComponent.paramView = new ParamView(viewId);
+        paramComponent.navigator = navigator;
+        listComponents.add(paramComponent);
+        return this;
+
+    }
+
     public MultiComponents addNavigator(Navigator navigator) {
         this.navigator = navigator;
         return this;
@@ -185,48 +210,54 @@ public class MultiComponents <T>{
 //            Log.d("QWERT","___initComponents TYPE="+cMV.type+" PARENT="+cMV.nameParentComponent);
             switch (cMV.type) {
                 case PANEL :
-                    new ComponentPanel(iBase, cMV);
+                    new PanelComponent(iBase, cMV);
                     break;
                 case PANEL_MULTI :
-                    new ComponentMultiPanel(iBase, cMV);
+                    new MultiPanelComponent(iBase, cMV);
                     break;
                 case PANEL_ENTER:
-                    new ComponentEnterPanel(iBase, cMV);
+                    new EnterPanelComponent(iBase, cMV);
                     break;
                 case SPINNER :
-                    new ComponentSpinner(iBase, cMV);
+                    new SpinnerComponent(iBase, cMV);
                     break;
                 case RECYCLER_EXPANDED:
                 case RECYCLER_STICKY:
                 case RECYCLER :
                 case RECYCLER_HORIZONTAL :
                 case RECYCLER_GRID :
-                    new ComponentRecycler(iBase, cMV);
+                    new RecyclerComponent(iBase, cMV);
                     break;
                 case SPLASH :
-                    new ComponentSplash(iBase, cMV);
+                    new SplashComponent(iBase, cMV);
                     break;
                 case MENU :
-                    new ComponentMenu(iBase, cMV);
+                    new MenuComponent(iBase, cMV);
                     break;
                 case STATIC_LIST :
-                    new ComponentStaticList(iBase, cMV);
+                    new StaticListComponent(iBase, cMV);
                     break;
                 case PAGER_V:
-                    new ComponentPagerV(iBase, cMV);
+                    new PagerVComponent(iBase, cMV);
                     break;
                 case PAGER_F:
-                    new ComponentPagerF(iBase, cMV);
+                    new PagerFComponent(iBase, cMV);
                     break;
                 case MODEL:
-                    new ComponentModel(iBase, cMV);
+                    new ModelComponent(iBase, cMV);
                     break;
                 case CONTAINER:
-                    new ComponentContainer(iBase, cMV);
+                    new ContainerComponent(iBase, cMV);
                     break;
                 case MAP:
-                    new ComponentMap(iBase, cMV);
+                    new MapComponent(iBase, cMV);
                     break;
+//                case BUTTON:
+//                    new ButtonComponent(iBase, cMV);
+//                    break;
+//                case PHONE:
+//                    new EditPhoneComponent(iBase, cMV);
+//                    break;
             }
             cMV.baseComponent.init();
         }

@@ -5,12 +5,13 @@ import android.widget.EditText;
 import net.ukr.jura.compon.base.BaseComponent;
 import net.ukr.jura.compon.interfaces_classes.IBase;
 import net.ukr.jura.compon.json_simple.Field;
+import net.ukr.jura.compon.param.ParamComponent;
 
-public class ComponentSearch extends BaseComponent {
+public class SearchComponent extends BaseComponent {
 
     EditText search;
 
-    public ComponentSearch(IBase iBase, ParamComponent paramMV) {
+    public SearchComponent(IBase iBase, ParamComponent paramMV) {
         super(iBase, paramMV);
     }
 

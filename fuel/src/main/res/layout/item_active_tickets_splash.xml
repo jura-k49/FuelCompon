@@ -1,44 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
-    <android.support.v7.widget.RecyclerView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/recycler"/>
-    <LinearLayout
-        android:id="@+id/splash"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/white"
-        android:orientation="vertical"
-        android:visibility="gone">
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/h_bottom"
-            android:layout_marginTop="@dimen/pad_30"
-            android:layout_marginRight="@dimen/pad_30"
-            android:layout_marginLeft="@dimen/pad_30"
-            android:gravity="center"
-            android:background="@drawable/selector_button_enabled"
-            style="@style/st_button"
-            android:text="@string/pay_tickets"/>
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/pad_30"
-            android:gravity="center_horizontal"
-            style="@style/st_16_black_6"
-            android:text="@string/splash_text"/>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:layout_marginTop="@dimen/pad_30"
-            android:background="@color/f1"
-            android:paddingLeft="@dimen/pad_30"
-            android:paddingRight="@dimen/pad_30">
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/f1"
+    android:paddingLeft="@dimen/pad_30"
+    android:paddingRight="@dimen/pad_30">
 
             <TextView
                 android:id="@+id/t1"
@@ -52,7 +20,7 @@
                 android:textSize="@dimen/pad_24" />
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="@dimen/pad_78"
                 android:orientation="horizontal">
                 <RelativeLayout
                     android:layout_width="match_parent"
@@ -105,16 +73,22 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1">
+                    <LinearLayout
+                        android:layout_width="@dimen/pad_1"
+                        android:layout_height="match_parent"
+                        android:background="@color/silver"/>
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/splash_text_3"
+                        android:layout_marginLeft="@dimen/pad_60"
                         android:textColor="@color/black"
                         android:textSize="@dimen/pad_16" />
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/pad_48"
+                        android:layout_marginLeft="@dimen/pad_60"
                         android:gravity="bottom"
                         android:orientation="horizontal">
 
@@ -145,8 +119,5 @@
                             android:textStyle="bold" />
                     </LinearLayout>
                 </RelativeLayout>
-               </LinearLayout>
-        </LinearLayout>
-     </LinearLayout>
-
-</RelativeLayout>
+            </LinearLayout>
+</LinearLayout>

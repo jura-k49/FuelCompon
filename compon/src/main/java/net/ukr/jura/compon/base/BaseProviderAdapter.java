@@ -7,14 +7,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import net.ukr.jura.compon.interfaces_classes.MoreWork;
 import net.ukr.jura.compon.interfaces_classes.Navigator;
 import net.ukr.jura.compon.interfaces_classes.ViewHandler;
 import net.ukr.jura.compon.interfaces_classes.Visibility;
 import net.ukr.jura.compon.json_simple.Field;
 import net.ukr.jura.compon.json_simple.Record;
-import net.ukr.jura.compon.components.ParamView;
-import net.ukr.jura.compon.components.WorkWithRecordsAndViews;
+import net.ukr.jura.compon.param.ParamView;
+import net.ukr.jura.compon.json_simple.WorkWithRecordsAndViews;
 
 public class BaseProviderAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
     private int[] layoutItemId;

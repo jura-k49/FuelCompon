@@ -8,6 +8,7 @@ import android.widget.TextView;
 
 import net.ukr.jura.compon.R;
 import net.ukr.jura.compon.interfaces_classes.IComponent;
+import net.ukr.jura.compon.interfaces_classes.OnChangeStatusListener;
 import net.ukr.jura.compon.tools.StaticVM;
 
 import java.text.SimpleDateFormat;
@@ -77,6 +78,16 @@ public class SimpleTextView extends android.support.v7.widget.AppCompatTextView
     @Override
     public Object getData() {
         return null;
+    }
+
+    @Override
+    public void setOnChangeStatusListener(OnChangeStatusListener statusListener) {
+
+    }
+
+    @Override
+    public String getString() {
+        return getText().toString();
     }
 
     public Calendar stringToDate(String st) {

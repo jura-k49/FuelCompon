@@ -8,8 +8,8 @@ import android.widget.BaseAdapter;
 
 import net.ukr.jura.compon.base.BaseProvider;
 import net.ukr.jura.compon.json_simple.Record;
-import net.ukr.jura.compon.components.ParamComponent;
-import net.ukr.jura.compon.components.WorkWithRecordsAndViews;
+import net.ukr.jura.compon.param.ParamComponent;
+import net.ukr.jura.compon.json_simple.WorkWithRecordsAndViews;
 
 public class SpinnerAdapter extends BaseAdapter {
     private ParamComponent mSpinner;

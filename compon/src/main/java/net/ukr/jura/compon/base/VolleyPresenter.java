@@ -16,7 +16,7 @@ import net.ukr.jura.compon.interfaces_classes.VolleyListener;
 import net.ukr.jura.compon.json_simple.Field;
 import net.ukr.jura.compon.json_simple.JsonSimple;
 import net.ukr.jura.compon.json_simple.Record;
-import net.ukr.jura.compon.components.ParamModel;
+import net.ukr.jura.compon.param.ParamModel;
 import net.ukr.jura.compon.network.SimpleRequest;
 import net.ukr.jura.compon.tools.PreferenceTool;
 import net.ukr.jura.compon.volley.VolleyProvider;

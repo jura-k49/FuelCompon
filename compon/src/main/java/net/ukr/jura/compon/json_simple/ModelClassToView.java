@@ -1,4 +1,4 @@
-package net.ukr.jura.compon.components;
+package net.ukr.jura.compon.json_simple;
 
 import android.util.Log;
 import android.view.View;

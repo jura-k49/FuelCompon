@@ -12,6 +12,7 @@ import android.widget.RelativeLayout;
 
 import net.ukr.jura.compon.R;
 import net.ukr.jura.compon.interfaces_classes.IComponent;
+import net.ukr.jura.compon.interfaces_classes.OnChangeStatusListener;
 
 public class EditPhone extends RelativeLayout implements IComponent{
 
@@ -99,4 +100,15 @@ public class EditPhone extends RelativeLayout implements IComponent{
     public Object getData() {
         return editTextMask.getData();
     }
+
+    @Override
+    public void setOnChangeStatusListener(OnChangeStatusListener statusListener) {
+        editTextMask.setOnChangeStatusListener(statusListener);
+    }
+
+    @Override
+    public String getString() {
+        return editTextMask.getString();
+    }
+
 }

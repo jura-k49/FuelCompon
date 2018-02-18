@@ -22,7 +22,7 @@
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:layout_centerInParent="true"
-            android:text="@string/orders" />
+            android:text="@string/unpaid_orders" />
 
         <LinearLayout
             android:id="@+id/question"

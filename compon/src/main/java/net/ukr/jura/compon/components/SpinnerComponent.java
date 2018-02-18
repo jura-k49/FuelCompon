@@ -12,8 +12,9 @@ import net.ukr.jura.compon.interfaces_classes.IBase;
 import net.ukr.jura.compon.json_simple.Field;
 import net.ukr.jura.compon.json_simple.ListRecords;
 import net.ukr.jura.compon.json_simple.Record;
+import net.ukr.jura.compon.param.ParamComponent;
 
-public class ComponentSpinner extends BaseComponent {
+public class SpinnerComponent extends BaseComponent {
     Spinner spinner;
     ListRecords listSpinner;
 
@@ -46,7 +47,7 @@ public class ComponentSpinner extends BaseComponent {
         });
     }
 
-    public ComponentSpinner(IBase iBase, ParamComponent paramMV) {
+    public SpinnerComponent(IBase iBase, ParamComponent paramMV) {
         super(iBase, paramMV);
     }
 }

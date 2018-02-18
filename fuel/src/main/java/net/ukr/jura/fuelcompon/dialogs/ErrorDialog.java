@@ -1,5 +1,6 @@
 package net.ukr.jura.fuelcompon.dialogs;
 
+import android.app.Dialog;
 import android.app.DialogFragment;
 import android.os.Bundle;
 import android.os.Handler;
@@ -18,6 +19,7 @@ public class ErrorDialog extends DialogFragment implements IErrorDialog {
 
     private TextView title;
     private TextView message;
+    private View cancel;
     private View.OnClickListener listener;
     private int count;
 
@@ -27,28 +29,31 @@ public class ErrorDialog extends DialogFragment implements IErrorDialog {
 
     private View parentLayout;
 
+    @Override
+    public void onStart() {
+        super.onStart();
+        Dialog dialog = getDialog();
+        if (dialog != null) {
+            dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT,
+                    ViewGroup.LayoutParams.MATCH_PARENT);
+        }
+    }
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         parentLayout = inflater.inflate(R.layout.dialog_error, container, false);
         title = (TextView) parentLayout.findViewById(R.id.title);
         message = (TextView) parentLayout.findViewById(R.id.message);
-        Log.d("QWERT","title="+titl+" message="+mes);
+        cancel = parentLayout.findViewById(R.id.cancel);
+        cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dismiss();
+            }
+        });
         count = 0;
         handler.postDelayed(whiteTitle, 50);
-//        if (title != null) {
-//            title.setText(titl);
-//            message.setText(mes);
-//        }
-//        parentLayout.findViewById(R.id.cancel).setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                dismiss();
-//                if (listener != null) {
-//                    listener.onClick(view);
-//                }
-//            }
-//        });
         return parentLayout;
     }
 
@@ -57,13 +62,11 @@ public class ErrorDialog extends DialogFragment implements IErrorDialog {
     Runnable whiteTitle = new Runnable() {
         @Override
         public void run() {
-            Log.d("QWERT","title="+title+" message="+message+" count="+count);
             if (title == null || message == null) {
                 if (count >= 10) return;
                 count++;
-                handler.postDelayed(whiteTitle, 50);
+                handler.postDelayed(whiteTitle, 150);
             } else {
-                Log.d("QWERT","title=+++++++++++++++++++++++++");
                 title.setText(titl);
                 message.setText(mes);
             }

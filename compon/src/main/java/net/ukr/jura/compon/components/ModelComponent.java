@@ -4,8 +4,9 @@ import net.ukr.jura.compon.base.BaseComponent;
 import net.ukr.jura.compon.interfaces_classes.IBase;
 import net.ukr.jura.compon.interfaces_classes.ParentModel;
 import net.ukr.jura.compon.json_simple.Field;
+import net.ukr.jura.compon.param.ParamComponent;
 
-public class ComponentModel extends BaseComponent {
+public class ModelComponent extends BaseComponent {
 
     @Override
     public void initView() {
@@ -21,7 +22,7 @@ public class ComponentModel extends BaseComponent {
         }
     }
 
-    public ComponentModel(IBase iBase, ParamComponent paramMV) {
+    public ModelComponent(IBase iBase, ParamComponent paramMV) {
         super(iBase, paramMV);
     }
 }

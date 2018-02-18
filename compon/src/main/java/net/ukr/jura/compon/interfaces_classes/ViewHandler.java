@@ -1,12 +1,12 @@
 package net.ukr.jura.compon.interfaces_classes;
 
-import net.ukr.jura.compon.components.ParamModel;
+import net.ukr.jura.compon.param.ParamModel;
 
 public class ViewHandler {
     public int viewId;
     public enum TYPE {NAME_FRAGMENT, CLOSE_DRAWER, MODEL_PARAM,
         BACK, PREFERENCE_SET_VALUE, PAGER_PLUS,
-        FIELD_WITH_NAME_FRAGMENT, SELECT,
+        FIELD_WITH_NAME_FRAGMENT, SELECT, SEND_BACK_SCREEN,
         SEND_UPDATE, SEND_CHANGE_BACK}
     public TYPE type;
     public String nameFragment;
@@ -19,6 +19,9 @@ public class ViewHandler {
     public boolean pref_value_boolean;
     public String pref_value_string;
     public String namePreference;
+    public int[] mustValid;
+    public boolean changeEnabled;
+    public boolean[] validArray;
 
     public ViewHandler(String nameField) {
         type = TYPE.FIELD_WITH_NAME_FRAGMENT;
@@ -49,6 +52,23 @@ public class ViewHandler {
     public ViewHandler(int viewId, TYPE type, ParamModel paramModel) {
         this.type = type;
         this.viewId = viewId;
+        this.paramModel = paramModel;
+    }
+
+    public ViewHandler(int viewId, TYPE type, ParamModel paramModel, String nameScreen) {
+        this.type = type;
+        this.viewId = viewId;
+        this.nameFragment = nameScreen;
+        this.paramModel = paramModel;
+    }
+
+    public ViewHandler(int viewId, TYPE type, ParamModel paramModel,
+                       String nameScreen, boolean changeEnabled, int... mustValid) {
+        this.type = type;
+        this.viewId = viewId;
+        this.nameFragment = nameScreen;
+        this.mustValid = mustValid;
+        this.changeEnabled = changeEnabled;
         this.paramModel = paramModel;
     }
 

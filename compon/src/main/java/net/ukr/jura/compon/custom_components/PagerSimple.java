@@ -11,9 +11,10 @@ import android.view.ViewGroup;
 
 import net.ukr.jura.compon.R;
 import net.ukr.jura.compon.interfaces_classes.IComponent;
+import net.ukr.jura.compon.interfaces_classes.OnChangeStatusListener;
 import net.ukr.jura.compon.json_simple.ListRecords;
 import net.ukr.jura.compon.json_simple.Record;
-import net.ukr.jura.compon.components.WorkWithRecordsAndViews;
+import net.ukr.jura.compon.json_simple.WorkWithRecordsAndViews;
 
 public class PagerSimple extends ViewPager implements IComponent {
     private int ITEM_LAYOUT_ID, INDICATOR;
@@ -76,6 +77,16 @@ public class PagerSimple extends ViewPager implements IComponent {
 
     @Override
     public Object getData() {
+        return null;
+    }
+
+    @Override
+    public void setOnChangeStatusListener(OnChangeStatusListener statusListener) {
+
+    }
+
+    @Override
+    public String getString() {
         return null;
     }
 

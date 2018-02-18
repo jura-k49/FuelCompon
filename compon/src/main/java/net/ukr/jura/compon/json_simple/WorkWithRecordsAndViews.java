@@ -1,4 +1,4 @@
-package net.ukr.jura.compon.components;
+package net.ukr.jura.compon.json_simple;
 
 import android.content.Context;
 import android.util.Log;
@@ -88,9 +88,15 @@ public class WorkWithRecordsAndViews {
 
     private void setRecordField(View v, String name) {
         for (Field f : recordResult) {
-            if (f.name.equals(name)&& v instanceof TextView) {
-                f.value = ((TextView) v).getText().toString();
-                break;
+            if (f.name.equals(name)) {
+                if (v instanceof IComponent) {
+                    f.value = ((IComponent) v).getString();
+                    break;
+                }
+                if (v instanceof TextView) {
+                    f.value = ((TextView) v).getText().toString();
+                    break;
+                }
             }
         }
     }
@@ -116,23 +122,23 @@ public class WorkWithRecordsAndViews {
                 }
             }
         }
+        if (visibilityManager != null && visibilityManager.length > 0) {
+            for (Visibility vis : visibilityManager) {
+                if (vis.viewId == id) {
+                    if (model.getBooleanVisibility(vis.nameField)) {
+                        v.setVisibility(View.VISIBLE);
+                    } else {
+                        v.setVisibility(View.GONE);
+                    }
+                    break;
+                }
+            }
+        }
         if (model == null) {
             return;
         }
         Field field = model.getField(name);
         if (field != null) {
-            if (visibilityManager != null && visibilityManager.length > 0) {
-                for (Visibility vis : visibilityManager) {
-                    if (vis.viewId == id) {
-                        if (model.getBooleanVisibility(vis.nameField)) {
-                            v.setVisibility(View.VISIBLE);
-                        } else {
-                            v.setVisibility(View.GONE);
-                        }
-                        break;
-                    }
-                }
-            }
             if (v instanceof IComponent) {
                 ((IComponent) v).setData(field.value);
                 return;
@@ -174,23 +180,6 @@ public class WorkWithRecordsAndViews {
                 }
                 return;
             }
-
-//            Log.d("QWERT","visibilityManager="+visibilityManager);
-//            if (visibilityManager != null && visibilityManager.length > 0) {
-//                Log.d("QWERT","ZZZZZ ++++++++++++++++++++");
-//                for (Visibility vis : visibilityManager) {
-//                    Log.d("QWERT","nameField="+vis.nameField+"< VisID="+vis.viewId+"< ID="+id+"< NAME="+name);
-//                    if (vis.viewId == id) {
-//                        if (model.getBooleanVisibility(vis.nameField)) {
-//                            v.setVisibility(View.VISIBLE);
-//                        } else {
-//                            v.setVisibility(View.GONE);
-//                        }
-//                        break;
-//                    }
-//                }
-//                Log.d("QWERT","ZZZZZ --------------------");
-//            }
         }
 
         if (v instanceof ImageView) {
@@ -220,22 +209,6 @@ public class WorkWithRecordsAndViews {
                 }
             }
         }
-
-//        Log.d("QWERT","visibilityManager="+visibilityManager);
-//        if (visibilityManager != null && visibilityManager.length > 0) {
-//            Log.d("QWERT","ZZZZZZZZZZZZZZZ");
-//            for (Visibility vis : visibilityManager) {
-//                Log.d("QWERT","nameField="+vis.nameField+"< VisID="+vis.viewId+"< ID="+id+"< NAME="+name);
-//                if (vis.viewId == id) {
-//                    if (model.getBooleanVisibility(vis.nameField)) {
-//                        v.setVisibility(View.VISIBLE);
-//                    } else {
-//                        v.setVisibility(View.GONE);
-//                    }
-//                    break;
-//                }
-//            }
-//        }
     }
 
 //    public String modelToJson(Field field) {

@@ -1,4 +1,6 @@
 package net.ukr.jura.compon.json_simple;
+import android.util.Log;
+
 import java.util.ArrayList;
 
 public class Record extends ArrayList<Field>{

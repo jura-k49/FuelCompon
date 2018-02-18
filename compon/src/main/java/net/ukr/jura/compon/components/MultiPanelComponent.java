@@ -12,16 +12,18 @@ import net.ukr.jura.compon.interfaces_classes.IBase;
 import net.ukr.jura.compon.interfaces_classes.ViewHandler;
 import net.ukr.jura.compon.json_simple.Field;
 import net.ukr.jura.compon.json_simple.Record;
+import net.ukr.jura.compon.json_simple.WorkWithRecordsAndViews;
+import net.ukr.jura.compon.param.ParamComponent;
 
 import java.util.List;
 
-public class ComponentMultiPanel extends BaseComponent {
+public class MultiPanelComponent extends BaseComponent {
 
     private WorkWithRecordsAndViews workWithRecordsAndViews = new WorkWithRecordsAndViews();
 //    private ViewGroup view;
     private LayoutInflater mInflater;
 
-    public ComponentMultiPanel(IBase iBase, ParamComponent paramMV) {
+    public MultiPanelComponent(IBase iBase, ParamComponent paramMV) {
         super(iBase, paramMV);
     }
 

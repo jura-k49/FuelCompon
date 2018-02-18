@@ -14,6 +14,7 @@ public class JsonSimple {
     private String digits = "1234567890.+-";
 
     public Field jsonToModel(String st) {
+        if (st == null) return null;
         Field res = null;
         json = st;
         indMax = st.length();

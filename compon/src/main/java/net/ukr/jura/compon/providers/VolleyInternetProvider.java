@@ -4,6 +4,7 @@ import android.util.Log;
 
 import com.android.volley.VolleyError;
 
+import net.ukr.jura.compon.ComponGlob;
 import net.ukr.jura.compon.base.BaseInternetProvider;
 import net.ukr.jura.compon.interfaces_classes.IVolleyListener;
 import net.ukr.jura.compon.tools.PreferenceTool;
@@ -24,14 +25,20 @@ public class VolleyInternetProvider extends BaseInternetProvider {
         if (data != null) {
             dataBytes = data.getBytes();
         }
-        String st = PreferenceTool.getUserKey();
-        if (st.length() > 0) {
+//        String st = PreferenceTool.getUserKey();
+//        if (st.length() > 0) {
+//            if (headers == null) {
+//                headers = new HashMap<>();
+//            }
+//            headers.put("X-Auth-Token", "bceee76d3c7d761c9ec92c286fb8bebcefb4225c311bb87e");
+//
+//        }
+        String nameToken = ComponGlob.getInstance().networkParams.nameTokenInHeader;
+        if (nameToken.length() > 0) {
             if (headers == null) {
                 headers = new HashMap<>();
             }
-//            headers.put("accept", "application/json");
             headers.put("X-Auth-Token", "bceee76d3c7d761c9ec92c286fb8bebcefb4225c311bb87e");
-
         }
         request = new VolleyRequest(method, url, listenerVolley,
                 headers, dataBytes);

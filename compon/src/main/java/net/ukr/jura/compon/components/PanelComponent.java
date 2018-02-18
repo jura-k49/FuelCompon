@@ -2,13 +2,13 @@ package net.ukr.jura.compon.components;
 
 import android.util.Log;
 
-import net.ukr.jura.compon.ComponGlob;
 import net.ukr.jura.compon.base.BaseComponent;
 import net.ukr.jura.compon.interfaces_classes.IBase;
 import net.ukr.jura.compon.json_simple.Field;
 import net.ukr.jura.compon.json_simple.Record;
+import net.ukr.jura.compon.param.ParamComponent;
 
-public class ComponentPanel extends BaseComponent {
+public class PanelComponent extends BaseComponent {
     @Override
     public void initView() {
     }
@@ -26,7 +26,7 @@ public class ComponentPanel extends BaseComponent {
         }
     }
 
-    public ComponentPanel(IBase iBase, ParamComponent paramMV) {
+    public PanelComponent(IBase iBase, ParamComponent paramMV) {
         super(iBase, paramMV);
     }
 }

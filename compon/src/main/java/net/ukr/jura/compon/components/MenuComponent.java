@@ -14,15 +14,16 @@ import net.ukr.jura.compon.interfaces_classes.ViewHandler;
 import net.ukr.jura.compon.json_simple.Field;
 import net.ukr.jura.compon.json_simple.ListRecords;
 import net.ukr.jura.compon.json_simple.Record;
+import net.ukr.jura.compon.param.ParamComponent;
 import net.ukr.jura.compon.presenter.ListPresenter;
 import net.ukr.jura.compon.tools.StaticVM;
 
-public class ComponentMenu extends BaseComponent {
+public class MenuComponent extends BaseComponent {
     RecyclerView recycler;
     ListRecords listData;
     BaseProviderAdapter adapter;
 
-    public ComponentMenu(IBase iBase, ParamComponent paramMV) {
+    public MenuComponent(IBase iBase, ParamComponent paramMV) {
         super(iBase, paramMV);
     }
 

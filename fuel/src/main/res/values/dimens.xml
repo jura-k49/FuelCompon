@@ -22,10 +22,13 @@
     <dimen name="pad_28">28dp</dimen>
     <dimen name="pad_30">30dp</dimen>
     <dimen name="pad_32">32dp</dimen>
+    <dimen name="pad_36">36dp</dimen>
     <dimen name="pad_38">38dp</dimen>
     <dimen name="pad_40">40dp</dimen>
+    <dimen name="pad_48">48dp</dimen>
     <dimen name="pad_52">52dp</dimen>
     <dimen name="pad_56">56dp</dimen>
+    <dimen name="pad_60">60dp</dimen>
     <dimen name="pad_70">70dp</dimen>
     <dimen name="pad_72">72dp</dimen>
     <dimen name="pad_78">78dp</dimen>

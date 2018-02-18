@@ -3,7 +3,6 @@ package net.ukr.jura.compon.base;
 import android.app.DialogFragment;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,7 +11,7 @@ import android.widget.TextView;
 import com.google.android.gms.common.api.GoogleApiClient;
 
 import net.ukr.jura.compon.ComponGlob;
-import net.ukr.jura.compon.components.ComponentMap;
+import net.ukr.jura.compon.components.MapComponent;
 import net.ukr.jura.compon.interfaces_classes.EventComponent;
 import net.ukr.jura.compon.interfaces_classes.IBase;
 import net.ukr.jura.compon.interfaces_classes.ParentModel;
@@ -93,8 +92,8 @@ public abstract class BaseFragment extends Fragment implements IBase {
     }
 
     @Override
-    public void setComponentMap(ComponentMap componentMap) {
-        getBaseActivity().setComponentMap(componentMap);
+    public void setMapComponent(MapComponent mapComponent) {
+        getBaseActivity().setMapComponent(mapComponent);
     }
 
     View.OnClickListener navigatorClick = new View.OnClickListener() {
@@ -194,6 +193,13 @@ public abstract class BaseFragment extends Fragment implements IBase {
     }
 
     @Override
+    public void addEvent(int[] senderList, BaseComponent receiver) {
+        for (int sender : senderList) {
+            listEvent.add(new EventComponent(sender, receiver));
+        }
+    }
+
+    @Override
     public Field getProfile() {
         return ComponGlob.getInstance().profile;
     }
@@ -228,6 +234,15 @@ public abstract class BaseFragment extends Fragment implements IBase {
         for (EventComponent ev : listEvent) {
             if (ev.eventSenderId == sender) {
                 ev.eventReceiverComponent.actual();
+            }
+        }
+    }
+
+    @Override
+    public void sendActualEvent(int sender, Object paramEvent) {
+        for (EventComponent ev : listEvent) {
+            if (ev.eventSenderId == sender) {
+                ev.eventReceiverComponent.actualEvent(sender, paramEvent);
             }
         }
     }

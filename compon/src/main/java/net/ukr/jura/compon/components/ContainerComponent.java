@@ -3,10 +3,11 @@ package net.ukr.jura.compon.components;
 import net.ukr.jura.compon.base.BaseComponent;
 import net.ukr.jura.compon.interfaces_classes.IBase;
 import net.ukr.jura.compon.json_simple.Field;
+import net.ukr.jura.compon.param.ParamComponent;
 
-public class ComponentContainer extends BaseComponent{
+public class ContainerComponent extends BaseComponent{
 
-    public ComponentContainer(IBase iBase, ParamComponent paramMV) {
+    public ContainerComponent(IBase iBase, ParamComponent paramMV) {
         super(iBase, paramMV);
     }
 

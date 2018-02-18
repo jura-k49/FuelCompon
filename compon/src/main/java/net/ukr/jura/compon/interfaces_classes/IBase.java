@@ -9,7 +9,7 @@ import net.ukr.jura.compon.base.BaseActivity;
 import net.ukr.jura.compon.base.BaseComponent;
 import net.ukr.jura.compon.base.BaseFragment;
 import net.ukr.jura.compon.base.BaseInternetProvider;
-import net.ukr.jura.compon.components.ComponentMap;
+import net.ukr.jura.compon.components.MapComponent;
 import net.ukr.jura.compon.json_simple.Field;
 
 public interface IBase {
@@ -17,8 +17,9 @@ public interface IBase {
     public BaseFragment getBaseFragment();
     public View getParentLayout();
     public void addEvent(int sender, BaseComponent receiver);
+    void addEvent(int[] senderList, BaseComponent receiver);
     public void sendEvent(int sender);
-    public void sendEvent(int sender, Object paramEvent);
+    public void sendActualEvent(int sender, Object paramEvent);
     public ParentModel getParentModel(String name);
     public Field getProfile();
 //    public void startActivitySimple(String nameMVP);
@@ -36,5 +37,5 @@ public interface IBase {
 //    public void addRequest(Request request);
     public void addInternetProvider(BaseInternetProvider internetProvider);
     public void setGoogleApiClient(GoogleApiClient googleApiClient);
-    public void setComponentMap(ComponentMap componentMap);
+    public void setMapComponent(MapComponent mapComponent);
 }

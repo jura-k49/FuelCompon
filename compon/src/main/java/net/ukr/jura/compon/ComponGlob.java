@@ -1,10 +1,9 @@
 package net.ukr.jura.compon;
 
 import android.content.Context;
-import android.util.Log;
 
 import net.ukr.jura.compon.components.MultiComponents;
-import net.ukr.jura.compon.components.ParamModel;
+import net.ukr.jura.compon.param.ParamModel;
 import net.ukr.jura.compon.json_simple.Field;
 import net.ukr.jura.compon.json_simple.FieldBroadcaster;
 import net.ukr.jura.compon.json_simple.Record;

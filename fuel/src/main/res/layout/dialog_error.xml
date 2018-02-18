@@ -2,50 +2,54 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-    <!--<LinearLayout-->
-        <!--android:layout_width="@dimen/_pad_276"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:orientation="vertical"-->
-        <!--android:background="@drawable/shape_r_8_white"-->
-        <!--android:layout_centerInParent="true"-->
-        <!--android:paddingTop="@dimen/_pad_32"-->
-        <!--android:paddingBottom="@dimen/_pad_32">-->
-        <!--<TextView-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--style="@style/st_20_black"-->
-            <!--android:gravity="center"-->
-            <!--android:id="@+id/title"-->
-            <!--android:layout_marginLeft="@dimen/_pad_36"-->
-            <!--android:layout_marginRight="@dimen/_pad_36" />-->
-        <!--<TextView-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--style="@style/st_16_black_50"-->
-            <!--android:gravity="center"-->
-            <!--android:layout_marginTop="@dimen/_pad_20"-->
-            <!--android:id="@+id/message"-->
-            <!--android:layout_marginLeft="@dimen/_pad_36"-->
-            <!--android:layout_marginRight="@dimen/_pad_36" />-->
-        <!--<LinearLayout-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:orientation="horizontal"-->
-            <!--android:layout_gravity="center_horizontal"-->
-            <!--android:layout_marginTop="@dimen/_pad_80">-->
-            <!--<LinearLayout-->
-                <!--android:layout_width="@dimen/_tool_bar_h"-->
-                <!--android:layout_height="@dimen/_tool_bar_h"-->
-                <!--android:background="@drawable/shape_circle_accent"-->
-                <!--android:gravity="center"-->
-                <!--android:id="@+id/cancel">-->
-                <!--<ImageView-->
-                    <!--android:layout_width="@dimen/_icon_wh"-->
-                    <!--android:layout_height="@dimen/_icon_wh"-->
-                    <!--android:src="@drawable/icon_checkmark_white" />-->
-            <!--</LinearLayout>-->
 
-        <!--</LinearLayout>-->
-    <!--</LinearLayout>-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@color/primary"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/title"
+            style="@style/st_24_black"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="36dp"
+            android:layout_marginRight="36dp"
+            android:gravity="center" />
+
+        <TextView
+            android:id="@+id/message"
+            style="@style/st_16_black"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/pad_36"
+            android:layout_marginRight="@dimen/pad_36"
+            android:layout_marginTop="@dimen/pad_20"
+            android:gravity="center" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="@dimen/pad_80"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:id="@+id/cancel"
+                android:layout_width="56dp"
+                android:layout_height="56dp"
+                android:background="@color/accent"
+                android:gravity="center">
+
+                <ImageView
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:src="@drawable/close" />
+            </LinearLayout>
+
+        </LinearLayout>
+    </LinearLayout>
 
 </RelativeLayout>

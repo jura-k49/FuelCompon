@@ -1,4 +1,4 @@
-package net.ukr.jura.compon.components;
+package net.ukr.jura.compon.param;
 
 import net.ukr.jura.compon.interfaces_classes.RecyclerExpandedAnimate;
 import net.ukr.jura.compon.interfaces_classes.Visibility;

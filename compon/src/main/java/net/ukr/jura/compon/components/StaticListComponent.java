@@ -9,15 +9,16 @@ import net.ukr.jura.compon.custom_components.StaticList;
 import net.ukr.jura.compon.interfaces_classes.IBase;
 import net.ukr.jura.compon.json_simple.Field;
 import net.ukr.jura.compon.json_simple.ListRecords;
+import net.ukr.jura.compon.param.ParamComponent;
 import net.ukr.jura.compon.tools.StaticVM;
 
-public class ComponentStaticList extends BaseComponent {
+public class StaticListComponent extends BaseComponent {
     StaticList staticList;
     ListRecords listData;
 //    BaseProvider provider;
     StaticListAdapter adapter;
 
-    public ComponentStaticList(IBase iBase, ParamComponent paramMV) {
+    public StaticListComponent(IBase iBase, ParamComponent paramMV) {
         super(iBase, paramMV);
     }
 

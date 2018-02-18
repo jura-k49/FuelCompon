@@ -1,6 +1,6 @@
 package net.ukr.jura.compon.interfaces_classes;
 
-import net.ukr.jura.compon.components.ParamModel;
+import net.ukr.jura.compon.param.ParamModel;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,6 +30,17 @@ public class Navigator {
 
     public Navigator add(int viewId, ViewHandler.TYPE type, ParamModel paramModel) {
         viewHandlers.add(new ViewHandler(viewId, type, paramModel));
+        return this;
+    }
+
+    public Navigator add(int viewId, ViewHandler.TYPE type, ParamModel paramModel, String nameScreen) {
+        viewHandlers.add(new ViewHandler(viewId, type, paramModel, nameScreen));
+        return this;
+    }
+
+    public Navigator add(int viewId, ViewHandler.TYPE type, ParamModel paramModel,
+                         String nameScreen, boolean changeEnabled, int... mustValid) {
+        viewHandlers.add(new ViewHandler(viewId, type, paramModel, nameScreen, changeEnabled, mustValid));
         return this;
     }
 

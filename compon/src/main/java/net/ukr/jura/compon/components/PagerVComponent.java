@@ -8,21 +8,19 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import net.ukr.jura.compon.ComponGlob;
-import net.ukr.jura.compon.R;
 import net.ukr.jura.compon.base.BaseComponent;
 import net.ukr.jura.compon.custom_components.PagerIndicator;
 import net.ukr.jura.compon.interfaces_classes.IBase;
-import net.ukr.jura.compon.interfaces_classes.Navigator;
 import net.ukr.jura.compon.interfaces_classes.ViewHandler;
 import net.ukr.jura.compon.json_simple.Field;
 import net.ukr.jura.compon.json_simple.ListRecords;
 import net.ukr.jura.compon.json_simple.Record;
-import net.ukr.jura.compon.presenter.ListPresenter;
+import net.ukr.jura.compon.json_simple.WorkWithRecordsAndViews;
+import net.ukr.jura.compon.param.ParamComponent;
 import net.ukr.jura.compon.tools.PreferenceTool;
 import net.ukr.jura.compon.tools.StaticVM;
 
-public class ComponentPagerV extends BaseComponent {
+public class PagerVComponent extends BaseComponent {
     ViewPager pager;
     ListRecords listData;
     PagerIndicator indicator;
@@ -31,7 +29,7 @@ public class ComponentPagerV extends BaseComponent {
     private LayoutInflater inflater;
     private WorkWithRecordsAndViews modelToFurther = new WorkWithRecordsAndViews();
 
-    public ComponentPagerV(IBase iBase, ParamComponent paramMV) {
+    public PagerVComponent(IBase iBase, ParamComponent paramMV) {
         super(iBase, paramMV);
     }
 
