@@ -38,7 +38,7 @@
         android:layout_marginLeft="@dimen/pad_30"
         android:layout_marginRight="@dimen/pad_30"
         style="@style/st_16_black"
-        android:text="@string/number_phone"/>
+        android:text="@string/code_sms"/>
 
     <LinearLayout
         android:id="@+id/panel"
@@ -46,7 +46,7 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
         <net.ukr.jura.compon.custom_components.EditPhone
-            android:id="@+id/phone"
+            android:id="@+id/code"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/pad_30"
@@ -55,9 +55,8 @@
             android:theme="@style/BaseEditTextStyle"
             android:inputType="number"
             android:textColor="@color/black"
-            android:textColorHint="@color/black_50"
             android:textSize="20dp"
-            app:mask="+38 ___ ___ __ __"
+            app:mask="___ ___"
             app:imageId="@drawable/del"
             app:heightLine="5dp"
             app:selectorLine="@drawable/selector_edit_text"/>
@@ -69,7 +68,7 @@
             android:layout_marginLeft="@dimen/pad_30"
             android:layout_marginRight="@dimen/pad_30"
             style="@style/st_14_black_50_sp8"
-            android:text="@string/info_phone"/>
+            android:text="@string/sms_cometo"/>
 
         <TextView
             android:id="@+id/done"

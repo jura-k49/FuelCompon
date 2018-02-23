@@ -25,6 +25,8 @@ public class ComponGlob {
     public NetworkParams networkParams;
     public List<String> namesParams = new ArrayList<>();
     public List<String> valuesParams = new ArrayList<>();
+    public String token;
+    public String language;
 
     public static ComponGlob getInstance() {
         if (instance == null) {
@@ -35,6 +37,8 @@ public class ComponGlob {
 
     public ComponGlob() {
         instance = this;
+        token = "";
+        language = "ru";
         MapScreen = new HashMap<String, MultiComponents>();
         profile = new FieldBroadcaster("profile", Field.TYPE_RECORD, null);
     }

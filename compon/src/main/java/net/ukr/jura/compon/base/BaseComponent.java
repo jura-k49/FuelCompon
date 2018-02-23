@@ -27,6 +27,7 @@ import net.ukr.jura.compon.json_simple.ListRecords;
 import net.ukr.jura.compon.json_simple.Record;
 import net.ukr.jura.compon.presenter.ListPresenter;
 import net.ukr.jura.compon.tools.Constants;
+import net.ukr.jura.compon.tools.PreferenceTool;
 
 import java.util.List;
 
@@ -212,9 +213,12 @@ public abstract class BaseComponent {
                             Record param = workWithRecordsAndViews.ViewToRecord(viewComponent, vh.paramModel.param);
                             new BasePresenter(iBase, vh.paramModel, null, setRecord(param), listener_send_change);
                             break;
-                        case SEND_BACK_SCREEN :
+                        case CLICK_SEND :
+                            selectViewHandler = vh;
                             param = workWithRecordsAndViews.ViewToRecord(viewComponent, vh.paramModel.param);
-                            new BasePresenter(iBase, vh.paramModel, null, setRecord(param), listener_send_change);
+                            Record rec = setRecord(param);
+                            ComponGlob.getInstance().setParam(rec);
+                            new BasePresenter(iBase, vh.paramModel, null, rec, listener_send_back_screen);
                             break;
                     }
                 }
@@ -274,7 +278,33 @@ public abstract class BaseComponent {
         return rec;
     }
 
-    IPresenterListener listener_send_change = new IPresenterListener() {
+    IPresenterListener listener_send_back_screen = new IPresenterListener() {
+        @Override
+        public void onResponse(Field response) {
+            if (selectViewHandler.afterResponse != null) {
+                for (ViewHandler vh : selectViewHandler.afterResponse.viewHandlers) {
+                    switch (vh.type) {
+                        case NAME_FRAGMENT:
+                            iBase.startScreen(vh.nameFragment, false);
+                            break;
+                        case PREFERENCE_SET_TOKEN:
+                            Record rec = ((Record) response.value);
+//                            String st = rec.getString(vh.nameFieldWithValue);
+                            String st = "bceee76d3c7d761c9ec92c286fb8bebcefb4225c311bb87e";
+                            if (st != null) {
+                                PreferenceTool.setSessionToken(st);
+                            }
+                            break;
+                        case BACK:
+                            iBase.backPressed();
+                            break;
+                    }
+                }
+            }
+        }
+    };
+
+    IPresenterListener listener_send_change =new IPresenterListener() {
         @Override
         public void onResponse(Field response) {
 //            Field f = (Field) response;

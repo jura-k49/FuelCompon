@@ -44,6 +44,16 @@ public class Navigator {
         return this;
     }
 
+    public Navigator add(int viewId, ViewHandler.TYPE type, ParamModel paramModel,
+                         ActionsAfterResponse afterResponse, boolean changeEnabled, int... mustValid) {
+        viewHandlers.add(new ViewHandler(viewId, type, paramModel, afterResponse, changeEnabled, mustValid));
+        return this;
+    }
+
+//    public static ActionsAfterResponse actionsAfterResponse() {
+//        return new ActionsAfterResponse();
+//    }
+
     public Navigator add(int viewId, String namePreference, boolean value) {
         viewHandlers.add(new ViewHandler(viewId, namePreference, value));
         return this;
@@ -56,6 +66,11 @@ public class Navigator {
 
     public Navigator add(int viewId, ViewHandler.TYPE type) {
         viewHandlers.add(new ViewHandler(viewId, type));
+        return this;
+    }
+
+    public Navigator add(int viewId, ViewHandler.TYPE type, String nameFieldWithValue) {
+        viewHandlers.add(new ViewHandler(viewId, type, nameFieldWithValue));
         return this;
     }
 

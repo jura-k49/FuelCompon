@@ -5,6 +5,7 @@ import android.util.Log;
 
 import net.ukr.jura.compon.ComponGlob;
 import net.ukr.jura.compon.components.MultiComponents;
+import net.ukr.jura.compon.interfaces_classes.ActionsAfterResponse;
 import net.ukr.jura.compon.tools.Constants;
 
 import java.util.Map;
@@ -79,4 +80,7 @@ public class ListScreens {
         return mc;
     }
 
+    public static ActionsAfterResponse actionsAfterResponse() {
+        return new ActionsAfterResponse();
+    }
 }

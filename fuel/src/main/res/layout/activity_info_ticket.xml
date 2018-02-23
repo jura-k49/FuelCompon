@@ -36,12 +36,15 @@
             android:src="@drawable/share" />
 
     </RelativeLayout>
-    <LinearLayout
+
+    <RelativeLayout
         android:id="@+id/panel"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:gravity="center_horizontal">
+
         <RelativeLayout
+            android:id="@+id/rel1"
             android:layout_width="match_parent"
             android:layout_height="@dimen/pad_100">
 
@@ -63,9 +66,9 @@
 
             <TextView
                 android:id="@+id/unit"
+                style="@style/st_amount"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                style="@style/st_amount"
                 android:layout_marginLeft="@dimen/pad_6"
                 android:layout_marginTop="@dimen/pad_18"
                 android:layout_toRightOf="@+id/volume"
@@ -82,18 +85,18 @@
                 android:id="@+id/fuel_icon"
                 android:layout_width="@dimen/pad_80"
                 android:layout_height="@dimen/pad_38"
-                android:layout_marginRight="@dimen/pad_20"
                 android:layout_alignParentRight="true"
-                android:layout_centerVertical="true" />
+                android:layout_centerVertical="true"
+                android:layout_marginRight="@dimen/pad_20" />
 
             <TextView
                 android:id="@+id/txt1"
-                style="@style/st_comment"
+                style="@style/st_sub_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/volume"
-                android:layout_marginTop="@dimen/pad_6"
                 android:layout_marginLeft="@dimen/pad_18"
+                android:layout_marginTop="@dimen/pad_6"
                 android:layout_toRightOf="@+id/network_icon"
                 android:text="@string/shelf_life" />
 
@@ -105,8 +108,8 @@
                 android:layout_below="@+id/volume"
                 android:layout_marginLeft="@dimen/pad_6"
                 android:layout_marginTop="@dimen/pad_6"
-                app:dateFormat="dd MMM YYYY"
-                android:layout_toRightOf="@+id/txt1" />
+                android:layout_toRightOf="@+id/txt1"
+                app:dateFormat="dd MMM YYYY" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -115,9 +118,52 @@
                 android:background="@color/black_10" />
         </RelativeLayout>
 
-        <LinearLayout
-            android:layout_width="@dimen/pad_210"
-            android:layout_height="@dimen/pad_210"
-            android:layout_marginTop="@dimen/pad_30"/>
-    </LinearLayout>
+        <android.support.v4.widget.NestedScrollView
+            android:id="@+id/nest1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@+id/rel2"
+            android:layout_below="@+id/rel1">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center_horizontal"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:id="@+id/qr_code"
+                    android:layout_width="@dimen/pad_210"
+                    android:layout_height="@dimen/pad_210"
+                    android:layout_marginTop="@dimen/pad_30" />
+
+                <TextView
+                    android:id="@+id/qr_code_num"
+                    style="@style/st_14_black_50"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="11332334344" />
+
+                <TextView
+                    style="@style/st_button"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/h_bottom"
+                    android:layout_marginLeft="@dimen/pad_30"
+                    android:layout_marginRight="@dimen/pad_30"
+                    android:layout_marginTop="@dimen/pad_36"
+                    android:background="@drawable/selector_button_enabled"
+                    android:gravity="center"
+                    android:text="@string/ticket_used" />
+            </LinearLayout>
+        </android.support.v4.widget.NestedScrollView>
+
+        <RelativeLayout
+            android:id="@+id/rel2"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/pad_70"
+            android:layout_alignParentBottom="true"
+            android:background="@color/pale_grey">
+
+        </RelativeLayout>
+    </RelativeLayout>
 </LinearLayout>

@@ -81,16 +81,6 @@ public class EnterPanelComponent extends BaseComponent {
                     }
                 }
             }
-
-
-//            switch ((Integer) status) {
-//                case 3 :    // стало не валидным
-//                    iBase.sendActualEvent(paramMV.paramView.viewId, new Boolean(false));
-//                    break;
-//                case 4 :    // стало валидным
-//                    iBase.sendActualEvent(paramMV.paramView.viewId, new Boolean(true));
-//                    break;
-//            }
         }
     };
 
@@ -102,58 +92,4 @@ public class EnterPanelComponent extends BaseComponent {
                 clickView, paramMV.paramView.visibilityArray);
     }
 
-//    private View.OnClickListener click = new View.OnClickListener() {
-//        @Override
-//        public void onClick(View v) {
-//            int vId = v.getId();
-//            List<ViewHandler> viewHandlers = paramMV.navigator.viewHandlers;
-//            for (ViewHandler vh : viewHandlers) {
-//                if (vId == vh.viewId) {
-//                    switch (vh.type) {
-//                        case SEND_CHANGE_BACK :
-//                            Record param = workWithRecordsAndViews.ViewToRecord(viewComponent, vh.paramModel.param);
-//                            new VolleyPresenter<String>(iBase, vh.paramModel, setRecord(param), vl);
-//                            break;
-//                    }
-//                }
-//            }
-//        }
-//    };
-
-//    public Record setRecord(Record paramRecord) {
-//        Record rec = new Record();
-//        for (Field f : paramRecord) {
-//            if (f.value == null) {
-//                String st = SimpleApp.getInstance().getParamValue(f.name);
-//                if (st.length() > 0) {
-//                    rec.add(new Field(f.name, Field.TYPE_STRING, st));
-//                }
-//            } else {
-//                rec.add(new Field(f.name, Field.TYPE_STRING, f.value));
-//            }
-//        }
-//        return rec;
-//    }
-//
-//    CopyVolleyRequest.VolleyListener vl = new CopyVolleyRequest.VolleyListener() {
-//        @Override
-//        public void onErrorResponse(VolleyError error) {
-//        }
-//        @Override
-//        public void onResponse(Object response) {
-//            Field f = (Field) response;
-//            if (paramMV.paramModel.nameTakeField == null) {
-//                paramMV.paramModel.field.value = f.value;
-//            } else {
-//                if (f.type == Field.TYPE_CLASS) {
-//                    paramMV.paramModel.field.setValue(
-//                            ((Record) f.value).getField(paramMV.paramModel.nameTakeField).value,
-//                            paramMV.paramView.viewId, iBase);
-//                } else {
-//                    paramMV.paramModel.field.setValue(f.value, paramMV.paramView.viewId, iBase);
-//                }
-//            }
-//            baseActivity.backPressed();
-//        }
-//    };
 }

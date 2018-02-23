@@ -64,7 +64,7 @@ public class EditPhone extends RelativeLayout implements IComponent{
             line = new View(context);
             lp = new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, heightLine);
             int offs = (int) (textSize * 1.353 + 18);
-            lp.setMargins(100, offs, 0, 0);
+            lp.setMargins(0, offs, 0, 0);
             line.setLayoutParams(lp);
             line.setBackgroundResource(selectorLine);
             addView(line);

@@ -1,7 +1,10 @@
 package net.ukr.jura.compon.components;
 
+import android.util.Log;
+
 import net.ukr.jura.compon.interfaces_classes.IBase;
 import net.ukr.jura.compon.interfaces_classes.Navigator;
+import net.ukr.jura.compon.interfaces_classes.ViewHandler;
 import net.ukr.jura.compon.param.ParamComponent;
 import net.ukr.jura.compon.param.ParamMap;
 import net.ukr.jura.compon.param.ParamModel;
@@ -280,8 +283,24 @@ public class MultiComponents <T>{
     }
 
     public String getParamApi(ParamComponent mvp) {
-        if (mvp != null && mvp.paramModel != null) {
-            return mvp.paramModel.param;
+        if (mvp != null) {
+            String paramResult = "";
+            if (mvp.paramModel != null) {
+                paramResult = mvp.paramModel.param;
+            }
+            if (mvp.navigator != null && mvp.navigator.viewHandlers != null) {
+                String sep = "";
+                if (paramResult.length() > 0) {
+                    sep = ",";
+                }
+                for (ViewHandler vh : mvp.navigator.viewHandlers) {
+                    if (vh.paramModel != null) {
+                        paramResult += sep + vh.paramModel.param;
+                        sep = ",";
+                    }
+                }
+            }
+            return paramResult;
         } else {
             return "";
         }

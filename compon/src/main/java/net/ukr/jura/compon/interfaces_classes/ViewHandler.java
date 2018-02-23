@@ -5,9 +5,9 @@ import net.ukr.jura.compon.param.ParamModel;
 public class ViewHandler {
     public int viewId;
     public enum TYPE {NAME_FRAGMENT, CLOSE_DRAWER, MODEL_PARAM,
-        BACK, PREFERENCE_SET_VALUE, PAGER_PLUS,
-        FIELD_WITH_NAME_FRAGMENT, SELECT, SEND_BACK_SCREEN,
-        SEND_UPDATE, SEND_CHANGE_BACK}
+        BACK, PREFERENCE_SET_VALUE, PAGER_PLUS, PREFERENCE_SET_TOKEN,
+        FIELD_WITH_NAME_FRAGMENT, SELECT, // SEND_BACK_SCREEN,
+        CLICK_SEND, SEND_UPDATE, SEND_CHANGE_BACK}
     public TYPE type;
     public String nameFragment;
     public ParamModel paramModel;
@@ -22,6 +22,8 @@ public class ViewHandler {
     public int[] mustValid;
     public boolean changeEnabled;
     public boolean[] validArray;
+    public String nameFieldWithValue;
+    public ActionsAfterResponse afterResponse;
 
     public ViewHandler(String nameField) {
         type = TYPE.FIELD_WITH_NAME_FRAGMENT;
@@ -72,11 +74,21 @@ public class ViewHandler {
         this.paramModel = paramModel;
     }
 
+    public ViewHandler(int viewId, TYPE type, ParamModel paramModel,
+                       ActionsAfterResponse afterResponse, boolean changeEnabled, int... mustValid) {
+        this.type = type;
+        this.viewId = viewId;
+        this.afterResponse = afterResponse;
+        this.mustValid = mustValid;
+        this.changeEnabled = changeEnabled;
+        this.paramModel = paramModel;
+    }
+
     public ViewHandler(int viewId, String namePreference, boolean value) {
         this.type = TYPE.PREFERENCE_SET_VALUE;
         this.viewId = viewId;
         this.namePreference = namePreference;
-        typePref = TYPE_PREFER.BOOLEAN.BOOLEAN;
+        typePref = TYPE_PREFER.BOOLEAN;
         pref_value_boolean = value;
     }
 
@@ -84,13 +96,20 @@ public class ViewHandler {
         this.type = TYPE.PREFERENCE_SET_VALUE;
         this.viewId = viewId;
         this.namePreference = namePreference;
-        typePref = TYPE_PREFER.BOOLEAN.STRING;
+        typePref = TYPE_PREFER.STRING;
         pref_value_string = value;
     }
 
     public ViewHandler(int viewId, TYPE type) {
         this.type = type;
         this.viewId = viewId;
+        this.paramModel = null;
+    }
+
+    public ViewHandler(int viewId, TYPE type, String nameFieldWithValue) {
+        this.type = type;
+        this.viewId = viewId;
+        this.nameFieldWithValue = nameFieldWithValue;
         this.paramModel = null;
     }
 

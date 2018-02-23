@@ -41,29 +41,33 @@ public class MyListScreens extends ListScreens {
                                         visibility(R.id.proceed, "proceed"))
                                 .setIndicator(R.id.indicator).setFurtherView(R.id.further),
                         new Navigator().add(R.id.skip, context.getString(R.string.tutorial), true)
-                                .add(R.id.skip, context.getString(R.string.main))
+                                .add(R.id.skip, context.getString(R.string.auth))
                                 .add(R.id.skip, ViewHandler.TYPE.BACK)
                                 .add(R.id.proceed, context.getString(R.string.tutorial), true)
-                                .add(R.id.proceed, context.getString(R.string.main))
+                                .add(R.id.proceed, context.getString(R.string.auth))
                                 .add(R.id.proceed, ViewHandler.TYPE.BACK)
                                 .add(R.id.contin, ViewHandler.TYPE.PAGER_PLUS));
-//        addActivity(context.getString(R.string.auth), R.layout.activity_auth)
-//                .addEditPhoneComponent(R.id.phone)
-//                .addButtonComponent(R.id.done, new Navigator().add(0, ViewHandler.TYPE.SEND_BACK_SCREEN,
-//                        new ParamModel(ParamModel.POST, Api.LOGIN_PHONE, "phone"), context.getString(R.string.auth_code)),
-//                        R.id.phone);
+
         addActivity(context.getString(R.string.auth), R.layout.activity_auth)
                 .addFragmentsContainer(R.id.content_frame, context.getString(R.string.auth_phone));
 
         addFragment(context.getString(R.string.auth_phone), R.layout.fragment_auth_phone)
                 .addComponent(ParamComponent.TC.PANEL_ENTER, null, new ParamView(R.id.panel),
-                        new Navigator().add(R.id.done, ViewHandler.TYPE.SEND_BACK_SCREEN,
+                        new Navigator().add(R.id.done, ViewHandler.TYPE.CLICK_SEND,
                                 new ParamModel(ParamModel.POST, Api.LOGIN_PHONE, "phone"),
-                                context.getString(R.string.auth_code), true, R.id.phone));
-//                .addEditPhoneComponent(R.id.phone)
-//                .addButtonComponent(R.id.done, new Navigator().add(0, ViewHandler.TYPE.SEND_BACK_SCREEN,
-//                        new ParamModel(ParamModel.POST, Api.LOGIN_PHONE, "phone"), context.getString(R.string.auth_code)),
-//                        R.id.phone);
+                                actionsAfterResponse()
+                                        .startScreen(context.getString(R.string.auth_code)),
+                                true, R.id.phone));
+
+        addFragment(context.getString(R.string.auth_code), R.layout.fragment_auth_code)
+                .addComponent(ParamComponent.TC.PANEL_ENTER, null, new ParamView(R.id.panel),
+                        new Navigator().add(R.id.done, ViewHandler.TYPE.CLICK_SEND,
+                                new ParamModel(ParamModel.POST, Api.LOGIN_CODE, "phone,code"),
+                                actionsAfterResponse()
+                                        .preferenceSetToken("token")
+                                        .startScreen(context.getString(R.string.main))
+                                        .back(),
+                                true, R.id.code));
 
         addActivity(context.getString(R.string.main), R.layout.activity_fuel)
                 .addFragmentsContainer(R.id.content_frame, context.getString(R.string.tickets))
@@ -87,7 +91,6 @@ public class MyListScreens extends ListScreens {
                                 .setSplashScreen(R.id.splash),
                         new Navigator().add(R.id.confirm_payment, context.getString(R.string.awaits_payment))
                                 .add(R.id.expect_receive, context.getString(R.string.new_wait))
-//                                .add(0, context.getString(R.string.infoTicket)),
                                 .add(0, context.getString(R.string.infoTicket), ViewHandler.TYPE_PARAM_FOR_SCREEN.RECORD),
                         0, FuelMoreWork.class);
 

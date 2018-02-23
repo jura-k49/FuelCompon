@@ -15,5 +15,6 @@ public abstract class NetworkParams<T> {
         setParams();
     }
     public String nameTokenInHeader = "";
+    public String nameLanguageInHeader = "";
     public abstract void setParams();
 }

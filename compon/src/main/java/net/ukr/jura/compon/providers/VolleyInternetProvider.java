@@ -33,13 +33,15 @@ public class VolleyInternetProvider extends BaseInternetProvider {
 //            headers.put("X-Auth-Token", "bceee76d3c7d761c9ec92c286fb8bebcefb4225c311bb87e");
 //
 //        }
-        String nameToken = ComponGlob.getInstance().networkParams.nameTokenInHeader;
-        if (nameToken.length() > 0) {
-            if (headers == null) {
-                headers = new HashMap<>();
-            }
-            headers.put("X-Auth-Token", "bceee76d3c7d761c9ec92c286fb8bebcefb4225c311bb87e");
-        }
+
+
+//        String nameToken = ComponGlob.getInstance().networkParams.nameTokenInHeader;
+//        if (nameToken.length() > 0) {
+//            if (headers == null) {
+//                headers = new HashMap<>();
+//            }
+//            headers.put("X-Auth-Token", "bceee76d3c7d761c9ec92c286fb8bebcefb4225c311bb87e");
+//        }
         request = new VolleyRequest(method, url, listenerVolley,
                 headers, dataBytes);
         VolleyProvider.getInstance().addToRequestQueue(request);
@@ -57,7 +59,7 @@ public class VolleyInternetProvider extends BaseInternetProvider {
             int statusCode = ERRORINMESSAGE;
             String st = error.toString();
             Log.d("QWERT","VolleyInternetProvider error.toString()="+error.toString()+"< status="
-                    +error.networkResponse
+                    +error.networkResponse.statusCode
                     +"< mes="+error.getMessage()
 //                    +"< DDD="+error.networkResponse.data
             );

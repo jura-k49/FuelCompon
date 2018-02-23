@@ -26,6 +26,7 @@
     <dimen name="pad_38">38dp</dimen>
     <dimen name="pad_40">40dp</dimen>
     <dimen name="pad_48">48dp</dimen>
+    <dimen name="pad_50">50dp</dimen>
     <dimen name="pad_52">52dp</dimen>
     <dimen name="pad_56">56dp</dimen>
     <dimen name="pad_60">60dp</dimen>

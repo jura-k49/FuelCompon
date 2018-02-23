@@ -11,10 +11,13 @@ import net.ukr.jura.compon.json_simple.JsonSimple;
 import net.ukr.jura.compon.json_simple.Record;
 import net.ukr.jura.compon.param.ParamModel;
 import net.ukr.jura.compon.providers.VolleyInternetProvider;
+import net.ukr.jura.compon.tools.PreferenceTool;
 
+import java.util.HashMap;
 import java.util.Map;
 
 import static net.ukr.jura.compon.json_simple.Field.TYPE_CLASS;
+import static net.ukr.jura.compon.json_simple.Field.TYPE_STRING;
 
 public class BasePresenter implements BaseInternetProvider.InternetProviderListener {
     private IBase iBase;
@@ -29,12 +32,27 @@ public class BasePresenter implements BaseInternetProvider.InternetProviderListe
     protected int method;
 
     public BasePresenter(IBase iBase, ParamModel paramModel,
-                         Map<String, String> headers, Record data, IPresenterListener listener) {
+                         Map<String, String> headersPar, Record data, IPresenterListener listener) {
         this.iBase = iBase;
         this.paramModel = paramModel;
         this.data = data;
         this.listener = listener;
-        this.headers = headers;
+        this.headers = headersPar;
+        if (headers == null) {
+            headers = new HashMap<>();
+        }
+
+        String nameToken = ComponGlob.getInstance().networkParams.nameTokenInHeader;
+        String token = PreferenceTool.getSessionToken();
+        if (nameToken.length() > 0 && token.length() > 0) {
+//            headers.put(nameToken, "bceee76d3c7d761c9ec92c286fb8bebcefb4225c311bb87e");
+            headers.put(nameToken, token);
+        }
+        String nameLanguage = ComponGlob.getInstance().networkParams.nameLanguageInHeader;
+        if (nameLanguage.length() > 0) {
+            headers.put(nameLanguage, ComponGlob.getInstance().language);
+        }
+
         this.method = paramModel.method;
         long duration = paramModel.duration;
         if (method == ParamModel.GET) {
@@ -101,21 +119,25 @@ public class BasePresenter implements BaseInternetProvider.InternetProviderListe
                     paramModel.duration, response);
         }
         if ( ! isCanceled) {
-            Field f = jsonSimple.jsonToModel(response);
-            Field f1 = ((Record) f.value).getField("data");
-            if (f1 != null) {
-                if (f1.type == TYPE_CLASS) {
-                    Field f2 = ((Record) f1.value).getField("items");
-                    if (f2 != null) {
-                        listener.onResponse(f2);
+            if (response.length() == 0) {
+                listener.onResponse(new Field("", TYPE_STRING, ""));
+            } else {
+                Field f = jsonSimple.jsonToModel(response);
+                Field f1 = ((Record) f.value).getField("data");
+                if (f1 != null) {
+                    if (f1.type == TYPE_CLASS) {
+                        Field f2 = ((Record) f1.value).getField("items");
+                        if (f2 != null) {
+                            listener.onResponse(f2);
+                        } else {
+                            listener.onResponse(f1);
+                        }
                     } else {
                         listener.onResponse(f1);
                     }
                 } else {
-                    listener.onResponse(f1);
+                    iBase.showDialog("", "no response 11111111111", null);
                 }
-            } else {
-                iBase.showDialog("", "no response 11111111111", null);
             }
         }
     }

@@ -54,8 +54,11 @@
     <string name="active_ticket">Активный талон</string>
     <string name="begining">Начало работы</string>
     <string name="number_phone">Номер телефона</string>
+    <string name="code_sms">Код подтверждения из SMS</string>
+    <string name="sms_cometo">SMS придет на указаный номер</string>
     <string name="info_phone">Который хотите использовать или использовали для работы</string>
     <string name="contin">Продолжить</string>
+    <string name="ticket_used">Талон использован</string>
 
     <string-array name="tickets_ar">
         <item>талон</item>

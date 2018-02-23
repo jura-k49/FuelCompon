@@ -76,7 +76,7 @@ public class DialogTools {
                         break;
                 }
                 ((IErrorDialog) errorDialog).setTitle(title);
-                ((IErrorDialog) errorDialog).setMessage(msg);
+                ((IErrorDialog) errorDialog).setMessage(description);
                 ((IErrorDialog) errorDialog).setOnClickListener(clickPositive);
                 errorDialog.show(activity.getFragmentManager(), "dialog");
             }

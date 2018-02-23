@@ -20,6 +20,8 @@ import java.util.Map;
 
 public class VolleyRequest <T> extends Request<T> {
 
+    public static final String PROTOCOL_CHARSET = "utf-8";
+    public static final String PROTOCOL_CONTENT_TYPE = "application/json";
     private IVolleyListener listener;
     private Map<String, String> headers;
     private byte[] data;
@@ -64,17 +66,29 @@ public class VolleyRequest <T> extends Request<T> {
 
     @Override
     public Map<String, String> getHeaders() throws AuthFailureError {
+        Log.d(networkParams.NAME_LOG,"VolleyRequest headers="+headers);
         return headers;
     }
 
     @Override
+    public String getBodyContentType() {
+        return PROTOCOL_CONTENT_TYPE;
+    }
+
+    @Override
+    protected String getParamsEncoding() {
+        return PROTOCOL_CHARSET;
+    }
+
+    @Override
     protected Map<String, String> getParams() {
-        Log.d("SMPL", "VOLLEY Params=");
+//        Log.d("SMPL", "VOLLEY Params=");
         return null;
     }
 
     @Override
     public byte[] getBody() throws AuthFailureError {
+        Log.d(networkParams.NAME_LOG,"VolleyRequest getBody data="+new String(data));
         return data;
     }
 }
