@@ -154,7 +154,7 @@ public abstract class BaseComponent {
             if (fName != null) {
 //                Field field = response;
                 String fNameTo = paramMV.paramModel.nameFieldTo;
-                if (response.type == Field.TYPE_LIST) {
+                if (response.type == Field.TYPE_LIST_RECORD) {
                     ListRecords listRecords = (ListRecords) response.value;
                     for (Record record : listRecords) {
                         Field f = record.getField(fName);

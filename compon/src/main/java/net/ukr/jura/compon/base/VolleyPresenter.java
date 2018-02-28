@@ -298,7 +298,7 @@ public class VolleyPresenter<T> implements Response.Listener<T>, Response.ErrorL
             List<Field> lf = new ArrayList<>();
             lf.add(new Field("title", Field.TYPE_STRING, "error"));
             lf.add(new Field("message", Field.TYPE_STRING, message));
-            errorMessage = new Field("", Field.TYPE_LIST, lf);
+            errorMessage = new Field("", Field.TYPE_LIST_RECORD, lf);
         }
         List<Field> list = (List<Field>) errorMessage.value;
         iBase.showDialog(getValueString(list, "title"), getValueString(list, "message"), clickError);

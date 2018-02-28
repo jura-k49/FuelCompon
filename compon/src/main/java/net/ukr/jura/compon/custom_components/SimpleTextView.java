@@ -93,15 +93,27 @@ public class SimpleTextView extends android.support.v7.widget.AppCompatTextView
     public Calendar stringToDate(String st) {
         Calendar c;
         String dd = "";
+        String tt = "";
+        String[] datTime;
         if (st.indexOf("T") > 0) {
-            dd = st.split("T")[0];
+            datTime = st.split("T");
+            dd = datTime[0];
+            tt = datTime[1].split("\\+")[0];
         } else {
             dd = st;
         }
         String[] d = dd.split("-");
-        c = new GregorianCalendar(Integer.valueOf(d[0]),
-                Integer.valueOf(d[1]) - 1,
-                Integer.valueOf(d[2]));
+        if (tt.length() > 0) {
+            String[] t = tt.split(":");
+            c = new GregorianCalendar(Integer.valueOf(d[0]),
+                    Integer.valueOf(d[1]) - 1,
+                    Integer.valueOf(d[2]),
+                    Integer.valueOf(t[0]), Integer.valueOf(t[1]), Integer.valueOf(t[2]));
+        } else {
+            c = new GregorianCalendar(Integer.valueOf(d[0]),
+                    Integer.valueOf(d[1]) - 1,
+                    Integer.valueOf(d[2]));
+        }
         return c;
     }
 }

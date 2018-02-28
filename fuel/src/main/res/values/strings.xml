@@ -21,6 +21,7 @@
     <string name="auth">auth</string>
     <string name="auth_phone">auth_phone</string>
     <string name="auth_code">auth_code</string>
+    <!--<string name="pay_talon">pay_talon</string>-->
 
 // Auth
     <string name="code_uk">+380</string>
@@ -34,6 +35,7 @@
     <string name="choice_fuel_title">Выбор топлива</string>
     <string name="choice_fuel_txt">Выберите тип топлива на\u0020</string>
     <string name="unit_l">л.</string>
+    <string name="unit_grn_L">грн/л</string>
     <string name="shelf_life">до</string>
     <string name="pay_tickets">Купить талоны</string>
     <string name="splash_text">Талоны дешевле, чем на АЗС,\nи удобнее бумажных</string>
@@ -59,6 +61,10 @@
     <string name="info_phone">Который хотите использовать или использовали для работы</string>
     <string name="contin">Продолжить</string>
     <string name="ticket_used">Талон использован</string>
+    <string name="order_date">Дата заказа</string>
+    <string name="cost">Стоимость</string>
+    <string name="cost_azs">Стоимость на АЗС</string>
+    <string name="econom">Экономия</string>
 
     <string-array name="tickets_ar">
         <item>талон</item>

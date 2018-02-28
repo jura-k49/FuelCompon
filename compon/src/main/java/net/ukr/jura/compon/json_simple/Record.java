@@ -118,4 +118,10 @@ public class Record extends ArrayList<Field>{
             return false;
         }
     }
+
+    @Override
+    public String toString() {
+        SimpleRecordToJson recordToJson = new SimpleRecordToJson();
+        return recordToJson.recordToJson(this);
+    }
 }

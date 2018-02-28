@@ -10,6 +10,7 @@ import net.ukr.jura.compon.json_simple.ListRecords;
 import net.ukr.jura.compon.json_simple.Record;
 import net.ukr.jura.compon.json_simple.SimpleRecordToJson;
 
+import java.io.UnsupportedEncodingException;
 import java.util.Collections;
 import java.util.Comparator;
 
@@ -24,15 +25,69 @@ public class FuelMoreWork extends MoreWork{
             case "awaits_payment" :
                 awaits_payment(response);
                 break;
+            case "choice_fuel" :
+                choice_fuel(response);
+                break;
         }
 
      }
+
+    private void  choice_fuel(Field response) {
+        ListRecords lr = (ListRecords) response.value;
+        ListRecords lrN = new ListRecords();
+        Record recN;
+        for (Record rec : lr) {
+            recN = new Record();
+            recN.add(new Field("type", Field.TYPE_INTEGER, 1));
+            String str1 = rec.getString("name");
+            String str = "";
+            try {
+                str = new String(str1.getBytes("UTF-8"), "UTF-8");
+            } catch (UnsupportedEncodingException e) {
+                e.printStackTrace();
+            }
+            Log.d("QWERT","STR11="+str1+"<< str="+str);
+            recN.add(new Field("name", Field.TYPE_STRING, str));
+            lrN.add(recN);
+            long idL = (Long)rec.getValue("id");
+            Integer id = (int)idL;
+
+            recN.add(new Field("idNetwork", Field.TYPE_LONG, idL));
+
+//            for (Record recFuel : (ListRecords) rec.getValue("fuels")) {
+//                recN = new Record();
+//                recN.add(new Field("type", Field.TYPE_INTEGER, 0));
+//                recN.add(new Field("idNetwork", Field.TYPE_INTEGER, id));
+//                recN.add(new Field("price", Field.TYPE_DOUBLE, rec.getDouble("price")));
+//                recN.add(new Field("fuel_icon", Field.TYPE_STRING, rec.getString("icon")));
+//                lrN.add(recN);
+//            }
+        }
+        for (Record rec : lrN) {
+            Log.d("QWERT","REC="+rec.toString());
+        }
+        response.value = lrN;
+    }
 
     private void active_tickets(Field response) {
         ListRecords lr = (ListRecords) response.value;
         int payment = 0, pending = 0;
         ListRecords lrN = new ListRecords();
         for (Record rec : lr) {
+            Double price_azs = rec.getDouble("price_at_network");
+            Double price = rec.getDouble("price");
+            Long count = (Long) rec.getValue("volume");
+            if (price != null && price_azs != null && count != null) {
+                Double cost = price * count;
+                rec.add(new Field("cost", Field.TYPE_DOUBLE, cost));
+                Double cost_azs = price_azs * count;
+                rec.add(new Field("cost_azs", Field.TYPE_DOUBLE, cost_azs));
+                Double econom = cost_azs - cost;
+                rec.add(new Field("econom", Field.TYPE_DOUBLE, econom));
+            }
+            rec.add(new Field("qr_img", Field.TYPE_STRING,
+                    "http://stage.toplivo.branderstudio.com:8086/media/cache/icon_thumbnail/public/img/uploads/fuel_fuel/5a6856ca15381241163731.png"));
+            rec.add(new Field("qr_num", Field.TYPE_STRING,"1234 5678 9021 2344"));
             String status = rec.getString("status");
             switch (status) {
                 case "pending" :
@@ -58,7 +113,7 @@ public class FuelMoreWork extends MoreWork{
         record.add(new Field("pending", Field.TYPE_INTEGER, pending));
         lrN.add(0, record);
         response.value = lrN;
-        SimpleRecordToJson recordToJson = new SimpleRecordToJson();
+//        SimpleRecordToJson recordToJson = new SimpleRecordToJson();
     }
 
     private void awaits_payment(Field response) {
@@ -125,7 +180,7 @@ public class FuelMoreWork extends MoreWork{
         } else {
             response.value = lrN;
         }
-        SimpleRecordToJson recordToJson = new SimpleRecordToJson();
+//        SimpleRecordToJson recordToJson = new SimpleRecordToJson();
     }
 
 }

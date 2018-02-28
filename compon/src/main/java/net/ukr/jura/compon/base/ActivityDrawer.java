@@ -18,7 +18,7 @@ public abstract class ActivityDrawer extends BaseActivity{
     protected abstract void initMenu();
     protected abstract String getDrawerFragment();
     protected ListRecords menuList = new ListRecords();
-    public Field menu = new Field("menu", Field.TYPE_LIST, menuList);
+    public Field menu = new Field("menu", Field.TYPE_LIST_RECORD, menuList);
     protected int menuStart;
     protected DrawerLayout drawer;
 

@@ -256,7 +256,7 @@ public abstract class BaseActivity extends FragmentActivity implements IBase {
                 f.type = Field.TYPE_RECORD;
                 intent.putExtra(Constants.NAME_PARAM_FOR_SCREEN, recordToJson.modelToJson(f));
             } else if (object instanceof ListRecords) {
-                f.type = Field.TYPE_LIST;
+                f.type = Field.TYPE_LIST_RECORD;
                 intent.putExtra(Constants.NAME_PARAM_FOR_SCREEN, recordToJson.modelToJson(f));
             }
         }
@@ -394,7 +394,7 @@ public abstract class BaseActivity extends FragmentActivity implements IBase {
                 f.type = Field.TYPE_RECORD;
                 bundle.putString(Constants.NAME_PARAM_FOR_SCREEN, recordToJson.modelToJson(f));
             } else if (object instanceof ListRecords) {
-                f.type = Field.TYPE_LIST;
+                f.type = Field.TYPE_LIST_RECORD;
                 bundle.putString(Constants.NAME_PARAM_FOR_SCREEN, recordToJson.modelToJson(f));
             }
             fragment.setArguments(bundle);

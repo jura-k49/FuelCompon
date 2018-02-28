@@ -3,7 +3,7 @@ package net.ukr.jura.compon.json_simple;
 import net.ukr.jura.compon.interfaces_classes.IBase;
 
 public class Field {
-    public static final int TYPE_LIST = 0;
+    public static final int TYPE_LIST_RECORD = 0;
     public static final int TYPE_CLASS = 1;
     public static final int TYPE_STRING = 2;
     public static final int TYPE_INTEGER = 3;
@@ -13,6 +13,7 @@ public class Field {
     public static final int TYPE_BOOLEAN = 7;
     public static final int TYPE_DATE = 8;
     public static final int TYPE_RECORD = 9;
+    public static final int TYPE_LIST_FIELD = 10;
 
     public static final int TYPE_NULL = 20;
 

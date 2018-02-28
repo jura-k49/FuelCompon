@@ -57,7 +57,7 @@ public class TestInternetProvider extends BaseInternetProvider{
         Record rec = new Record();
         ListRecords lr = new ListRecords();
         Field f = new Field("", Field.TYPE_RECORD, rec);
-        rec.add(new Field("data", Field.TYPE_LIST, lr));
+        rec.add(new Field("data", Field.TYPE_LIST_RECORD, lr));
 
         Record record;
         record = new Record();
@@ -103,7 +103,7 @@ public class TestInternetProvider extends BaseInternetProvider{
         ListRecords lr = new ListRecords();
 //        Field f = new Field("", Field.TYPE_LIST, lr);
         Field f = new Field("", Field.TYPE_RECORD, rec);
-        rec.add(new Field("data", Field.TYPE_LIST, lr));
+        rec.add(new Field("data", Field.TYPE_LIST_RECORD, lr));
 
         Record record;
         record = new Record();
@@ -152,7 +152,7 @@ public class TestInternetProvider extends BaseInternetProvider{
         ListRecords lr = new ListRecords();
 //        Field f = new Field("", Field.TYPE_LIST, lr);
         Field f = new Field("", Field.TYPE_RECORD, rec);
-        rec.add(new Field("data", Field.TYPE_LIST, lr));
+        rec.add(new Field("data", Field.TYPE_LIST_RECORD, lr));
 
         Record record;
         record = new Record();

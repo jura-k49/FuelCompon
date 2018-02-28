@@ -91,6 +91,7 @@ public class MyListScreens extends ListScreens {
                                 .setSplashScreen(R.id.splash),
                         new Navigator().add(R.id.confirm_payment, context.getString(R.string.awaits_payment))
                                 .add(R.id.expect_receive, context.getString(R.string.new_wait))
+                                .add(R.id.pay_tickets, context.getString(R.string.choice_fuel))
                                 .add(0, context.getString(R.string.infoTicket), ViewHandler.TYPE_PARAM_FOR_SCREEN.RECORD),
                         0, FuelMoreWork.class);
 
@@ -101,7 +102,6 @@ public class MyListScreens extends ListScreens {
                                 .setSplashScreen(R.id.splash));
 
         addFragment(context.getString(R.string.mapF), MapFragment.class);
-
 
         addFragment(context.getString(R.string.map), R.layout.fragment_map)
                 .addComponentMap(R.id.map, new ParamModel(Api.MARKER_MAP, "lat,lon").typeParam(ParamModel.TypeParam.NAME)
@@ -115,7 +115,7 @@ public class MyListScreens extends ListScreens {
                                             .add(R.id.call_operator, getString(R.string.choice_fuel)));
 
         addActivity(context.getString(R.string.infoTicket), R.layout.activity_info_ticket)
-//                .addComponent(ParamComponent.TC.PANEL, new ParamModel(Api.TICKETS_ACTIVE_ID, "id"),
+                .addNavigator(new Navigator().add(R.id.back, ViewHandler.TYPE.BACK))
                 .addComponent(ParamComponent.TC.PANEL, new ParamModel(ParamModel.ARGUMENTS),
                         new ParamView(R.id.panel));
 
@@ -133,7 +133,11 @@ public class MyListScreens extends ListScreens {
                         new ParamView(R.id.recycler, R.layout.item_awaits_payment),
                         null, 0, FuelMoreWork.class);
 
-        addActivity(getString(R.string.choice_fuel), R.layout.activity_choice_fuel);
+        addActivity(getString(R.string.choice_fuel), R.layout.activity_choice_fuel)
+                .addComponent(ParamComponent.TC.RECYCLER, new ParamModel(Api.NETWORKS),
+                        new ParamView(R.id.recycler, "type",
+                                new int[] {R.layout.item_choice_fuel, R.layout.item_choice_fuel_net}),
+                        null, 0, FuelMoreWork.class);
 
         super.initScreen();
     }

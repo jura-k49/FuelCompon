@@ -25,8 +25,12 @@ public class JsonSimple {
 //            Log.d("JSON_S","currentSymbol="+currentSymbol+" indMax="+indMax);
             switch (currentSymbol) {
                 case "[" :
-                    res.type = Field.TYPE_LIST;
                     res.value = getList();
+                    if (res.value instanceof ListRecords) {
+                        res.type = Field.TYPE_LIST_RECORD;
+                    } else {
+                        res.type = Field.TYPE_LIST_FIELD;
+                    }
                     return res;
                 case "{" :
                     res.type = Field.TYPE_CLASS;
@@ -55,21 +59,81 @@ public class JsonSimple {
         }
     }
 
-    private ListRecords getList() {
-        ListRecords list = new ListRecords();
+//    private ListRecords getList() {
+//        ListRecords list = new ListRecords();
+//        if (firstSymbol()) {
+//            while ( ! currentSymbol.equals("]")) {
+//                if (currentSymbol.equals("{")) {
+//                    list.add(getClazz());
+//                    if ( ! firstSymbol()) {
+//                        Log.d("JSON_L", "No ]");
+//                    }
+//                } else {
+//                    Log.d("JSON_L", "No { ind=" + ind);
+//                }
+//            }
+//        }
+//        return list;
+//    }
+
+    private Object getList() {
         if (firstSymbol()) {
-            while ( ! currentSymbol.equals("]")) {
-                if (currentSymbol.equals("{")) {
-                    list.add(getClazz());
-                    if ( ! firstSymbol()) {
+            if (currentSymbol.equals("{")) {
+                ListRecords list = new ListRecords();
+                while (!currentSymbol.equals("]")) {
+                    if (currentSymbol.equals("{")) {
+                        list.add(getClazz());
+                        if (!firstSymbol()) {
+                            Log.d("JSON_L", "No ]");
+                        }
+                    } else {
+                        Log.d("JSON_L", "No { ind=" + ind);
+                    }
+                }
+                return list;
+            } else {
+                ListFields listF = new ListFields();
+                while (!currentSymbol.equals("]")) {
+                    listF.add(getField());
+                    if (!firstSymbol()) {
                         Log.d("JSON_L", "No ]");
                     }
-                } else {
-                    Log.d("JSON_L", "No { ind=" + ind);
                 }
+                return listF;
             }
         }
-        return list;
+        return new ListRecords();
+    }
+
+    private Field getField() {
+        Field item = new Field();
+        item.name = "";
+        switch (currentSymbol) {
+            case quote : // String
+                Field fs = getStringValue();
+                item.type = fs.type;
+                item.value = fs.value;
+                break;
+            case "n" :   // null
+                item.type = Field.TYPE_NULL;
+                item.value = getNullValue();
+                break;
+            case "f" :   // boolean
+            case "t" :
+                item.type = Field.TYPE_BOOLEAN;
+                item.value = getBooleanValue();
+                break;
+            default:
+                if (digits.contains(currentSymbol)) {    // digit
+//                                item.type = Field.TYPE_INTEGER;
+                    Field f = getDigitalValue(item.name);
+                    item.value = f.value;
+                    item.type = f.type;
+                } else {
+                }
+        }
+        Log.d("QWERT","TTTT="+item.type+"<< VVVV="+item.value);
+        return item;
     }
 
     private Record getClazz() {
@@ -119,8 +183,12 @@ public class JsonSimple {
                             item.value = getBooleanValue();
                             break;
                         case "[" :   // List
-                            item.type = Field.TYPE_LIST;
                             item.value = getList();
+                            if (item.value instanceof ListRecords) {
+                                item.type = Field.TYPE_LIST_RECORD;
+                            } else {
+                                item.type = Field.TYPE_LIST_FIELD;
+                            }
                             break;
                         case "{" :   // Class
                             item.type = Field.TYPE_CLASS;
@@ -218,7 +286,7 @@ public class JsonSimple {
         int start = 0;
         int ik = c.length;
         for (int i = 0; i < ik; i++) {
-            if (c[i] == '\\') {
+            if (c[i] == '\\' && c[i+1] == '/') {
                 if (i > 0) {
                     builder.append(c, start, i - start);
                 }

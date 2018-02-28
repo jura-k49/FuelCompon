@@ -16,9 +16,9 @@ import net.ukr.jura.compon.interfaces_classes.IComponent;
 import net.ukr.jura.compon.interfaces_classes.Navigator;
 import net.ukr.jura.compon.interfaces_classes.ViewHandler;
 import net.ukr.jura.compon.interfaces_classes.Visibility;
-import net.ukr.jura.compon.json_simple.Field;
-import net.ukr.jura.compon.json_simple.ListRecords;
-import net.ukr.jura.compon.json_simple.Record;
+//import net.ukr.jura.compon.json_simple.Field;
+//import net.ukr.jura.compon.json_simple.ListRecords;
+//import net.ukr.jura.compon.json_simple.Record;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;

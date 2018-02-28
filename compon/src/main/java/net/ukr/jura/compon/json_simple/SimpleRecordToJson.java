@@ -9,14 +9,20 @@ public class SimpleRecordToJson {
     public String modelToJson(Field field) {
         sb = new StringBuffer( 1000);
         if (field.type == Field.TYPE_RECORD) {
-            recordToJson((Record) field.value);
+            recordJson((Record) field.value);
         } else {
-            listToJson((ListRecords) field.value);
+            listJson((ListRecords) field.value);
         }
         return sb.toString();
     }
 
-    private void recordToJson(Record rec) {
+    public String recordToJson(Record rec) {
+        sb = new StringBuffer( 1000);
+        recordJson(rec);
+        return sb.toString();
+    }
+
+    private void recordJson(Record rec) {
         sb.append("{");
         String separator = "";
         for (Field f : rec) {
@@ -35,22 +41,50 @@ public class SimpleRecordToJson {
                 case Field.TYPE_DOUBLE :
                     sb.append(quote + f.name + quoteColon + (Double) f.value);
                     break;
-                case Field.TYPE_LIST:
+                case Field.TYPE_LIST_RECORD:
                     sb.append(quote + f.name + quoteColon);
-                    listToJson((ListRecords) f.value);
+                    listJson((ListRecords) f.value);
+                    break;
+                case Field.TYPE_LIST_FIELD:
+                    sb.append(quote + f.name + quoteColon);
+                    listFieldsJson((ListFields) f.value);
                     break;
             }
         }
         sb.append("}");
     }
 
-    private void listToJson(ListRecords listRecords) {
+    private void listJson(ListRecords listRecords) {
         sb.append("[");
         String separator = "";
         for (Record r : listRecords) {
             sb.append(separator);
             separator = ",";
-            recordToJson(r);
+            recordJson(r);
+        }
+        sb.append("]");
+    }
+
+    private void listFieldsJson(ListFields listFields) {
+        sb.append("[");
+        String separator = "";
+        for (Field f : listFields) {
+            sb.append(separator);
+            separator = ",";
+            switch (f.type) {
+                case Field.TYPE_STRING :
+                    sb.append(quote + (String) f.value + quote);
+                    break;
+                case Field.TYPE_INTEGER :
+                    sb.append(String.valueOf((Integer) f.value));
+                    break;
+                case Field.TYPE_LONG :
+                    sb.append(String.valueOf((Long) f.value));
+                    break;
+                case Field.TYPE_DOUBLE :
+                    sb.append(String.valueOf((Double) f.value));
+                    break;
+            }
         }
         sb.append("]");
     }
