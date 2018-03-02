@@ -11,6 +11,7 @@ import net.ukr.jura.compon.interfaces_classes.IComponent;
 import net.ukr.jura.compon.interfaces_classes.OnChangeStatusListener;
 import net.ukr.jura.compon.tools.StaticVM;
 
+import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -21,6 +22,8 @@ public class SimpleTextView extends android.support.v7.widget.AppCompatTextView
     private Context context;
     private String numberFormat, dateFormat;
     private Object data;
+    private String alias;
+
     public SimpleTextView(Context context) {
         super(context);
         this.context = context;
@@ -42,6 +45,7 @@ public class SimpleTextView extends android.support.v7.widget.AppCompatTextView
         TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.Simple);
         numberFormat = a.getString(R.styleable.Simple_numberFormat);
         dateFormat = a.getString(R.styleable.Simple_dateFormat);
+        alias = a.getString(R.styleable.Simple_alias);
         a.recycle();
     }
 
@@ -67,12 +71,17 @@ public class SimpleTextView extends android.support.v7.widget.AppCompatTextView
             } else if (data instanceof Date) {
 
             }
+        } else if (numberFormat != null && numberFormat.length() > 0) {
+            if (data instanceof Long || data instanceof Double || data instanceof Float) {
+                DecimalFormat df = new DecimalFormat(numberFormat);
+                setText(df.format(data));
+            }
         }
     }
 
     @Override
     public String getAlias() {
-        return null;
+        return alias;
     }
 
     @Override

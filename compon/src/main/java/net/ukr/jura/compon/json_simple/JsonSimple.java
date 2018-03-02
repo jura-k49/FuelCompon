@@ -2,6 +2,7 @@ package net.ukr.jura.compon.json_simple;
 
 import android.util.Log;
 
+import java.io.UnsupportedEncodingException;
 import java.util.Date;
 
 public class JsonSimple {
@@ -132,7 +133,6 @@ public class JsonSimple {
                 } else {
                 }
         }
-        Log.d("QWERT","TTTT="+item.type+"<< VVVV="+item.value);
         return item;
     }
 
@@ -265,7 +265,6 @@ public class JsonSimple {
         String st = json.substring(ind + 1, i);
         st = delSlesh(st);
         ind = i;
-//        Log.d("JSON","getStringValue Simbol="+json.substring(ind, ind + 10)+" ind="+ind);
         Field field = new Field();
         field.name = "";
         if (st.startsWith("/D")) {
@@ -280,25 +279,78 @@ public class JsonSimple {
         return field;
     }
 
+//    private String delSlesh(String st) {
+//        char[] c = st.toCharArray();
+//        StringBuilder builder = new StringBuilder();
+//        int start = 0;
+//        int ik = c.length;
+//        for (int i = 0; i < ik; i++) {
+//            if (c[i] == '\\') {
+//                if (i > 0) {
+//                    builder.append(c, start, i - start);
+//                }
+//                start = i + 1;
+//            }
+//        }
+//        if (start > 0) {
+//            builder.append(c, start, ik - start);
+//            return builder.toString();
+//        } else {
+//            return st;
+//        }
+//    }
+
     private String delSlesh(String st) {
         char[] c = st.toCharArray();
         StringBuilder builder = new StringBuilder();
-        int start = 0;
+        int i1;
         int ik = c.length;
+        boolean isYetSlash = false;
         for (int i = 0; i < ik; i++) {
-            if (c[i] == '\\' && c[i+1] == '/') {
-                if (i > 0) {
-                    builder.append(c, start, i - start);
+            if (c[i] == '\\') {
+                i1 = i + 1;
+                if (i1 < ik ) {
+                    char c1 = c[i1];
+                    if (c1 == 'u') {
+                        int iu = i + 5;
+                        if (iu < ik) {
+                            char cu = (char) Integer.parseInt(new String(new char[]{c[i + 2], c[i + 3], c[i + 4], c[i + 5]}), 16);
+                            builder.append(cu);
+                            i = iu;
+                        }
+                    } else {
+                        builder.append(c[i]);
+                        isYetSlash = true;
+                    }
                 }
-                start = i + 1;
+            } else {
+                builder.append(c[i]);
             }
         }
-        if (start > 0) {
-            builder.append(c, start, ik - start);
-            return builder.toString();
-        } else {
-            return st;
+        String result = builder.toString();
+        c = result.toCharArray();
+        builder = new StringBuilder();
+        int start = 0;
+        if (isYetSlash) {
+            for (int i = 0; i < ik; i++) {
+                if (c[i] == '\\') {
+                    i1 = i + 1;
+                    if (i1 < ik) {
+                        if (c[i1] == '/') {
+                            if (i > 0) {
+                                builder.append(c, start, i - start);
+                            }
+                            start = i + 1;
+                        }
+                    }
+                }
+            }
+            if (start > 0) {
+                builder.append(c, start, ik - start);
+                result = builder.toString();
+            }
         }
+        return result;
     }
 
     private Integer getIntegerValue() {

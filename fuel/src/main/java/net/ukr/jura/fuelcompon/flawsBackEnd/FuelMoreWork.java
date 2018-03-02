@@ -33,39 +33,31 @@ public class FuelMoreWork extends MoreWork{
      }
 
     private void  choice_fuel(Field response) {
-        ListRecords lr = (ListRecords) response.value;
+//        ListRecords lr = (ListRecords) response.value;
         ListRecords lrN = new ListRecords();
         Record recN;
-        for (Record rec : lr) {
-            recN = new Record();
-            recN.add(new Field("type", Field.TYPE_INTEGER, 1));
-            String str1 = rec.getString("name");
-            String str = "";
-            try {
-                str = new String(str1.getBytes("UTF-8"), "UTF-8");
-            } catch (UnsupportedEncodingException e) {
-                e.printStackTrace();
+//        for (Record rec : lr) {
+        Record rec = (Record) response.value;
+        recN = new Record();
+        recN.add(new Field("type", Field.TYPE_INTEGER, 1));
+        recN.add(new Field("name", Field.TYPE_STRING, rec.getString("name")));
+        lrN.add(recN);
+        long idL = (Long)rec.getValue("id");
+        Integer id = (int)idL;
+
+        recN.add(new Field("idNetwork", Field.TYPE_LONG, idL));
+        ListRecords listR = (ListRecords) rec.getValue("fuels");
+        if (listR != null) {
+            for (Record recFuel : listR) {
+                recN = new Record();
+                recN.add(new Field("type", Field.TYPE_INTEGER, 0));
+                recN.add(new Field("idNetwork", Field.TYPE_INTEGER, id));
+                recN.add(new Field("price", Field.TYPE_DOUBLE, recFuel.getDouble("price")));
+                recN.add(new Field("fuel_icon", Field.TYPE_STRING, recFuel.getString("icon")));
+                lrN.add(recN);
             }
-            Log.d("QWERT","STR11="+str1+"<< str="+str);
-            recN.add(new Field("name", Field.TYPE_STRING, str));
-            lrN.add(recN);
-            long idL = (Long)rec.getValue("id");
-            Integer id = (int)idL;
-
-            recN.add(new Field("idNetwork", Field.TYPE_LONG, idL));
-
-//            for (Record recFuel : (ListRecords) rec.getValue("fuels")) {
-//                recN = new Record();
-//                recN.add(new Field("type", Field.TYPE_INTEGER, 0));
-//                recN.add(new Field("idNetwork", Field.TYPE_INTEGER, id));
-//                recN.add(new Field("price", Field.TYPE_DOUBLE, rec.getDouble("price")));
-//                recN.add(new Field("fuel_icon", Field.TYPE_STRING, rec.getString("icon")));
-//                lrN.add(recN);
-//            }
         }
-        for (Record rec : lrN) {
-            Log.d("QWERT","REC="+rec.toString());
-        }
+//        }
         response.value = lrN;
     }
 

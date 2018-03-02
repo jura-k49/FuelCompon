@@ -137,7 +137,8 @@ public class MyListScreens extends ListScreens {
                 .addComponent(ParamComponent.TC.RECYCLER, new ParamModel(Api.NETWORKS),
                         new ParamView(R.id.recycler, "type",
                                 new int[] {R.layout.item_choice_fuel, R.layout.item_choice_fuel_net}),
-                        null, 0, FuelMoreWork.class);
+                        new Navigator().add(0, context.getString(R.string.tickets_buy)), 0, FuelMoreWork.class);
+        addActivity(context.getString(R.string.tickets_buy), R.layout.activity_tickets_buy);
 
         super.initScreen();
     }

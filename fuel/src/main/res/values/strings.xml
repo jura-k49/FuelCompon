@@ -21,6 +21,7 @@
     <string name="auth">auth</string>
     <string name="auth_phone">auth_phone</string>
     <string name="auth_code">auth_code</string>
+    <string name="tickets_buy">tickets_buy</string>
     <!--<string name="pay_talon">pay_talon</string>-->
 
 // Auth
@@ -65,6 +66,7 @@
     <string name="cost">Стоимость</string>
     <string name="cost_azs">Стоимость на АЗС</string>
     <string name="econom">Экономия</string>
+    <string name="tickets_buy_txt">Покупка топлива</string>
 
     <string-array name="tickets_ar">
         <item>талон</item>

@@ -44,29 +44,10 @@ public class VolleyRequest <T> extends Request<T> {
     @Override
     protected Response<T> parseNetworkResponse(NetworkResponse response) {
         try {
-            // Convert from Unicode to UTF-8
-//            String string = "\u003c\u0422\u0435\u0441\u0442\u043e\u0432\u0430\u044f";
-            String string = "WOG \u0442\u0435\u0441\u0442\u043e\u0432\u044b\u0439";
-//            byte[] utf8 = string.getBytes("UTF-8");
-
-            // Convert from UTF-8 to Unicode
-            string = new String(string.getBytes("UTF-8"), "UTF-8");
-            Log.d("QWERT","ZZZZZZ="+string);
-        } catch (UnsupportedEncodingException e) {
-            Log.d("QWERT","EEEEEEEEEEE");
-        }
-        try {
-//            String jsonSt = new String(response.data,
-//                    HttpHeaderParser.parseCharset(response.headers));
-            String jsonSt = new String(response.data);
-            jsonSt = new String(jsonSt.getBytes("UTF-8"), "UTF-8");
+            String jsonSt = new String(response.data,
+                    HttpHeaderParser.parseCharset(response.headers));
             if (networkParams.LOG_LEVEL > 2) Log.d(networkParams.NAME_LOG, "Respons json=" + jsonSt);
             CookieManager.checkAndSaveSessionCookie(response.headers);
-            Log.d(networkParams.NAME_LOG, "Respons "+HttpHeaderParser.parseCharset(response.headers)+"<< YYYYY json=" + Html.fromHtml(jsonSt).toString());
-
-
-//            return Response.success( (T) jsonSt,
-//                    HttpHeaderParser.parseCacheHeaders(response));
             return Response.success( (T) Html.fromHtml(jsonSt).toString(),
                     HttpHeaderParser.parseCacheHeaders(response));
 

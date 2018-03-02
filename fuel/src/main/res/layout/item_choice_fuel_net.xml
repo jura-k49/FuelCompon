@@ -13,10 +13,9 @@
         style="@style/st_16_black"
         android:text="@string/choice_fuel_txt"/>
     <TextView
-        android:id="@+id/name_net"
+        android:id="@+id/name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/pad_5"
-        style="@style/st_16_black"
-        android:text="OKKO"/>
+        style="@style/st_16_black"/>
 </LinearLayout>
