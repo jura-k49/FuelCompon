@@ -23,8 +23,8 @@ public class MenuComponent extends BaseComponent {
     ListRecords listData;
     BaseProviderAdapter adapter;
 
-    public MenuComponent(IBase iBase, ParamComponent paramMV) {
-        super(iBase, paramMV);
+    public MenuComponent(IBase iBase, ParamComponent paramMV, MultiComponents multiComponent) {
+        super(iBase, paramMV, multiComponent);
     }
 
     @Override

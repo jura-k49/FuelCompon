@@ -11,8 +11,8 @@ public class SearchComponent extends BaseComponent {
 
     EditText search;
 
-    public SearchComponent(IBase iBase, ParamComponent paramMV) {
-        super(iBase, paramMV);
+    public SearchComponent(IBase iBase, ParamComponent paramMV, MultiComponents multiComponent) {
+        super(iBase, paramMV, multiComponent);
     }
 
     @Override

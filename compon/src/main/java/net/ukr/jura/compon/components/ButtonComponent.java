@@ -14,8 +14,8 @@ public class ButtonComponent extends BaseComponent{
 
     public View buttonView;
 
-    public ButtonComponent(IBase iBase, ParamComponent paramMV) {
-        super(iBase, paramMV);
+    public ButtonComponent(IBase iBase, ParamComponent paramMV, MultiComponents multiComponent) {
+        super(iBase, paramMV, multiComponent);
     }
 
     @Override

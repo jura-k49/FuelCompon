@@ -35,8 +35,8 @@ public class PagerFComponent extends BaseComponent {
     private TabLayout tabLayout;
     private Adapter adapter;
 
-    public PagerFComponent(IBase iBase, ParamComponent paramMV) {
-        super(iBase, paramMV);
+    public PagerFComponent(IBase iBase, ParamComponent paramMV, MultiComponents multiComponent) {
+        super(iBase, paramMV, multiComponent);
     }
 
     @Override

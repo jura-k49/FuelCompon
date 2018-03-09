@@ -7,6 +7,7 @@ public class ViewHandler {
     public enum TYPE {NAME_FRAGMENT, CLOSE_DRAWER, MODEL_PARAM,
         BACK, PREFERENCE_SET_VALUE, PAGER_PLUS, PREFERENCE_SET_TOKEN,
         FIELD_WITH_NAME_FRAGMENT, SELECT, // SEND_BACK_SCREEN,
+        CLICK_VIEW,
         CLICK_SEND, SEND_UPDATE, SEND_CHANGE_BACK}
     public TYPE type;
     public String nameFragment;

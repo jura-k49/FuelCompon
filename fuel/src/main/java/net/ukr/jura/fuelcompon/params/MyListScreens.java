@@ -1,6 +1,7 @@
 package net.ukr.jura.fuelcompon.params;
 
 import android.content.Context;
+import android.util.Log;
 
 import net.ukr.jura.compon.base.ListScreens;
 import net.ukr.jura.compon.param.ParamComponent;
@@ -15,6 +16,7 @@ import net.ukr.jura.compon.tools.Constants;
 import net.ukr.jura.fuelcompon.R;
 import net.ukr.jura.fuelcompon.flawsBackEnd.FuelMoreWork;
 import net.ukr.jura.fuelcompon.fragments.MapFragment;
+import net.ukr.jura.fuelcompon.more_work.FuelProcessing;
 import net.ukr.jura.fuelcompon.network.Api;
 import net.ukr.jura.fuelcompon.network.TestInternetProvider;
 
@@ -73,6 +75,7 @@ public class MyListScreens extends ListScreens {
                 .addFragmentsContainer(R.id.content_frame, context.getString(R.string.tickets))
                 .addNavigator(new Navigator().add(R.id.radio1, context.getString(R.string.tickets))
                         .add(R.id.radio2, context.getString(R.string.map))
+                        .add(R.id.radio3, context.getString(R.string.calculator))
                         .add(R.id.radio5, context.getString(R.string.mapF)));
 
         addFragment(context.getString(R.string.tickets), R.layout.fragment_tickets, context.getString(R.string.my_tickets))
@@ -137,9 +140,23 @@ public class MyListScreens extends ListScreens {
                 .addComponent(ParamComponent.TC.RECYCLER, new ParamModel(Api.NETWORKS),
                         new ParamView(R.id.recycler, "type",
                                 new int[] {R.layout.item_choice_fuel, R.layout.item_choice_fuel_net}),
-                        new Navigator().add(0, context.getString(R.string.tickets_buy)), 0, FuelMoreWork.class);
-        addActivity(context.getString(R.string.tickets_buy), R.layout.activity_tickets_buy);
+                        new Navigator().add(0, context.getString(R.string.tickets_buy), ViewHandler.TYPE_PARAM_FOR_SCREEN.RECORD),
+                        0, FuelMoreWork.class);
 
+
+        addActivity(context.getString(R.string.tickets_buy), R.layout.activity_tickets_buy, FuelProcessing.class)
+                .addNavigator(new Navigator().add(R.id.back, ViewHandler.TYPE.BACK).add(R.id.panel, ViewHandler.TYPE.BACK))
+                .addComponent(ParamComponent.TC.PANEL, new ParamModel(ParamModel.ARGUMENTS),
+                        new ParamView(R.id.panel))
+                .addComponent(ParamComponent.TC.RECYCLER, new ParamModel(Api.NETWORK_ID, "idNetwork")
+                                .typeParam(ParamModel.TypeParam.SLASH),
+                        new ParamView(R.id.recycler, R.layout.item_tickets_buy),
+                        new Navigator().add(R.id.plus, ViewHandler.TYPE.CLICK_VIEW).add(R.id.minus, ViewHandler.TYPE.CLICK_VIEW),
+                        0, FuelMoreWork.class)
+                .addTotalComponent(R.id.total, R.id.recycler, showManager(visibility(R.id.total_panel, "amount"),
+                        enabled(R.id.contin, "amount")), "cost", "amount");
+
+        addActivity(context.getString(R.string.calculator), R.layout.activity_calculator);
         super.initScreen();
     }
 }

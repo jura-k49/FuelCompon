@@ -17,11 +17,11 @@ import net.ukr.jura.compon.tools.StaticVM;
 
 public class RecyclerComponent extends BaseComponent {
     RecyclerView recycler;
-    ListRecords listData;
+//    public ListRecords listData;
     BaseProviderAdapter adapter;
 
-    public RecyclerComponent(IBase iBase, ParamComponent paramMV) {
-        super(iBase, paramMV);
+    public RecyclerComponent(IBase iBase, ParamComponent paramMV, MultiComponents multiComponent) {
+        super(iBase, paramMV, multiComponent);
     }
 
     @Override
@@ -73,5 +73,6 @@ public class RecyclerComponent extends BaseComponent {
                 Log.i("SMPL", "Не найден SplashView в " + paramMV.nameParentComponent);
             }
         }
+        iBase.sendEvent(paramMV.paramView.viewId);
     }
 }

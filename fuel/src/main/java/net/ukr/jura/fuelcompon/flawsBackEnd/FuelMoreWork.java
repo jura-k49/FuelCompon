@@ -6,6 +6,7 @@ import net.ukr.jura.compon.base.BaseComponent;
 import net.ukr.jura.compon.interfaces_classes.Filters;
 import net.ukr.jura.compon.interfaces_classes.MoreWork;
 import net.ukr.jura.compon.json_simple.Field;
+import net.ukr.jura.compon.json_simple.ListFields;
 import net.ukr.jura.compon.json_simple.ListRecords;
 import net.ukr.jura.compon.json_simple.Record;
 import net.ukr.jura.compon.json_simple.SimpleRecordToJson;
@@ -28,8 +29,25 @@ public class FuelMoreWork extends MoreWork{
             case "choice_fuel" :
                 choice_fuel(response);
                 break;
+            case "tickets_buy" :
+                tickets_buy(response);
+                break;
         }
 
+     }
+
+     private void tickets_buy(Field response) {
+         ListRecords lrN = new ListRecords();
+         Record recN;
+         Record rec = (Record) response.value;
+         ListFields lf = (ListFields) rec.getValue("fixed_ticket_volumes");
+         for (Field ff : lf) {
+             recN = new Record();
+             recN.add(new Field("nominal", Field.TYPE_LONG, ff.value));
+             recN.add(new Field("count", Field.TYPE_LONG, new Long(0)));
+             lrN.add(recN);
+         }
+         response.value = lrN;
      }
 
     private void  choice_fuel(Field response) {

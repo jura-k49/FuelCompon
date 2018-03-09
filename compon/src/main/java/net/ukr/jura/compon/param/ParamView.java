@@ -5,6 +5,7 @@ import net.ukr.jura.compon.interfaces_classes.Visibility;
 
 public class ParamView {
     public int viewId;
+    public int viewIdWithList;
     public String fieldType;
     public int[] layoutTypeId, layoutFurtherTypeId;
     public int indicatorId;
@@ -15,6 +16,7 @@ public class ParamView {
     public int splashScreenViewId;
     public ParamModel paramModel;
     public String[] nameFragment;
+    public String[] nameFields;
     public Visibility[] visibilityArray;
 
     public ParamView(int viewId) {
@@ -110,7 +112,7 @@ public class ParamView {
     }
 
     public static Visibility visibility(int viewId, String nameField) {
-        return new Visibility(viewId, nameField);
+        return new Visibility(0, viewId, nameField);
     }
 //
 //    public class Visibility {

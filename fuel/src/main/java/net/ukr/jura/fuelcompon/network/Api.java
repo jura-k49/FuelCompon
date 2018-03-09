@@ -10,5 +10,6 @@ public class Api {
     public static final String LOGIN_PHONE = "client/create_code";
     public static String LOGIN_CODE = "client/login";
     public static String NETWORKS = "networks/6";
+    public static String NETWORK_ID = "networks";
 
 }

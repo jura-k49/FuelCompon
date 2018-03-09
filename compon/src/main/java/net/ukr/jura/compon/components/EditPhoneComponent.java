@@ -14,8 +14,8 @@ public class EditPhoneComponent extends BaseComponent {
 
     EditPhone editPhone;
 
-    public EditPhoneComponent(IBase iBase, ParamComponent paramMV) {
-        super(iBase, paramMV);
+    public EditPhoneComponent(IBase iBase, ParamComponent paramMV, MultiComponents multiComponent) {
+        super(iBase, paramMV, multiComponent);
     }
 
     @Override

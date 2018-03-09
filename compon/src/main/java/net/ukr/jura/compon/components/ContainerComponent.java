@@ -7,8 +7,8 @@ import net.ukr.jura.compon.param.ParamComponent;
 
 public class ContainerComponent extends BaseComponent{
 
-    public ContainerComponent(IBase iBase, ParamComponent paramMV) {
-        super(iBase, paramMV);
+    public ContainerComponent(IBase iBase, ParamComponent paramMV, MultiComponents multiComponent) {
+        super(iBase, paramMV, multiComponent);
     }
 
     @Override

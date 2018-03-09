@@ -14,8 +14,8 @@ import net.ukr.jura.compon.param.ParamComponent;
 
 public class EnterPanelComponent extends BaseComponent {
 
-    public EnterPanelComponent(IBase iBase, ParamComponent paramMV) {
-        super(iBase, paramMV);
+    public EnterPanelComponent(IBase iBase, ParamComponent paramMV, MultiComponents multiComponent) {
+        super(iBase, paramMV, multiComponent);
     }
 
     @Override

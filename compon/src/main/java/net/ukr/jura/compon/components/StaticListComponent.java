@@ -14,12 +14,12 @@ import net.ukr.jura.compon.tools.StaticVM;
 
 public class StaticListComponent extends BaseComponent {
     StaticList staticList;
-    ListRecords listData;
+//    ListRecords listData;
 //    BaseProvider provider;
     StaticListAdapter adapter;
 
-    public StaticListComponent(IBase iBase, ParamComponent paramMV) {
-        super(iBase, paramMV);
+    public StaticListComponent(IBase iBase, ParamComponent paramMV, MultiComponents multiComponent) {
+        super(iBase, paramMV, multiComponent);
     }
 
     @Override

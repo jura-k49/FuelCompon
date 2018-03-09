@@ -58,8 +58,12 @@ public class VolleyInternetProvider extends BaseInternetProvider {
         public void onErrorResponse(VolleyError error) {
             int statusCode = ERRORINMESSAGE;
             String st = error.toString();
+            int status = 0;
+            if (error.networkResponse != null) {
+                status = error.networkResponse.statusCode;
+            }
             Log.d("QWERT","VolleyInternetProvider error.toString()="+error.toString()+"< status="
-                    +error.networkResponse.statusCode
+                    + status
                     +"< mes="+error.getMessage()
 //                    +"< DDD="+error.networkResponse.data
             );

@@ -23,8 +23,8 @@ public class MultiPanelComponent extends BaseComponent {
 //    private ViewGroup view;
     private LayoutInflater mInflater;
 
-    public MultiPanelComponent(IBase iBase, ParamComponent paramMV) {
-        super(iBase, paramMV);
+    public MultiPanelComponent(IBase iBase, ParamComponent paramMV, MultiComponents multiComponent) {
+        super(iBase, paramMV, multiComponent);
     }
 
     @Override

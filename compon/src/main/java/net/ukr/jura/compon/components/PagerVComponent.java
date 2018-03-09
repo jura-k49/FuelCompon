@@ -29,8 +29,8 @@ public class PagerVComponent extends BaseComponent {
     private LayoutInflater inflater;
     private WorkWithRecordsAndViews modelToFurther = new WorkWithRecordsAndViews();
 
-    public PagerVComponent(IBase iBase, ParamComponent paramMV) {
-        super(iBase, paramMV);
+    public PagerVComponent(IBase iBase, ParamComponent paramMV, MultiComponents multiComponent) {
+        super(iBase, paramMV, multiComponent);
     }
 
     @Override

@@ -26,7 +26,7 @@ public class PanelComponent extends BaseComponent {
         }
     }
 
-    public PanelComponent(IBase iBase, ParamComponent paramMV) {
-        super(iBase, paramMV);
+    public PanelComponent(IBase iBase, ParamComponent paramMV, MultiComponents multiComponent) {
+        super(iBase, paramMV, multiComponent);
     }
 }

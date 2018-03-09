@@ -22,6 +22,7 @@
     <string name="auth_phone">auth_phone</string>
     <string name="auth_code">auth_code</string>
     <string name="tickets_buy">tickets_buy</string>
+    <string name="calculator">calculator</string>
     <!--<string name="pay_talon">pay_talon</string>-->
 
 // Auth
@@ -62,18 +63,22 @@
     <string name="info_phone">Который хотите использовать или использовали для работы</string>
     <string name="contin">Продолжить</string>
     <string name="ticket_used">Талон использован</string>
+    <string name="ticket_n">Талон</string>
     <string name="order_date">Дата заказа</string>
     <string name="cost">Стоимость</string>
     <string name="cost_azs">Стоимость на АЗС</string>
     <string name="econom">Экономия</string>
     <string name="tickets_buy_txt">Покупка топлива</string>
-
+    
     <string-array name="tickets_ar">
         <item>талон</item>
         <item>талона</item>
         <item>талонов</item>
     </string-array>
 
+    // Calculator
+    <string name="calculator_flow">Калькулятор расхода</string>
+    
 // Map
     <string name="map_txt">Карта</string>
     <string name="nearest_station">Ближайшая заправка</string>

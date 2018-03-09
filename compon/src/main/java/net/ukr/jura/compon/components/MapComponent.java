@@ -66,8 +66,8 @@ public class MapComponent extends BaseComponent {
     private MarkerOptions myMarker;
     private double ofset = 0;
 
-    public MapComponent(IBase iBase, ParamComponent paramMV) {
-        super(iBase, paramMV);
+    public MapComponent(IBase iBase, ParamComponent paramMV, MultiComponents multiComponent) {
+        super(iBase, paramMV, multiComponent);
     }
 
     @Override

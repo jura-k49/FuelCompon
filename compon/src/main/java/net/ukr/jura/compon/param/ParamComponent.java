@@ -7,7 +7,7 @@ import net.ukr.jura.compon.interfaces_classes.Navigator;
 public class ParamComponent <T>{
     public static enum TC {PANEL, PANEL_ENTER, PANEL_MULTI, SPINNER,
         RECYCLER, RECYCLER_HORIZONTAL, RECYCLER_GRID, RECYCLER_EXPANDED, RECYCLER_STICKY,
-        MENU, CONTAINER, MAP, SPLASH, BUTTON, PHONE,
+        MENU, CONTAINER, MAP, SPLASH, BUTTON, PHONE, TOTAL,
         STATIC_LIST, MODEL, PAGER_V, PAGER_F};
     public ParamComponent () {
         additionalWork = null;

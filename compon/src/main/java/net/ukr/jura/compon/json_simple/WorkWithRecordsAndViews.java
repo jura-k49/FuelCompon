@@ -126,9 +126,23 @@ public class WorkWithRecordsAndViews {
             for (Visibility vis : visibilityManager) {
                 if (vis.viewId == id) {
                     if (model.getBooleanVisibility(vis.nameField)) {
-                        v.setVisibility(View.VISIBLE);
+                        switch (vis.typeShow) {
+                            case 0 :
+                                v.setVisibility(View.VISIBLE);
+                                break;
+                            case 1 :
+                                v.setEnabled(true);
+                                break;
+                        }
                     } else {
-                        v.setVisibility(View.GONE);
+                        switch (vis.typeShow) {
+                            case 0 :
+                                v.setVisibility(View.GONE);
+                                break;
+                            case 1 :
+                                v.setEnabled(false);
+                                break;
+                        }
                     }
                     break;
                 }

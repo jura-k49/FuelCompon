@@ -22,7 +22,7 @@ public class ModelComponent extends BaseComponent {
         }
     }
 
-    public ModelComponent(IBase iBase, ParamComponent paramMV) {
-        super(iBase, paramMV);
+    public ModelComponent(IBase iBase, ParamComponent paramMV, MultiComponents multiComponent) {
+        super(iBase, paramMV, multiComponent);
     }
 }

@@ -6,11 +6,12 @@ import android.util.Log;
 import net.ukr.jura.compon.ComponGlob;
 import net.ukr.jura.compon.components.MultiComponents;
 import net.ukr.jura.compon.interfaces_classes.ActionsAfterResponse;
+import net.ukr.jura.compon.interfaces_classes.Visibility;
 import net.ukr.jura.compon.tools.Constants;
 
 import java.util.Map;
 
-public class ListScreens {
+public class ListScreens <T>{
     private Map<String, MultiComponents> MapScreen;
     protected Context context;
 
@@ -80,7 +81,27 @@ public class ListScreens {
         return mc;
     }
 
+    protected MultiComponents addActivity(String name, int layoutId, Class<T> additionalWork) {
+        MultiComponents mc = new MultiComponents(name, layoutId);
+        mc.typeView = MultiComponents.TYPE_VIEW.ACTIVITY;
+        mc.additionalWork = additionalWork;
+        MapScreen.put(name, mc);
+        return mc;
+    }
+
     public static ActionsAfterResponse actionsAfterResponse() {
         return new ActionsAfterResponse();
+    }
+
+    public static Visibility[] showManager(Visibility ... args) {
+        return args;
+    }
+
+    public static Visibility visibility(int viewId, String nameField) {
+        return new Visibility(0, viewId, nameField);
+    }
+
+    public static Visibility enabled(int viewId, String nameField) {
+        return new Visibility(1, viewId, nameField);
     }
 }

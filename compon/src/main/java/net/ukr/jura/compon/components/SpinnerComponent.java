@@ -16,7 +16,7 @@ import net.ukr.jura.compon.param.ParamComponent;
 
 public class SpinnerComponent extends BaseComponent {
     Spinner spinner;
-    ListRecords listSpinner;
+//    ListRecords listData;
 
     @Override
     public void initView() {
@@ -26,8 +26,8 @@ public class SpinnerComponent extends BaseComponent {
 
     @Override
     public void changeData(Field field) {
-        listSpinner = (ListRecords) field.value;
-        BaseProvider provider = new BaseProvider(listSpinner);
+        listData = (ListRecords) field.value;
+        BaseProvider provider = new BaseProvider(listData);
 //        provider.setData(listSpinner);
         SpinnerAdapter adapter = new SpinnerAdapter(provider, paramMV);
         spinner.setAdapter(adapter);
@@ -35,7 +35,7 @@ public class SpinnerComponent extends BaseComponent {
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                Record record = listSpinner.get(position);
+                Record record = listData.get(position);
                 ComponGlob.getInstance().setParam(record);
                 iBase.sendEvent(paramMV.paramView.viewId);
             }
@@ -47,7 +47,7 @@ public class SpinnerComponent extends BaseComponent {
         });
     }
 
-    public SpinnerComponent(IBase iBase, ParamComponent paramMV) {
-        super(iBase, paramMV);
+    public SpinnerComponent(IBase iBase, ParamComponent paramMV, MultiComponents multiComponent) {
+        super(iBase, paramMV, multiComponent);
     }
 }

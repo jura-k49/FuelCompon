@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.View;
 
 import net.ukr.jura.compon.ComponGlob;
+import net.ukr.jura.compon.components.MultiComponents;
 import net.ukr.jura.compon.param.ParamComponent;
 import net.ukr.jura.compon.param.ParamModel;
 import net.ukr.jura.compon.json_simple.WorkWithRecordsAndViews;
@@ -41,13 +42,17 @@ public abstract class BaseComponent {
     public BaseActivity activity;
     public Navigator navigator;
     public MoreWork moreWork;
+    public ListRecords listData;
     public IBase iBase;
     public ViewHandler selectViewHandler;
     public View viewComponent;
+    public Field argument;
+    public MultiComponents multiComponent;
     public WorkWithRecordsAndViews workWithRecordsAndViews = new WorkWithRecordsAndViews();
 
-    public BaseComponent(IBase iBase, ParamComponent paramMV){
+    public BaseComponent(IBase iBase, ParamComponent paramMV, MultiComponents multiComponent){
         this.paramMV = paramMV;
+        this.multiComponent = multiComponent;
         navigator = paramMV.navigator;
         paramMV.baseComponent = this;
         this.iBase = iBase;
@@ -65,6 +70,10 @@ public abstract class BaseComponent {
             }
         }
     }
+
+//    public void setMultiComponent(MultiComponents multiComponent) {
+//        this.multiComponent = multiComponent;
+//    }
 
     public void init() {
         initView();
@@ -112,7 +121,8 @@ public abstract class BaseComponent {
                     Intent intent = activity.getIntent();
                     String st = intent.getStringExtra(Constants.NAME_PARAM_FOR_SCREEN);
                     JsonSimple jsonSimple = new JsonSimple();
-                    changeDataBase(jsonSimple.jsonToModel(st));
+                    argument = jsonSimple.jsonToModel(st);
+                    changeDataBase(argument);
                     break;
                 default:
                     new BasePresenter(iBase, paramMV.paramModel, null, null, listener);
@@ -247,6 +257,11 @@ public abstract class BaseComponent {
                                 iBase.startScreen(vh.nameFragment, false, record);
                             } else {
                                 iBase.startScreen(vh.nameFragment, false);
+                            }
+                            break;
+                        case CLICK_VIEW:
+                            if (multiComponent.moreWork != null) {
+                                multiComponent.moreWork.clickView(view, holder.itemView, this, record, position);
                             }
                             break;
                     }

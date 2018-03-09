@@ -2,9 +2,12 @@ package net.ukr.jura.compon.components;
 
 import android.util.Log;
 
+import net.ukr.jura.compon.base.BaseComponent;
 import net.ukr.jura.compon.interfaces_classes.IBase;
+import net.ukr.jura.compon.interfaces_classes.MoreWork;
 import net.ukr.jura.compon.interfaces_classes.Navigator;
 import net.ukr.jura.compon.interfaces_classes.ViewHandler;
+import net.ukr.jura.compon.interfaces_classes.Visibility;
 import net.ukr.jura.compon.param.ParamComponent;
 import net.ukr.jura.compon.param.ParamMap;
 import net.ukr.jura.compon.param.ParamModel;
@@ -23,6 +26,8 @@ public class MultiComponents <T>{
     public TYPE_VIEW typeView;
     public Navigator navigator;
     public Class<T> customFragment;
+    public Class<T> additionalWork;
+    public MoreWork moreWork;
 
     public MultiComponents(String name, int layoutId, String title, String... args) {
         this.title = title;
@@ -176,6 +181,19 @@ public class MultiComponents <T>{
         return this;
     }
 
+    public MultiComponents addTotalComponent(int viewId, int viewIdWithList, Visibility[] visbil, String ... nameFields) {
+        ParamComponent paramComponent = new ParamComponent();
+        paramComponent.type = ParamComponent.TC.TOTAL;
+        ParamView pv = new ParamView(viewId);
+        paramComponent.paramView = pv;
+        pv.viewIdWithList = viewIdWithList;
+        pv.visibilityArray = visbil;
+        pv.nameFields = nameFields;
+        paramComponent.eventComponent = viewIdWithList;
+        listComponents.add(paramComponent);
+        return this;
+    }
+
     public MultiComponents addEditPhoneComponent(int viewId) {
         ParamComponent paramComponent = new ParamComponent();
         paramComponent.type = ParamComponent.TC.PHONE;
@@ -207,53 +225,75 @@ public class MultiComponents <T>{
         return this;
     }
 
+    public BaseComponent getComponent(int viewId) {
+        for (ParamComponent cMV : listComponents) {
+            if (cMV.paramView.viewId == viewId) {
+                return cMV.baseComponent;
+            }
+        }
+        return null;
+    }
+
     public void initComponents(IBase iBase) {
 //        Log.d("QWERT","__initComponents COUNT="+listComponents.size());
+        if (additionalWork != null) {
+            try {
+                moreWork = (MoreWork) additionalWork.newInstance();
+                moreWork.setParam(iBase, this);
+            } catch (InstantiationException e) {
+                e.printStackTrace();
+            } catch (IllegalAccessException e) {
+                e.printStackTrace();
+            }
+        }
         for (ParamComponent cMV : listComponents) {
 //            Log.d("QWERT","___initComponents TYPE="+cMV.type+" PARENT="+cMV.nameParentComponent);
             switch (cMV.type) {
                 case PANEL :
-                    new PanelComponent(iBase, cMV);
+                    new PanelComponent(iBase, cMV, this);
                     break;
                 case PANEL_MULTI :
-                    new MultiPanelComponent(iBase, cMV);
+                    new MultiPanelComponent(iBase, cMV, this);
                     break;
                 case PANEL_ENTER:
-                    new EnterPanelComponent(iBase, cMV);
+                    new EnterPanelComponent(iBase, cMV, this);
                     break;
                 case SPINNER :
-                    new SpinnerComponent(iBase, cMV);
+                    new SpinnerComponent(iBase, cMV, this);
                     break;
                 case RECYCLER_EXPANDED:
                 case RECYCLER_STICKY:
                 case RECYCLER :
                 case RECYCLER_HORIZONTAL :
                 case RECYCLER_GRID :
-                    new RecyclerComponent(iBase, cMV);
+                    new RecyclerComponent(iBase, cMV, this);
                     break;
                 case SPLASH :
-                    new SplashComponent(iBase, cMV);
+                    new SplashComponent(iBase, cMV, this);
                     break;
                 case MENU :
-                    new MenuComponent(iBase, cMV);
+                    new MenuComponent(iBase, cMV, this);
                     break;
                 case STATIC_LIST :
-                    new StaticListComponent(iBase, cMV);
+                    new StaticListComponent(iBase, cMV, this);
                     break;
                 case PAGER_V:
-                    new PagerVComponent(iBase, cMV);
+                    new PagerVComponent(iBase, cMV, this);
                     break;
                 case PAGER_F:
-                    new PagerFComponent(iBase, cMV);
+                    new PagerFComponent(iBase, cMV, this);
                     break;
                 case MODEL:
-                    new ModelComponent(iBase, cMV);
+                    new ModelComponent(iBase, cMV, this);
                     break;
                 case CONTAINER:
-                    new ContainerComponent(iBase, cMV);
+                    new ContainerComponent(iBase, cMV, this);
                     break;
                 case MAP:
-                    new MapComponent(iBase, cMV);
+                    new MapComponent(iBase, cMV, this);
+                    break;
+                case TOTAL:
+                    new TotalComponent(iBase, cMV, this);
                     break;
 //                case BUTTON:
 //                    new ButtonComponent(iBase, cMV);
@@ -262,6 +302,7 @@ public class MultiComponents <T>{
 //                    new EditPhoneComponent(iBase, cMV);
 //                    break;
             }
+//            cMV.setMultiComponent(this);
             cMV.baseComponent.init();
         }
     }

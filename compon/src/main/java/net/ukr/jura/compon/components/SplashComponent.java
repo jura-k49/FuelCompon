@@ -7,8 +7,8 @@ import net.ukr.jura.compon.param.ParamComponent;
 import net.ukr.jura.compon.tools.PreferenceTool;
 
 public class SplashComponent extends BaseComponent {
-    public SplashComponent(IBase iBase, ParamComponent paramMV) {
-        super(iBase, paramMV);
+    public SplashComponent(IBase iBase, ParamComponent paramMV, MultiComponents multiComponent) {
+        super(iBase, paramMV, multiComponent);
     }
 
     @Override

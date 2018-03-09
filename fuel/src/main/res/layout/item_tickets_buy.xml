@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/pad_70"
+    android:background="@color/white">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/ticket_n"
+        android:layout_marginLeft="@dimen/pad_30"
+        android:layout_marginTop="@dimen/pad_20"
+        android:textColor="@color/black"
+        android:textSize="@dimen/pad_10"/>
+
+    <TextView
+        android:id="@+id/nominal"
+        style="@style/st_18_black"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/pad_30"
+        android:layout_marginTop="@dimen/pad_32"
+        android:layout_marginRight="@dimen/pad_5" />
+
+    <TextView
+        android:id="@+id/unit"
+        style="@style/st_18_black"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/pad_32"
+        android:layout_toRightOf="@+id/nominal"
+        android:text="@string/unit_l" />
+
+    <TextView
+        android:id="@+id/count"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/black"
+        android:alpha="0.35"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="@dimen/pad_20"
+        android:layout_toLeftOf="@+id/plus"
+        android:textSize="@dimen/pad_16"/>
+
+    <ImageView
+        android:id="@+id/plus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="@dimen/pad_10"
+        android:src="@drawable/plus" />
+
+    <ImageView
+        android:id="@+id/minus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="@dimen/pad_52"
+        android:layout_toLeftOf="@+id/plus"
+        android:alpha="0.35"
+        android:src="@drawable/minus" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/pad_1"
+        android:layout_alignParentBottom="true"
+        android:background="@color/black_10" />
+
+</RelativeLayout>
