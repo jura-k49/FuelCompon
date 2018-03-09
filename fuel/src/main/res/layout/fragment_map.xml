@@ -44,14 +44,6 @@
         android:id="@+id/infoWindow"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:viewLayoutId="@layout/view_map"
-        app:fadedScreenColor="@color/accent_30"/>
+        app:viewLayoutId="@layout/view_map"/>
 
-    <!--<net.ukr.jura.compon.custom_components.PanelAnimate-->
-        <!--android:id="@+id/infoWindow"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="match_parent"-->
-        <!--app:viewLayoutId="@layout/view_map"-->
-        <!--app:fadedScreenColor="@color/accent_30"-->
-        <!--android:visibility="gone"/>-->
 </RelativeLayout>
