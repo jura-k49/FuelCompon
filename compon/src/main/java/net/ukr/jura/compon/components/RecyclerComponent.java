@@ -17,7 +17,6 @@ import net.ukr.jura.compon.tools.StaticVM;
 
 public class RecyclerComponent extends BaseComponent {
     RecyclerView recycler;
-//    public ListRecords listData;
     BaseProviderAdapter adapter;
 
     public RecyclerComponent(IBase iBase, ParamComponent paramMV, MultiComponents multiComponent) {

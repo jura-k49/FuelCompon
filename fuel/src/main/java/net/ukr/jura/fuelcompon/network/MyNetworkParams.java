@@ -1,6 +1,7 @@
 package net.ukr.jura.fuelcompon.network;
 
 import net.ukr.jura.compon.network.NetworkParams;
+import net.ukr.jura.fuelcompon.R;
 import net.ukr.jura.fuelcompon.dialogs.ErrorDialog;
 import net.ukr.jura.fuelcompon.dialogs.ProgressDialog;
 
@@ -15,5 +16,6 @@ public class MyNetworkParams extends NetworkParams {
         paginationNameParamNumberPage = "page";
         classProgress = ProgressDialog.class;
         classErrorDialog = ErrorDialog.class;
+        errorDialogViewId = R.id.error_dialog;
     }
 }

@@ -4,32 +4,77 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:background="@color/white"
-    android:padding="@dimen/pad_24">
+    android:background="@color/white">
 
     <TextView
-        style="@style/st_sub_title"
+        style="@style/st_24_black"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/pad_30"
+        android:layout_marginRight="@dimen/pad_30"
+        android:layout_marginLeft="@dimen/pad_30"
         android:text="@string/nearest_station" />
 
-    <TextView
-        style="@style/st_title"
-        android:layout_width="wrap_content"
-        android:layout_height="@dimen/h_button"
-        android:layout_gravity="center_horizontal"
-        android:gravity="center"
-        android:text="@string/more_information" />
-    <LinearLayout
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/pad_1"
+        android:layout_marginTop="@dimen/pad_30"
+        android:background="@color/black_10"/>
+
+
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:layout_marginRight="@dimen/pad_30"
+        android:layout_marginLeft="@dimen/pad_30"
+        android:layout_marginTop="@dimen/pad_30">
 
         <ImageView
-            android:id="@+id/imageAzs"
-            android:layout_width="@dimen/d_icon_g"
-            android:layout_height="@dimen/d_icon_g"
-            android:src="@drawable/azs_active" />
-    </LinearLayout>
+            android:id="@+id/network.icon_1"
+            android:layout_width="@dimen/d_icon_azs"
+            android:layout_height="@dimen/d_icon_azs" />
+
+        <TextView
+            android:id="@+id/network.name"
+            style="@style/st_16_black"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/pad_60" />
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/address"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="@dimen/pad_30"
+        android:layout_marginLeft="@dimen/pad_30"
+        style="@style/st_16_black"
+        android:layout_marginTop="@dimen/pad_30"/>
+
+    <TextView
+        android:id="@+id/contin"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/h_bottom"
+        style="@style/st_button"
+        android:layout_marginLeft="@dimen/pad_30"
+        android:layout_marginRight="@dimen/pad_30"
+        android:layout_marginTop="@dimen/pad_30"
+        android:elevation="@dimen/pad_6"
+        android:background="@drawable/selector_button_enabled"
+        android:gravity="center"
+        android:text="@string/get_directions" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/h_button"
+        android:textColor="@color/green_teal"
+        android:textSize="@dimen/pad_16"
+        android:layout_marginTop="@dimen/pad_10"
+        android:layout_marginBottom="@dimen/pad_16"
+        android:layout_marginRight="@dimen/pad_30"
+        android:layout_marginLeft="@dimen/pad_30"
+        android:gravity="center"
+        android:text="@string/more_information" />
 
 </LinearLayout>

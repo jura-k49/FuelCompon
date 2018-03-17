@@ -12,6 +12,7 @@ import com.google.android.gms.common.api.GoogleApiClient;
 
 import net.ukr.jura.compon.ComponGlob;
 import net.ukr.jura.compon.components.MapComponent;
+import net.ukr.jura.compon.interfaces_classes.AnimatePanel;
 import net.ukr.jura.compon.interfaces_classes.EventComponent;
 import net.ukr.jura.compon.interfaces_classes.IBase;
 import net.ukr.jura.compon.interfaces_classes.ParentModel;
@@ -39,6 +40,7 @@ public abstract class BaseFragment extends Fragment implements IBase {
     public List<ParentModel> parentModelList;
     private Bundle savedInstanceState;
     private GoogleApiClient googleApiClient;
+    private List<AnimatePanel> animatePanelList;
 
     public BaseFragment() {
         mObject = null;
@@ -79,6 +81,7 @@ public abstract class BaseFragment extends Fragment implements IBase {
             }
         }
         initView(savedInstanceState);
+        animatePanelList = new ArrayList<>();
         return parentLayout;
     }
 
@@ -185,6 +188,17 @@ public abstract class BaseFragment extends Fragment implements IBase {
     @Override
     public void setFragmentsContainerId(int id) {
 
+    }
+
+    @Override
+    public boolean isHideAnimatePanel() {
+        int pos = animatePanelList.size();
+        if (pos > 0) {
+            animatePanelList.get(pos - 1).hide();
+            return false;
+        } else {
+            return true;
+        }
     }
 
     @Override
@@ -360,5 +374,15 @@ public abstract class BaseFragment extends Fragment implements IBase {
     @Override
     public boolean isViewActive() {
         return false;
+    }
+
+    @Override
+    public void addAnimatePanel(AnimatePanel animatePanel) {
+        animatePanelList.add(animatePanel);
+    }
+
+    @Override
+    public void delAnimatePanel(AnimatePanel animatePanel) {
+        animatePanelList.remove(animatePanel);
     }
 }

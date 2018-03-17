@@ -106,14 +106,25 @@ public class MyListScreens extends ListScreens {
 
         addFragment(context.getString(R.string.mapF), MapFragment.class);
 
+//        addFragment(context.getString(R.string.map), R.layout.fragment_map)
+//                .addComponentMap(R.id.map, new ParamModel(Api.MARKER_MAP, "lat,lon").typeParam(ParamModel.TypeParam.NAME)
+//                        .internetProvider(TestInternetProvider.class), new ParamMap(true)
+//                        .coordinateValue(50.0276271, 36.2237879)
+//                        .markerImg(R.drawable.tab_map_green, Constants.MARKER_NAME_NUMBER, R.drawable.marker_map, R.drawable.marker_map)
+//                        .markerClick(R.id.infoWindow));
         addFragment(context.getString(R.string.map), R.layout.fragment_map)
-                .addComponentMap(R.id.map, new ParamModel(Api.MARKER_MAP, "lat,lon").typeParam(ParamModel.TypeParam.NAME)
-                        .internetProvider(TestInternetProvider.class), new ParamMap(true)
-                        .coordinateValue(50.0276271, 36.2237879)
-                        .markerImg(R.drawable.tab_map_green, Constants.MARKER_NAME_NUMBER, R.drawable.marker_map, R.drawable.marker_map)
-                        .markerClick(R.id.infoWindow));
+                .addComponent(ParamComponent.TC.SPINNER, new ParamModel(Api.NETWORKS_ALL).changeNameField("id", "network"),
+                        new ParamView(R.id.spinner, "type", new int[] {R.layout.spinner_drop_map, R.layout.spinher_drop_begin_map},
+                                new int[] {R.layout.spinher_hider_map}), null, 0, FuelMoreWork.class)
+                .addComponentMap(R.id.map, new ParamModel(Api.MARKER_MAP, "network").changeNameField("network.icon", "icon_1"),
+                        new ParamMap(true)
+                                .coordinateValue(50.0276271, 36.2237879)
+                                .markerImg(R.drawable.tab_map_green, Constants.MARKER_NAME_NUMBER,
+                                        R.drawable.marker_map, R.drawable.marker_map)
+                                .markerClick(R.id.infoWindow), new Navigator().add(R.id.contin, ViewHandler.TYPE.MAP_ROUTE),
+                        R.id.spinner);
 
-        addActivity(context.getString(R.string.help), R.layout.activity_help)
+        addActivity(context.getString(R.string.help), R.layout.activity_help, Constants.AnimateScreen.RL)
                 .addNavigator(new Navigator().add(R.id.back, ViewHandler.TYPE.BACK)
                                             .add(R.id.call_operator, getString(R.string.choice_fuel)));
 

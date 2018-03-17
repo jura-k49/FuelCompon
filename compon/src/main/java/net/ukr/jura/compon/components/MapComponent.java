@@ -1,10 +1,12 @@
 package net.ukr.jura.compon.components;
 
 import android.Manifest;
+import android.content.Intent;
 import android.content.IntentSender;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.location.LocationManager;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -37,7 +39,9 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import net.ukr.jura.compon.ComponGlob;
 import net.ukr.jura.compon.base.BaseActivity;
 import net.ukr.jura.compon.base.BaseComponent;
+import net.ukr.jura.compon.interfaces_classes.AnimatePanel;
 import net.ukr.jura.compon.interfaces_classes.IBase;
+import net.ukr.jura.compon.interfaces_classes.ViewHandler;
 import net.ukr.jura.compon.json_simple.Field;
 import net.ukr.jura.compon.json_simple.ListRecords;
 import net.ukr.jura.compon.json_simple.Record;
@@ -61,7 +65,7 @@ public class MapComponent extends BaseComponent {
     private Double lonOrigin = null;
     private String nameApiParamLat, nameApiParamLon;
     private View clickInfoWindow;
-
+    private Marker selectMarker;
 
     private MarkerOptions myMarker;
     private double ofset = 0;
@@ -111,6 +115,7 @@ public class MapComponent extends BaseComponent {
         listData.clear();
         listData.addAll((ListRecords) field.value);
         int ik = listData.size();
+        googleMap.clear();
         for (int i = 0; i < ik; i++){
             Record record = listData.get(i);
             Double lat = record.getDouble(Constants.MARKER_LAT);
@@ -125,12 +130,17 @@ public class MapComponent extends BaseComponent {
                 } else {
                     num = (Long) record.getValue(Constants.MARKER_NAME_NUMBER);
                 }
+                int id;
                 if (num != null) {
                     long l = num;
-                    int id = paramMap.markerIdArray[(int) l];
+                    id = paramMap.markerIdArray[(int) l];
+                    marker.icon(BitmapDescriptorFactory.fromResource(id));
+                } else {
+                    id = paramMap.markerIdArray[0];
                     marker.icon(BitmapDescriptorFactory.fromResource(id));
                 }
-                googleMap.addMarker(marker);
+                Marker mark = googleMap.addMarker(marker);
+                mark.setTag(record);
             }
         }
     }
@@ -169,7 +179,14 @@ public class MapComponent extends BaseComponent {
     GoogleMap.OnMarkerClickListener markerClickListener = new GoogleMap.OnMarkerClickListener() {
         @Override
         public boolean onMarkerClick(Marker marker) {
-            clickInfoWindow.setVisibility(View.VISIBLE);
+            if (clickInfoWindow instanceof AnimatePanel) {
+                ((AnimatePanel) clickInfoWindow).show(iBase);
+            } else {
+                clickInfoWindow.setVisibility(View.VISIBLE);
+            }
+            selectMarker = marker;
+            workWithRecordsAndViews.RecordToView((Record) marker.getTag(), clickInfoWindow,
+                    paramMV.navigator, clickView, null);
             return true;
         }
     };
@@ -319,4 +336,19 @@ public class MapComponent extends BaseComponent {
             }
         }
     };
+
+    @Override
+    public void specificComponentClick(ViewHandler viewHandler) {
+        switch (viewHandler.type) {
+            case MAP_ROUTE:
+                if (selectMarker != null) {
+                    LatLng loc = selectMarker.getPosition();
+                    Uri gmmIntentUri = Uri.parse("google.navigation:q="+loc.latitude+","+loc.longitude);
+                    Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
+                    mapIntent.setPackage("com.google.android.apps.maps");
+                    iBase.getBaseActivity().startActivity(mapIntent);
+                }
+                break;
+        }
+    }
 }

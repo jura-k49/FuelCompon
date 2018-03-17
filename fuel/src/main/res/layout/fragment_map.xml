@@ -10,14 +10,13 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/h_header"
         android:background="@drawable/shape_header">
-
-        <TextView
-            style="@style/st_title"
-            android:layout_width="wrap_content"
+        <Spinner
+            android:id="@+id/spinner"
+            android:layout_width="@dimen/pad_250"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:layout_centerInParent="true"
-            android:text="@string/map_txt" />
+            android:background="@null"/>
 
         <LinearLayout
             android:id="@+id/question"
@@ -44,6 +43,6 @@
         android:id="@+id/infoWindow"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:viewLayoutId="@layout/view_map"/>
+        app:viewId="@layout/view_map"/>
 
 </RelativeLayout>

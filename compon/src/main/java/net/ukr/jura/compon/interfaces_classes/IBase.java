@@ -38,4 +38,7 @@ public interface IBase {
     public void addInternetProvider(BaseInternetProvider internetProvider);
     public void setGoogleApiClient(GoogleApiClient googleApiClient);
     public void setMapComponent(MapComponent mapComponent);
+    public void addAnimatePanel(AnimatePanel animatePanel);
+    public void delAnimatePanel(AnimatePanel animatePanel);
+    public boolean isHideAnimatePanel();
 }

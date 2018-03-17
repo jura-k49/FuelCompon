@@ -74,6 +74,14 @@ public class ListScreens <T>{
         return mc;
     }
 
+    protected MultiComponents addActivity(String name, int layoutId, Constants.AnimateScreen animate) {
+        MultiComponents mc = new MultiComponents(name, layoutId);
+        mc.typeView = MultiComponents.TYPE_VIEW.ACTIVITY;
+        mc.animateScreen = animate;
+        MapScreen.put(name, mc);
+        return mc;
+    }
+
     protected MultiComponents addActivity(String name, int layoutId) {
         MultiComponents mc = new MultiComponents(name, layoutId);
         mc.typeView = MultiComponents.TYPE_VIEW.ACTIVITY;

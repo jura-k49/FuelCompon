@@ -12,6 +12,7 @@ import net.ukr.jura.compon.param.ParamComponent;
 import net.ukr.jura.compon.param.ParamMap;
 import net.ukr.jura.compon.param.ParamModel;
 import net.ukr.jura.compon.param.ParamView;
+import net.ukr.jura.compon.tools.Constants;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,6 +29,7 @@ public class MultiComponents <T>{
     public Class<T> customFragment;
     public Class<T> additionalWork;
     public MoreWork moreWork;
+    public Constants.AnimateScreen animateScreen;
 
     public MultiComponents(String name, int layoutId, String title, String... args) {
         this.title = title;
@@ -130,19 +132,34 @@ public class MultiComponents <T>{
         return this;
     }
 
-    public MultiComponents addComponentMap(int viewId, ParamModel paramModel, ParamMap paramMap) {
+    public MultiComponents addComponentMap(int viewId, ParamModel paramModel, ParamMap paramMap,
+                                           Navigator navigator, int eventComponent) {
         ParamComponent paramComponent = new ParamComponent();
         paramComponent.type = ParamComponent.TC.MAP;
         paramComponent.paramView = new ParamView(viewId);
         paramComponent.paramModel = paramModel;
-        paramComponent.eventComponent = viewId;
+        paramComponent.navigator = navigator;
+        paramComponent.eventComponent = eventComponent;
         paramComponent.paramMap = paramMap;
         listComponents.add(paramComponent);
         return this;
     }
 
     public MultiComponents addComponentMap(int viewId, ParamMap paramMap) {
-        return addComponentMap(viewId, null, paramMap);
+        return addComponentMap(viewId, null, paramMap, null, 0);
+    }
+
+    public MultiComponents addSearchComponent(int viewIdEdit, ParamModel paramModel, ParamView paramView,
+                                              Navigator navigator, int eventComponent) {
+        ParamComponent paramComponent = new ParamComponent();
+        paramComponent.type = ParamComponent.TC.SEARCH;
+        paramComponent.paramView = new ParamView(viewIdEdit);
+        paramComponent.paramModel = paramModel;
+        paramComponent.paramView = paramView;
+        paramComponent.navigator = navigator;
+        paramComponent.eventComponent = eventComponent;
+        listComponents.add(paramComponent);
+        return this;
     }
 
     public MultiComponents addModel(String nameModel, ParamModel paramModel) {

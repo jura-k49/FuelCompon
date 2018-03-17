@@ -4,6 +4,7 @@
     <dimen name="h_button">50dp</dimen>
     <dimen name="d_icon">40dp</dimen>
     <dimen name="d_icon_g">62dp</dimen>
+    <dimen name="d_icon_azs">50dp</dimen>
     <dimen name="h_bottom">50dp</dimen>
 
     <dimen name="pad_1">1dp</dimen>
@@ -14,6 +15,7 @@
     <dimen name="pad_8">8dp</dimen>
     <dimen name="pad_10">10dp</dimen>
     <dimen name="pad_12">12dp</dimen>
+    <dimen name="pad_14">14dp</dimen>
     <dimen name="pad_16">16dp</dimen>
     <dimen name="pad_18">18dp</dimen>
     <dimen name="pad_20">20dp</dimen>
@@ -40,5 +42,7 @@
     <dimen name="pad_140">140dp</dimen>
     <dimen name="pad_160">160dp</dimen>
     <dimen name="pad_210">210dp</dimen>
+    <dimen name="pad_250">250dp</dimen>
+
 
 </resources>

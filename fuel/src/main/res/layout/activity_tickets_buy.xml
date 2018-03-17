@@ -53,7 +53,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:layout_marginRight="@dimen/pad_5"
+            android:layout_marginLeft="@dimen/pad_5"
             android:layout_toRightOf="@+id/fuel_icon"
             app:numberFormat="#0.00" />
 
@@ -63,6 +63,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/pad_5"
             android:layout_toRightOf="@+id/price"
             android:text="@string/unit_grn_L" />
 

@@ -32,9 +32,21 @@ public class FuelMoreWork extends MoreWork{
             case "tickets_buy" :
                 tickets_buy(response);
                 break;
+            case "map" :
+                map(response);
+                break;
         }
 
      }
+
+    private void  map(Field response) {
+        ListRecords lr = (ListRecords) response.value;
+        Record record = new Record();
+        record.add(new Field("type", Field.TYPE_INTEGER, 1));
+        record.add(new Field("name", Field.TYPE_STRING, "Все партнеры"));
+        lr.add(0, record);
+        response.value = lr;
+    }
 
      private void tickets_buy(Field response) {
          ListRecords lrN = new ListRecords();

@@ -230,11 +230,18 @@ public abstract class BaseComponent {
                             ComponGlob.getInstance().setParam(rec);
                             new BasePresenter(iBase, vh.paramModel, null, rec, listener_send_back_screen);
                             break;
+                        default:
+                            specificComponentClick(vh);
+                            break;
                     }
                 }
             }
         }
     };
+
+    public void specificComponentClick(ViewHandler viewHandler) {
+
+    }
 
     public void clickAdapter(RecyclerView.ViewHolder holder, View view, int position) {
         Record record = provider.get(position);

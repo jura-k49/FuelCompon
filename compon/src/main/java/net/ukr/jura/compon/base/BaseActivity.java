@@ -1,10 +1,12 @@
 package net.ukr.jura.compon.base;
 
 import android.app.DialogFragment;
+//import android.app.Fragment;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -18,6 +20,7 @@ import net.ukr.jura.compon.R;
 import net.ukr.jura.compon.components.MapComponent;
 import net.ukr.jura.compon.dialogs.DialogTools;
 import net.ukr.jura.compon.functions_fragment.ComponentsFragment;
+import net.ukr.jura.compon.interfaces_classes.AnimatePanel;
 import net.ukr.jura.compon.interfaces_classes.EventComponent;
 import net.ukr.jura.compon.interfaces_classes.IBase;
 import net.ukr.jura.compon.interfaces_classes.ParentModel;
@@ -27,6 +30,7 @@ import net.ukr.jura.compon.components.MultiComponents;
 import net.ukr.jura.compon.json_simple.ListRecords;
 import net.ukr.jura.compon.json_simple.Record;
 import net.ukr.jura.compon.json_simple.SimpleRecordToJson;
+import net.ukr.jura.compon.json_simple.WorkWithRecordsAndViews;
 import net.ukr.jura.compon.tools.Constants;
 
 import java.util.ArrayList;
@@ -53,6 +57,7 @@ public abstract class BaseActivity extends FragmentActivity implements IBase {
     private Bundle savedInstanceState;
     private GoogleApiClient googleApiClient;
     private MapComponent mapComponent;
+    private List<AnimatePanel> animatePanelList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,6 +65,7 @@ public abstract class BaseActivity extends FragmentActivity implements IBase {
         this.savedInstanceState = savedInstanceState;
         parentModelList = new ArrayList<>();
         mapFragment = ComponGlob.getInstance().MapScreen;
+        animatePanelList = new ArrayList<>();
         countProgressStart = 0;
         listInternetProvider = new ArrayList<>();
         listEvent = new ArrayList<>();
@@ -226,11 +232,56 @@ public abstract class BaseActivity extends FragmentActivity implements IBase {
 
     @Override
     public void onBackPressed() {
-        if (getSupportFragmentManager().getBackStackEntryCount() == 1) {
-            getSupportFragmentManager().popBackStack();
-            finish();
+        FragmentManager fm = getSupportFragmentManager();
+        if (fm.getBackStackEntryCount() > 0) {
+            List<Fragment> fragmentList = fm.getFragments();
+            Fragment fragment = null;
+            for (Fragment fragm : fragmentList) {
+                if (fragm != null) {
+                    fragment = fragm;
+                }
+            }
+            if (fragment != null && fragment instanceof IBase) {
+                if (((IBase) fragment).isHideAnimatePanel()) {
+                    super.onBackPressed();
+                }
+            } else {
+                super.onBackPressed();
+            }
         } else {
-            super.onBackPressed();
+            if (isHideAnimatePanel()) {
+                finish();
+                if (mComponent.animateScreen != null) {
+                    switch (mComponent.animateScreen) {
+                        case TB :
+                            overridePendingTransition(R.anim.bt_in, R.anim.bt_out);
+                            break;
+                        case LR :
+                            overridePendingTransition(R.anim.rl_in, R.anim.rl_out);
+                            break;
+                        case RL :
+                            overridePendingTransition(R.anim.lr_in, R.anim.lr_out);
+                            break;
+                    }
+                }
+            }
+        }
+//        if (fm.getBackStackEntryCount() == 1) {
+//            fm.popBackStack();
+//            finish();
+//        } else {
+//            super.onBackPressed();
+//        }
+    }
+
+    @Override
+    public boolean isHideAnimatePanel() {
+        int pos = animatePanelList.size();
+        if (pos > 0) {
+            animatePanelList.get(pos - 1).hide();
+            return false;
+        } else {
+            return true;
         }
     }
 
@@ -245,7 +296,16 @@ public abstract class BaseActivity extends FragmentActivity implements IBase {
     }
 
 //    @Override
+
     public void startActivitySimple(String nameMVP, Object object) {
+        MultiComponents mc = mapFragment.get(nameMVP);
+        if (mc != null) {
+            startActivitySimple(nameMVP, mc, object);
+        } else {
+            Log.d("SMPL", "Нет Screens с именем " + nameMVP);
+        }
+    }
+    public void startActivitySimple(String nameMVP, MultiComponents mc, Object object) {
         Intent intent = new Intent(this, ComponBaseStartActivity.class);
         intent.putExtra(Constants.NAME_MVP, nameMVP);
         if (object != null) {
@@ -261,6 +321,19 @@ public abstract class BaseActivity extends FragmentActivity implements IBase {
             }
         }
         startActivity(intent);
+        if (mc.animateScreen != null) {
+            switch (mc.animateScreen) {
+                case TB :
+                    overridePendingTransition(R.anim.tb_in, R.anim.tb_out);
+                    break;
+                case LR :
+                    overridePendingTransition(R.anim.lr_in, R.anim.lr_out);
+                    break;
+                case RL :
+                    overridePendingTransition(R.anim.rl_in, R.anim.rl_out);
+                    break;
+            }
+        }
     }
 
     public void closeDrawer() {
@@ -281,12 +354,26 @@ public abstract class BaseActivity extends FragmentActivity implements IBase {
     }
 
     public void showDialog(String title, String message, View.OnClickListener click) {
-        DialogTools.showDialog(this, title, message, click);
+        int id = ComponGlob.getInstance().networkParams.errorDialogViewId;
+        if (id != 0) {
+            Record rec = new Record();
+            rec.add(new Field("title", Field.TYPE_STRING, title));
+            rec.add(new Field("message", Field.TYPE_STRING, message));
+            View viewErrorDialog = parentLayout.findViewById(id);
+            if (viewErrorDialog instanceof AnimatePanel) {
+                ((AnimatePanel) viewErrorDialog).show(this);
+                WorkWithRecordsAndViews workWithRecordsAndViews = new WorkWithRecordsAndViews();
+                workWithRecordsAndViews.RecordToView(rec, viewErrorDialog);
+            }
+        } else {
+            DialogTools.showDialog(this, title, message, click);
+        }
     }
 
     @Override
     public void showDialog(int statusCode, String message, View.OnClickListener click) {
-        DialogTools.showDialog(this, statusCode, message, click);
+        showDialog("StatusCode="+statusCode, message, click);
+//        DialogTools.showDialog(this, statusCode, message, click);
     }
 
     @Override
@@ -344,7 +431,7 @@ public abstract class BaseActivity extends FragmentActivity implements IBase {
         }
         switch (mComponent.typeView) {
             case ACTIVITY:
-                startActivitySimple(nameMVP, object);
+                startActivitySimple(nameMVP, mComponent, object);
                 break;
             case FRAGMENT:
                 startFragment(nameMVP, startFlag, object);
@@ -462,5 +549,15 @@ public abstract class BaseActivity extends FragmentActivity implements IBase {
                 ev.eventReceiverComponent.actualEvent(sender, paramEvent);
             }
         }
+    }
+
+    @Override
+    public void addAnimatePanel(AnimatePanel animatePanel) {
+        animatePanelList.add(animatePanel);
+    }
+
+    @Override
+    public void delAnimatePanel(AnimatePanel animatePanel) {
+        animatePanelList.remove(animatePanel);
     }
 }

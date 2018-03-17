@@ -1,6 +1,8 @@
 package net.ukr.jura.compon.json_simple;
 
 
+import android.util.Log;
+
 public class SimpleRecordToJson {
     private String quote = "\"";
     private String quoteColon = "\":";
@@ -49,7 +51,11 @@ public class SimpleRecordToJson {
                     sb.append(quote + f.name + quoteColon);
                     listFieldsJson((ListFields) f.value);
                     break;
+                case Field.TYPE_BOOLEAN:
+                    sb.append(quote + f.name + quoteColon + (Boolean) f.value);
+                    break;
             }
+//            Log.d("QWERT","recordJson NN="+f.name+" TTTT="+f.type+"<< ST="+sb);
         }
         sb.append("}");
     }
@@ -70,7 +76,6 @@ public class SimpleRecordToJson {
         String separator = "";
         for (Field f : listFields) {
             sb.append(separator);
-            separator = ",";
             switch (f.type) {
                 case Field.TYPE_STRING :
                     sb.append(quote + (String) f.value + quote);
@@ -85,6 +90,7 @@ public class SimpleRecordToJson {
                     sb.append(String.valueOf((Double) f.value));
                     break;
             }
+            separator = ",";
         }
         sb.append("]");
     }

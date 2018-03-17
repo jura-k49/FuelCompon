@@ -79,7 +79,7 @@ public class JsonSimple {
 
     private Object getList() {
         if (firstSymbol()) {
-            if (currentSymbol.equals("{")) {
+            if (currentSymbol.equals("{") || currentSymbol.equals("]")) {
                 ListRecords list = new ListRecords();
                 while (!currentSymbol.equals("]")) {
                     if (currentSymbol.equals("{")) {

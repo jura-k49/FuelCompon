@@ -17,4 +17,5 @@ public abstract class NetworkParams<T> {
     public String nameTokenInHeader = "";
     public String nameLanguageInHeader = "";
     public abstract void setParams();
+    public int errorDialogViewId;
 }

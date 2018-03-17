@@ -1,6 +1,7 @@
 package net.ukr.jura.compon;
 
 import android.content.Context;
+import android.util.Log;
 
 import net.ukr.jura.compon.components.MultiComponents;
 import net.ukr.jura.compon.param.ParamModel;
@@ -125,12 +126,18 @@ public class ComponGlob {
             for (String par : paramArray) {
                 for (int i = 0; i < ik; i++) {
                     if (par.equals(namesParams.get(i))) {
-                        st = st + sep + par + "=" + valuesParams.get(i);
-                        sep = "&";
+                        String valuePar = valuesParams.get(i);
+                        if (valuePar != null && valuePar.length() > 0) {
+                            st = st + sep + par + "=" + valuesParams.get(i);
+                            sep = "&";
+                        }
                         break;
                     }
                 }
             }
+        }
+        if (st.length() == 1) {
+            st = "";
         }
         return st;
     }

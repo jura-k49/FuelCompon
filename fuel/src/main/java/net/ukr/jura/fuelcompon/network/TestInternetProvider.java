@@ -98,43 +98,44 @@ public class TestInternetProvider extends BaseInternetProvider{
     }
 
     private String setActive() {
-        Log.d("QWERT","setActive setActive setActive");
-        Record rec = new Record();
-        ListRecords lr = new ListRecords();
-//        Field f = new Field("", Field.TYPE_LIST, lr);
-        Field f = new Field("", Field.TYPE_RECORD, rec);
-        rec.add(new Field("data", Field.TYPE_LIST_RECORD, lr));
-
-        Record record;
-        record = new Record();
-        record.add(new Field("type", Field.TYPE_INTEGER, 1));
-        record.add(new Field("amount_confirm", Field.TYPE_INTEGER, 5));
-        record.add(new Field("amount_expect", Field.TYPE_INTEGER, 3));
-        lr.add(record);
-
-        record = new Record();
-        record.add(new Field("id", Field.TYPE_INTEGER, 0));
-        record.add(new Field("volume", Field.TYPE_INTEGER, 100));
-        record.add(new Field("fuelingName", Field.TYPE_STRING, "ОККО"));
-        record.add(new Field("network_icon", Field.TYPE_STRING, "azs_active"));
-        record.add(new Field("fuelTypeName", Field.TYPE_STRING, "92"));
-        record.add(new Field("fuel_icon", Field.TYPE_STRING, "a92_evro"));
-        record.add(new Field("due_date", Field.TYPE_STRING, "2019-05-24"));
-        lr.add(record);
-
-        record = new Record();
-        record.add(new Field("id", Field.TYPE_INTEGER, 1));
-        record.add(new Field("volume", Field.TYPE_INTEGER, 200));
-        record.add(new Field("fuelingName", Field.TYPE_STRING, "ОККО"));
-        record.add(new Field("network_icon", Field.TYPE_STRING, "azs_active"));
-        record.add(new Field("fuelTypeName", Field.TYPE_STRING, "95"));
-        record.add(new Field("fuel_icon", Field.TYPE_STRING, "a95_evro"));
-        record.add(new Field("due_date", Field.TYPE_STRING, "2019-01-12"));
-        lr.add(record);
-
-        SimpleRecordToJson recordToJson = new SimpleRecordToJson();
-        Log.d("QWERT","1111 RESULT="+recordToJson.modelToJson(f));
-        return recordToJson.modelToJson(f);
+//        Log.d("QWERT","setActive setActive setActive");
+//        Record rec = new Record();
+//        ListRecords lr = new ListRecords();
+////        Field f = new Field("", Field.TYPE_LIST, lr);
+//        Field f = new Field("", Field.TYPE_RECORD, rec);
+//        rec.add(new Field("data", Field.TYPE_LIST_RECORD, lr));
+//
+//        Record record;
+//        record = new Record();
+//        record.add(new Field("type", Field.TYPE_INTEGER, 1));
+//        record.add(new Field("amount_confirm", Field.TYPE_INTEGER, 5));
+//        record.add(new Field("amount_expect", Field.TYPE_INTEGER, 3));
+//        lr.add(record);
+//
+//        record = new Record();
+//        record.add(new Field("id", Field.TYPE_INTEGER, 0));
+//        record.add(new Field("volume", Field.TYPE_INTEGER, 100));
+//        record.add(new Field("fuelingName", Field.TYPE_STRING, "ОККО"));
+//        record.add(new Field("network_icon", Field.TYPE_STRING, "azs_active"));
+//        record.add(new Field("fuelTypeName", Field.TYPE_STRING, "92"));
+//        record.add(new Field("fuel_icon", Field.TYPE_STRING, "a92_evro"));
+//        record.add(new Field("due_date", Field.TYPE_STRING, "2019-05-24"));
+//        lr.add(record);
+//
+//        record = new Record();
+//        record.add(new Field("id", Field.TYPE_INTEGER, 1));
+//        record.add(new Field("volume", Field.TYPE_INTEGER, 200));
+//        record.add(new Field("fuelingName", Field.TYPE_STRING, "ОККО"));
+//        record.add(new Field("network_icon", Field.TYPE_STRING, "azs_active"));
+//        record.add(new Field("fuelTypeName", Field.TYPE_STRING, "95"));
+//        record.add(new Field("fuel_icon", Field.TYPE_STRING, "a95_evro"));
+//        record.add(new Field("due_date", Field.TYPE_STRING, "2019-01-12"));
+//        lr.add(record);
+//
+//        SimpleRecordToJson recordToJson = new SimpleRecordToJson();
+//        Log.d("QWERT","1111 RESULT="+recordToJson.modelToJson(f));
+//        return recordToJson.modelToJson(f);
+        return null;
     }
 
     private String setMarker() {

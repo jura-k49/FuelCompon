@@ -24,6 +24,9 @@
     <declare-styleable name="Simple">
         <attr name="mask" format="string"/>
         <attr name="imageId" format="reference"/>
+        <attr name="viewId" format="reference"/>
+        <attr name="negativeViewId" format="reference"/>
+        <attr name="positiveViewId" format="reference"/>
         <attr name="selectorLine" format="reference"/>
         <attr name="heightLine" format="dimension"/>
         <attr name="numberFormat" format="string"/>

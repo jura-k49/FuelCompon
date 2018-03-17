@@ -27,8 +27,10 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
 import net.ukr.jura.compon.R;
+import net.ukr.jura.compon.interfaces_classes.AnimatePanel;
+import net.ukr.jura.compon.interfaces_classes.IBase;
 
-public class SheetBottom extends RelativeLayout {
+public class SheetBottom extends RelativeLayout implements AnimatePanel {
 
     private LinearLayout fadedScreen;
     private SwipeY panel;
@@ -40,8 +42,11 @@ public class SheetBottom extends RelativeLayout {
 //    private FragmentManager fragmentManager;
     private int idContainer;
     private int viewId;
+    private int negativeViewId, positiveViewId;
     private int fadedScreenColorDefault = 0x50000000;
     private int fadedScreenColor = fadedScreenColorDefault;
+    private IBase iBase;
+    private SheetBottom thisSheet;
 
     public SheetBottom(Context context) {
         super(context);
@@ -60,9 +65,12 @@ public class SheetBottom extends RelativeLayout {
 
     private void init(Context context, AttributeSet attrs) {
         this.context = context;
+        thisSheet = this;
         if (attrs != null) {
             TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.Simple);
-            viewId = a.getResourceId(R.styleable.Simple_viewLayoutId, 0);
+            viewId = a.getResourceId(R.styleable.Simple_viewId, 0);
+            negativeViewId = a.getResourceId(R.styleable.Simple_negativeViewId, 0);
+            positiveViewId = a.getResourceId(R.styleable.Simple_positiveViewId, 0);
 //            setView();
             fadedScreenColor = a.getColor(R.styleable.Simple_fadedScreenColor, fadedScreenColorDefault);
 //            setColor();
@@ -107,10 +115,30 @@ public class SheetBottom extends RelativeLayout {
         fadedScreen.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                fadedScreenClose(true, null);
+                hide();
+//                fadedScreenClose(true, null);
             }
         });
         LayoutInflater.from(context).inflate(viewId, sheetContainer);
+        if (negativeViewId != 0) {
+            final View hide = sheetContainer.findViewById(negativeViewId);
+            hide.setOnClickListener(new OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    hide();
+                }
+            });
+        }
+        if (positiveViewId != 0) {
+            final View positiv = sheetContainer.findViewById(positiveViewId);
+            positiv.setOnClickListener(new OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    listenerForView.proceedChanges(null);
+//                    fadedScreenClose(false, null);
+                }
+            });
+        }
 //        EditText ed = (EditText) sheetContainer.findViewById(R.id.edit);
 //        InputMethodManager inputMethodManager = (InputMethodManager) context.getSystemService(
 //                Context.INPUT_METHOD_SERVICE);
@@ -151,7 +179,7 @@ public class SheetBottom extends RelativeLayout {
     };
 
     private void fadedScreenOpen() {
-        fadedScreen.setVisibility(VISIBLE);
+        thisSheet.setVisibility(VISIBLE);
         fadedScreen.animate().alpha(1.0f).setDuration(duration).setListener(null);
 //        TranslateAnimation animation = new TranslateAnimation(Animation.RELATIVE_TO_SELF, 0f, Animation.RELATIVE_TO_SELF, 0f,
 //                Animation.RELATIVE_TO_SELF, 1f, Animation.RELATIVE_TO_SELF, 0f);
@@ -169,7 +197,7 @@ public class SheetBottom extends RelativeLayout {
                     @Override
                     public void onAnimationEnd(Animator animation) {
                         super.onAnimationEnd(animation);
-                        fadedScreen.setVisibility(GONE);
+                        thisSheet.setVisibility(GONE);
                         if (allertListener != null) {
                             if (negative) {
                                 allertListener.negativeClose();
@@ -188,27 +216,46 @@ public class SheetBottom extends RelativeLayout {
 //        super.setVisibility(vis);
 //    }
 
-    @Override
-    public void setVisibility(int visibility) {
-        if (visibility == VISIBLE) {
-            open();
-        } else {
-            fadedScreenClose(true, null);
-        }
-//        super.setVisibility(visibility);
-    }
+//    @Override
+//    public void setVisibility(int visibility) {
+//        if (visibility == VISIBLE) {
+//            open();
+//        } else {
+//            fadedScreenClose(true, null);
+//        }
+////        super.setVisibility(visibility);
+//    }
 
     private SheetBottomListener listenerForView = new SheetBottomListener() {
         @Override
         public void negativeClose() {
-            fadedScreenClose(true, null);
+            hide();
+//            fadedScreenClose(true, null);
         }
 
         @Override
         public void proceedChanges(Bundle data) {
+            iBase.delAnimatePanel(SheetBottom.this);
             fadedScreenClose(false, data);
         }
     };
+
+    @Override
+    public void show(IBase iBase) {
+        if (getVisibility() == GONE) {
+            open();
+            this.iBase = iBase;
+            iBase.addAnimatePanel(this);
+        }
+    }
+
+    @Override
+    public void hide() {
+        if (getVisibility() == VISIBLE) {
+            fadedScreenClose(true, null);
+            iBase.delAnimatePanel(this);
+        }
+    }
 
     public interface SheetBottomListener {
         void negativeClose();
