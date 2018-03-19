@@ -78,6 +78,10 @@
 
     // Calculator
     <string name="calculator_flow">Калькулятор расхода</string>
+    <string name="first_point">Пункт отправления</string>
+    <string name="last_point">Пункт прибытия</string>
+    <string name="kiev">Например, Киев</string>
+    <string name="kharkiv">Например, Харьков</string>
     
 // Map
     <string name="map_txt">Карта</string>

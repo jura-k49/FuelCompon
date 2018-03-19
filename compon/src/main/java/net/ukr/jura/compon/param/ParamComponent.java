@@ -30,4 +30,5 @@ public class ParamComponent <T>{
     public Class<T> additionalWork;
     public int[] mustValid;
     public int viewSearchId;
+    public boolean startActual = true;
 }

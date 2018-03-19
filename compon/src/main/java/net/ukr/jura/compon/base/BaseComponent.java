@@ -88,7 +88,9 @@ public abstract class BaseComponent {
             iBase.addEvent(paramMV.mustValid, this);
         }
         if (paramMV.eventComponent == 0) {
-            actual();
+            if (paramMV.startActual) {
+                actual();
+            }
         } else {
             iBase.addEvent(paramMV.eventComponent, this);
         }
@@ -311,8 +313,8 @@ public abstract class BaseComponent {
                             break;
                         case PREFERENCE_SET_TOKEN:
                             Record rec = ((Record) response.value);
-//                            String st = rec.getString(vh.nameFieldWithValue);
-                            String st = "bceee76d3c7d761c9ec92c286fb8bebcefb4225c311bb87e";
+                            String st = rec.getString(vh.nameFieldWithValue);
+//                            String st = "bceee76d3c7d761c9ec92c286fb8bebcefb4225c311bb87e";
                             if (st != null) {
                                 PreferenceTool.setSessionToken(st);
                             }

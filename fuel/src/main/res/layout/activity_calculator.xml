@@ -27,5 +27,111 @@
             android:gravity="center"
             android:src="@drawable/question" />
     </RelativeLayout>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/header">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/pad_127"
+                android:layout_marginTop="@dimen/pad_30">
 
+                <ImageView
+                    android:id="@+id/img1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/pad_10"
+                    android:src="@drawable/first_point_icon" />
+
+                <TextView
+                    android:id="@+id/t1"
+                    style="@style/st_16_black"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/pad_60"
+                    android:layout_marginTop="@dimen/pad_8"
+                    android:text="@string/first_point" />
+                <TextView
+                    android:id="@+id/first_point"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/t1"
+                    android:layout_marginLeft="@dimen/pad_60"
+                    android:layout_marginTop="@dimen/pad_20"
+                    style="@style/st_22_black_20"
+                    android:text="@string/kiev"/>
+
+                <ImageView
+                    android:id="@+id/first_img"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="@dimen/pad_30"
+                    android:layout_marginTop="@dimen/pad_40"
+                    android:src="@drawable/location" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/pad_1"
+                    android:layout_below="@+id/first_img"
+                    android:layout_marginLeft="@dimen/pad_60"
+                    android:layout_marginRight="@dimen/pad_30"
+                    android:layout_marginBottom="@dimen/pad_30"
+                    android:background="@color/black_30"/>
+                <com.xfinity.dahdit.DottedLine
+                    android:layout_width="2dp"
+                    android:layout_height="match_parent"
+                    android:layout_below="@+id/img1"
+                    android:layout_marginLeft="@dimen/pad_28"
+                    android:src="@drawable/dotted"
+                    app:dotColor="@color/green_teal"
+                    app:dotRadius="1dp"
+                    app:minimumDotGap="10dp"
+                    app:orientation="vertical"/>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/pad_10"
+                    android:src="@drawable/map_marker_icon" />
+
+                <TextView
+                    android:id="@+id/t11"
+                    style="@style/st_16_black"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/pad_60"
+                    android:layout_marginTop="@dimen/pad_8"
+                    android:text="@string/last_point" />
+                <TextView
+                    android:id="@+id/last_point"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/t11"
+                    android:layout_marginLeft="@dimen/pad_60"
+                    android:layout_marginTop="@dimen/pad_20"
+                    style="@style/st_22_black_20"
+                    android:text="@string/kharkiv"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/pad_1"
+                    android:layout_below="@+id/last_point"
+                    android:layout_marginTop="@dimen/pad_12"
+                    android:layout_marginLeft="@dimen/pad_60"
+                    android:layout_marginRight="@dimen/pad_30"
+                    android:background="@color/black_30" />
+
+            </RelativeLayout>
+        </LinearLayout>
+    </ScrollView>
 </RelativeLayout>

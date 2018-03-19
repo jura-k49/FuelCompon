@@ -168,6 +168,7 @@ public class MyListScreens extends ListScreens {
                         enabled(R.id.contin, "amount")), "cost", "amount");
 
         addActivity(context.getString(R.string.calculator), R.layout.activity_calculator);
+
         super.initScreen();
     }
 }
