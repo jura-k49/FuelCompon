@@ -6,6 +6,7 @@ import net.ukr.jura.compon.base.BaseComponent;
 import net.ukr.jura.compon.interfaces_classes.IBase;
 import net.ukr.jura.compon.interfaces_classes.MoreWork;
 import net.ukr.jura.compon.interfaces_classes.Navigator;
+import net.ukr.jura.compon.interfaces_classes.SetData;
 import net.ukr.jura.compon.interfaces_classes.ViewHandler;
 import net.ukr.jura.compon.interfaces_classes.Visibility;
 import net.ukr.jura.compon.param.ParamComponent;
@@ -20,6 +21,7 @@ import java.util.List;
 public class MultiComponents <T>{
     public String nameComponent;
     public List<ParamComponent> listComponents;
+    public List<SetData> listSetData;
     public String title;
     public String[] args;
     public int fragmentLayoutId;
@@ -150,14 +152,13 @@ public class MultiComponents <T>{
     }
 
     public MultiComponents addSearchComponent(int viewIdEdit, ParamModel paramModel, ParamView paramView,
-                                              Navigator navigator, int eventComponent) {
+                                              Navigator navigator) {
         ParamComponent paramComponent = new ParamComponent();
         paramComponent.type = ParamComponent.TC.SEARCH;
         paramComponent.paramView = new ParamView(viewIdEdit);
         paramComponent.paramModel = paramModel;
         paramComponent.paramView = paramView;
         paramComponent.navigator = navigator;
-        paramComponent.eventComponent = eventComponent;
         listComponents.add(paramComponent);
         return this;
     }
@@ -242,6 +243,14 @@ public class MultiComponents <T>{
         return this;
     }
 
+    public MultiComponents setDataParam(int viewId, String nameParam, int source) {
+        if (listSetData == null) {
+            listSetData = new ArrayList<>();
+        }
+        listSetData.add(new SetData(viewId, nameParam, source));
+        return this;
+    }
+
     public BaseComponent getComponent(int viewId) {
         for (ParamComponent cMV : listComponents) {
             if (cMV.paramView.viewId == viewId) {
@@ -311,6 +320,9 @@ public class MultiComponents <T>{
                     break;
                 case TOTAL:
                     new TotalComponent(iBase, cMV, this);
+                    break;
+                case SEARCH:
+                    new SearchComponent(iBase, cMV, this);
                     break;
 //                case BUTTON:
 //                    new ButtonComponent(iBase, cMV);

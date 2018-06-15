@@ -23,6 +23,8 @@
     <string name="auth_code">auth_code</string>
     <string name="tickets_buy">tickets_buy</string>
     <string name="calculator">calculator</string>
+    <string name="search_departure">search_departure</string>
+    <string name="profile">profile</string>
     <!--<string name="pay_talon">pay_talon</string>-->
 
 // Auth
@@ -89,6 +91,14 @@
     <string name="more_information">Больше информации</string>
     <string name="get_directions">Проложить маршрут</string>
 
+// Profile
+    <string name="driver">Водитель</string>
+    <string name="my_details">Мои данные</string>
+    <string name="contact">Контакты, безопастность</string>
+    <string name="settings">Настройки</string>
+    <string name="set_2">Язык, уведомления</string>
+    <string name="connect">Связь с нами</string>
+    <string name="questions">Вопросы и предложения</string>
 
     <string-array name="tab_tickets">
         <item>Активные</item>
@@ -98,6 +108,4 @@
 
 
 
-    <string name="goals">goals</string>
-    <string name="group">group</string>
 </resources>

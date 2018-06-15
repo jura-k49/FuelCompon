@@ -319,6 +319,14 @@ public abstract class BaseComponent {
                                 PreferenceTool.setSessionToken(st);
                             }
                             break;
+                        case PREFERENCE_SET_NAME:
+                            rec = ((Record) response.value);
+                            st = rec.getString(vh.nameFieldWithValue);
+//                            String st = "bceee76d3c7d761c9ec92c286fb8bebcefb4225c311bb87e";
+                            if (st != null) {
+                                PreferenceTool.setNameString(vh.nameFieldWithValue, st);
+                            }
+                            break;
                         case BACK:
                             iBase.backPressed();
                             break;

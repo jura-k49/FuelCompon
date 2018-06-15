@@ -329,6 +329,7 @@ public class JsonSimple {
         }
         String result = builder.toString();
         c = result.toCharArray();
+        ik = c.length;
         builder = new StringBuilder();
         int start = 0;
         if (isYetSlash) {

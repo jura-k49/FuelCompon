@@ -154,6 +154,15 @@ public abstract class BaseActivity extends FragmentActivity implements IBase {
                         case BACK:
                             onBackPressed();
                             break;
+                        case SHOW:
+                            Log.d("QWERT","navigatorClick SHOW");
+                            View showView = parentLayout.findViewById(vh.showViewId);
+                            if (showView instanceof AnimatePanel) {
+                                ((AnimatePanel) showView).show(BaseActivity.this);
+                            } else {
+                                showView.setVisibility(View.VISIBLE);
+                            }
+                            break;
                     }
                     break;
                 }
@@ -256,6 +265,9 @@ public abstract class BaseActivity extends FragmentActivity implements IBase {
                         case TB :
                             overridePendingTransition(R.anim.bt_in, R.anim.bt_out);
                             break;
+                        case BT :
+                            overridePendingTransition(R.anim.tb_in, R.anim.tb_out);
+                            break;
                         case LR :
                             overridePendingTransition(R.anim.rl_in, R.anim.rl_out);
                             break;
@@ -325,6 +337,9 @@ public abstract class BaseActivity extends FragmentActivity implements IBase {
             switch (mc.animateScreen) {
                 case TB :
                     overridePendingTransition(R.anim.tb_in, R.anim.tb_out);
+                    break;
+                case BT :
+                    overridePendingTransition(R.anim.bt_in, R.anim.bt_out);
                     break;
                 case LR :
                     overridePendingTransition(R.anim.lr_in, R.anim.lr_out);

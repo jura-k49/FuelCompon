@@ -53,6 +53,7 @@ public class ComponGlob {
         int ik = namesParams.size();
         for (Field f: fields) {
             String name = f.name;
+
             for (int i = 0; i < ik; i++) {
                 String nameParam = namesParams.get(i);
                 if (nameParam.equals(name)) {

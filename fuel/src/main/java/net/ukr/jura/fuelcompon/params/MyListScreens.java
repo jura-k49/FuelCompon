@@ -67,6 +67,7 @@ public class MyListScreens extends ListScreens {
                                 new ParamModel(ParamModel.POST, Api.LOGIN_CODE, "phone,code"),
                                 actionsAfterResponse()
                                         .preferenceSetToken("token")
+//                                        .preferenceSetName("phone")
                                         .startScreen(context.getString(R.string.main))
                                         .back(),
                                 true, R.id.code));
@@ -76,7 +77,7 @@ public class MyListScreens extends ListScreens {
                 .addNavigator(new Navigator().add(R.id.radio1, context.getString(R.string.tickets))
                         .add(R.id.radio2, context.getString(R.string.map))
                         .add(R.id.radio3, context.getString(R.string.calculator))
-                        .add(R.id.radio5, context.getString(R.string.mapF)));
+                        .add(R.id.radio5, context.getString(R.string.profile)));
 
         addFragment(context.getString(R.string.tickets), R.layout.fragment_tickets, context.getString(R.string.my_tickets))
                 .addNavigator(new Navigator().add(R.id.question, context.getString(R.string.help)))
@@ -104,14 +105,10 @@ public class MyListScreens extends ListScreens {
                                 new int[] {R.layout.item_active_tickets, R.layout.item_active_tickets_begining})
                                 .setSplashScreen(R.id.splash));
 
-        addFragment(context.getString(R.string.mapF), MapFragment.class);
+//        addFragment(context.getString(R.string.mapF), MapFragment.class);
+        addFragment(context.getString(R.string.profile), R.layout.fragment_profile)
+                .setDataParam(R.id.phone, "phone", 1);
 
-//        addFragment(context.getString(R.string.map), R.layout.fragment_map)
-//                .addComponentMap(R.id.map, new ParamModel(Api.MARKER_MAP, "lat,lon").typeParam(ParamModel.TypeParam.NAME)
-//                        .internetProvider(TestInternetProvider.class), new ParamMap(true)
-//                        .coordinateValue(50.0276271, 36.2237879)
-//                        .markerImg(R.drawable.tab_map_green, Constants.MARKER_NAME_NUMBER, R.drawable.marker_map, R.drawable.marker_map)
-//                        .markerClick(R.id.infoWindow));
         addFragment(context.getString(R.string.map), R.layout.fragment_map)
                 .addComponent(ParamComponent.TC.SPINNER, new ParamModel(Api.NETWORKS_ALL).changeNameField("id", "network"),
                         new ParamView(R.id.spinner, "type", new int[] {R.layout.spinner_drop_map, R.layout.spinher_drop_begin_map},
@@ -167,7 +164,12 @@ public class MyListScreens extends ListScreens {
                 .addTotalComponent(R.id.total, R.id.recycler, showManager(visibility(R.id.total_panel, "amount"),
                         enabled(R.id.contin, "amount")), "cost", "amount");
 
-        addActivity(context.getString(R.string.calculator), R.layout.activity_calculator);
+        addFragment(context.getString(R.string.calculator), R.layout.activity_calculator)
+                .addNavigator(new Navigator().add(R.id.first_point, context.getString(R.string.search_departure)));
+
+        addActivity(context.getString(R.string.search_departure), R.layout.activity_search_departure, Constants.AnimateScreen.BT)
+                .addSearchComponent(R.id.search, new ParamModel(),
+                        new ParamView(R.id.recycler, R.layout.item_search_city), null);
 
         super.initScreen();
     }

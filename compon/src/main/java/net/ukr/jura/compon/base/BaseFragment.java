@@ -3,6 +3,7 @@ package net.ukr.jura.compon.base;
 import android.app.DialogFragment;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,9 +17,11 @@ import net.ukr.jura.compon.interfaces_classes.AnimatePanel;
 import net.ukr.jura.compon.interfaces_classes.EventComponent;
 import net.ukr.jura.compon.interfaces_classes.IBase;
 import net.ukr.jura.compon.interfaces_classes.ParentModel;
+import net.ukr.jura.compon.interfaces_classes.SetData;
 import net.ukr.jura.compon.interfaces_classes.ViewHandler;
 import net.ukr.jura.compon.json_simple.Field;
 import net.ukr.jura.compon.components.MultiComponents;
+import net.ukr.jura.compon.tools.PreferenceTool;
 import net.ukr.jura.compon.tools.StaticVM;
 
 import java.util.ArrayList;
@@ -79,6 +82,24 @@ public abstract class BaseFragment extends Fragment implements IBase {
                     }
                 }
             }
+            if (mComponent.listSetData != null) {
+                int ik = mComponent.listSetData.size();
+                for (int i = 0; i < ik; i++) {
+                    SetData sd = (SetData) mComponent.listSetData.get(i);
+                    String value;
+                    if (sd.source == 0) {
+                        value = PreferenceTool.getNameString(sd.nameParam);
+                    } else {
+                        value = ComponGlob.getInstance().getParamValue(sd.nameParam);
+                    }
+                    View v = parentLayout.findViewById(sd.viewId);
+                    if (v != null) {
+                        if (v instanceof TextView) {
+                            ((TextView)v).setText(value);
+                        }
+                    }
+                }
+            }
         }
         initView(savedInstanceState);
         animatePanelList = new ArrayList<>();
@@ -102,6 +123,7 @@ public abstract class BaseFragment extends Fragment implements IBase {
     View.OnClickListener navigatorClick = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
+            Log.d("QWERT","navigatorClick navigatorClick");
             int id = view.getId();
             for (ViewHandler vh : mComponent.navigator.viewHandlers) {
                 if (vh.viewId == id) {
@@ -110,6 +132,15 @@ public abstract class BaseFragment extends Fragment implements IBase {
 //                            ComponGlob.getInstance().setParam(record);
                             getBaseActivity().startScreen(vh.nameFragment, false);
 //                            startFragment(vh.nameFragment, false);
+                            break;
+                        case SHOW:
+                            Log.d("QWERT","navigatorClick SHOW");
+                            View showView = parentLayout.findViewById(vh.showViewId);
+                            if (showView instanceof AnimatePanel) {
+                                ((AnimatePanel) showView).show(BaseFragment.this);
+                            } else {
+                                showView.setVisibility(View.VISIBLE);
+                            }
                             break;
                     }
                     break;

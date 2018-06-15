@@ -5,9 +5,9 @@ import net.ukr.jura.compon.param.ParamModel;
 public class ViewHandler {
     public int viewId;
     public enum TYPE {NAME_FRAGMENT, CLOSE_DRAWER, MODEL_PARAM,
-        BACK, PREFERENCE_SET_VALUE, PAGER_PLUS, PREFERENCE_SET_TOKEN,
+        BACK, PREFERENCE_SET_VALUE, PAGER_PLUS, PREFERENCE_SET_TOKEN, PREFERENCE_SET_NAME,
         FIELD_WITH_NAME_FRAGMENT, SELECT, // SEND_BACK_SCREEN,
-        CLICK_VIEW, MAP_ROUTE,
+        CLICK_VIEW, MAP_ROUTE, SHOW,
         CLICK_SEND, SEND_UPDATE, SEND_CHANGE_BACK}
     public TYPE type;
     public String nameFragment;
@@ -21,6 +21,7 @@ public class ViewHandler {
     public String pref_value_string;
     public String namePreference;
     public int[] mustValid;
+    public int showViewId;
     public boolean changeEnabled;
     public boolean[] validArray;
     public String nameFieldWithValue;
@@ -50,6 +51,12 @@ public class ViewHandler {
         type = TYPE.MODEL_PARAM;
         this.viewId = viewId;
         this.paramModel = paramModel;
+    }
+
+    public ViewHandler(int viewId, TYPE type, int showViewId) {
+        this.type = type;
+        this.viewId = viewId;
+        this.showViewId = showViewId;
     }
 
     public ViewHandler(int viewId, TYPE type, ParamModel paramModel) {

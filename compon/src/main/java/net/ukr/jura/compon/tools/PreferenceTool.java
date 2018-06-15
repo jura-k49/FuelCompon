@@ -21,6 +21,14 @@ public class PreferenceTool {
         getEditor().putString(name, value).commit();
     }
 
+    public static boolean getNameBoolean(String name) {
+        return getSharedPreferences().getBoolean(name, false);
+    }
+
+    public static String getNameString(String name) {
+        return getSharedPreferences().getString(name, "");
+    }
+
     public static void setTutorial(boolean value) {
         getEditor().putBoolean(TUTORIAL, value).commit();
     }

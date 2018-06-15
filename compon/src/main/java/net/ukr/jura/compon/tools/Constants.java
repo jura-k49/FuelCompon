@@ -21,7 +21,7 @@ public class Constants {
     public static String MARKER_NAME_NUMBER = "markerNumber";
     public static int MAP_PERMISSION_REQUEST_CODE = 10;
     public static int MAP_REQUEST_CHECK_SETTINGS = 11;
-    public static enum AnimateScreen {TB, LR, RL, NO}
+    public static enum AnimateScreen {TB, BT, LR, RL, NO}
 
 
 //    public static String SEPARATOR_NAV = ":";

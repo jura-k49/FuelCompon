@@ -18,6 +18,11 @@ public class ActionsAfterResponse {
         return this;
     }
 
+    public ActionsAfterResponse preferenceSetName(String nameField) {
+        viewHandlers.add(new ViewHandler(0, TYPE.PREFERENCE_SET_NAME, nameField));
+        return this;
+    }
+
     public ActionsAfterResponse back() {
         viewHandlers.add(new ViewHandler(0, TYPE.BACK));
         return this;

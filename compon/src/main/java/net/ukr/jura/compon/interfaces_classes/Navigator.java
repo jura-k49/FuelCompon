@@ -79,6 +79,11 @@ public class Navigator {
         return this;
     }
 
+    public Navigator showView(int viewId, int showViewId) {
+        viewHandlers.add(new ViewHandler(viewId, ViewHandler.TYPE.SHOW, showViewId));
+        return this;
+    }
+
     public Navigator addAll(ViewHandler[] viewHandlers) {
         for (ViewHandler vh : viewHandlers) {
             this.viewHandlers.add(vh);

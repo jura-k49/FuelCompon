@@ -118,10 +118,11 @@ public class FuelMoreWork extends MoreWork{
                 case "awaits_payment" :
                     payment++;
                     break;
-                case "available" :
-                    lrN.add(rec);
-                    break;
+//                case "available" :
+//                    lrN.add(rec);
+//                    break;
             }
+            lrN.add(rec);
         }
         Record record;
         if (lrN.size() == 0) {
